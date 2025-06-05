@@ -52,39 +52,39 @@ export const Experience = () => {
 
   return (
     <section className="mb-12 animate-fade-in">
-      <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b-2 border-blue-200 pb-2">
+      <h2 className="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/20 pb-2">
         Professional Experience
       </h2>
       <div className="space-y-8">
         {experiences.map((exp, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow">
+          <div key={index} className="bg-card rounded-lg shadow-sm p-6 border border-border hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
               <div>
-                <h3 className="text-xl font-bold text-slate-800 mb-1">{exp.title}</h3>
+                <h3 className="text-xl font-bold text-foreground mb-1">{exp.title}</h3>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-semibold text-blue-600">{exp.company}</span>
-                  <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
+                  <span className="font-semibold text-primary">{exp.company}</span>
+                  <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
-                <p className="text-slate-600">{exp.location}</p>
+                <p className="text-muted-foreground">{exp.location}</p>
               </div>
-              <div className="flex items-center gap-2 text-slate-600 mt-2 md:mt-0">
+              <div className="flex items-center gap-2 text-muted-foreground mt-2 md:mt-0">
                 <Calendar className="w-4 h-4" />
                 <span className="font-medium">{exp.period}</span>
               </div>
             </div>
             
             <div className="mb-4">
-              <p className="text-sm text-slate-600 mb-2"><strong>Tech Stack:</strong></p>
-              <p className="text-sm text-slate-700">{exp.techStack}</p>
+              <p className="text-sm text-muted-foreground mb-2"><strong>Tech Stack:</strong></p>
+              <p className="text-sm text-foreground">{exp.techStack}</p>
             </div>
             
             <ul className="space-y-2">
               {exp.achievements.map((achievement, achIndex) => (
                 <li key={achIndex} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-slate-700">{achievement}</span>
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-muted-foreground">{achievement}</span>
                 </li>
               ))}
             </ul>

@@ -30,25 +30,33 @@ export const Skills = () => {
       skills: ["Git", "GitHub", "GitLab", "JIRA"]
     },
     {
+      category: "Agile Workflow",
+      skills: ["Scrum", "Sprint Planning", "Code Reviews", "Pair Programming"]
+    },
+    {
       category: "AI Productivity Tools",
       skills: ["Cursor AI", "ChatGPT", "Claude"]
+    },
+    {
+      category: "Soft Skills",
+      skills: ["Team Collaboration", "Communication", "Time Management", "Ownership", "Problem Solving"]
     }
   ];
 
   return (
     <section className="mb-12 animate-fade-in">
-      <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b-2 border-blue-200 pb-2">
+      <h2 className="text-3xl font-bold text-foreground mb-6 border-b-2 border-primary/20 pb-2">
         Technical Skills
       </h2>
       <div className="grid gap-4">
         {skillCategories.map((category, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow">
-            <h3 className="font-bold text-blue-600 mb-3">{category.category}:</h3>
+          <div key={index} className="bg-card rounded-lg shadow-sm p-6 border border-border hover:shadow-md transition-shadow">
+            <h3 className="font-bold text-primary mb-3">{category.category}:</h3>
             <div className="flex flex-wrap gap-2">
               {category.skills.map((skill, skillIndex) => (
                 <span
                   key={skillIndex}
-                  className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200"
+                  className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
                 >
                   {skill}
                 </span>
