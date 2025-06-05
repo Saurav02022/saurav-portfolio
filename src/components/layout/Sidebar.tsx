@@ -18,10 +18,14 @@ export const Sidebar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="w-64 min-h-screen bg-muted/30 border-r border-border p-6 flex flex-col sticky top-0">
+    <div className="w-64 h-screen bg-muted/30 border-r border-border p-6 flex flex-col">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-xl font-bold text-foreground mb-1">Saurav Kumar</h1>
+        <Link to="/" className="block">
+          <h1 className="text-xl font-bold text-foreground mb-1 hover:text-primary transition-colors cursor-pointer">
+            Saurav Kumar
+          </h1>
+        </Link>
       </div>
 
       {/* Stay in Touch */}
@@ -66,16 +70,6 @@ export const Sidebar = () => {
             Hire Me
           </Button>
         </div>
-      </div>
-
-      {/* Quote */}
-      <div className="mt-auto">
-        <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
-          THE LINE I LIVE BY
-        </h3>
-        <p className="text-sm text-muted-foreground italic">
-          A journey of a thousand miles begins with a single step.
-        </p>
       </div>
     </div>
   );

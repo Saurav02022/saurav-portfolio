@@ -12,7 +12,7 @@ const Projects = () => {
       <Layout>
         <div className="max-w-6xl">
           <h1 className="text-3xl font-bold text-foreground mb-8">Projects</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="bg-card border border-border rounded-lg p-6 animate-pulse">
                 <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
@@ -48,20 +48,28 @@ const Projects = () => {
   return (
     <Layout>
       <div className="max-w-6xl">
-        <h1 className="text-3xl font-bold text-foreground mb-8">Projects</h1>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-foreground mb-4">Projects</h1>
+          <p className="text-xl text-muted-foreground">
+            Explore my open-source projects and contributions on GitHub
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border-b border-border">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+            <div key={project.id} className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 flex items-center justify-center border-b border-border relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary/10 group-hover:from-primary/10 group-hover:to-primary/20 transition-all duration-300"></div>
+                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
                   <Github className="w-8 h-8 text-primary" />
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
-                <p className="text-muted-foreground mb-4 min-h-[3rem]">
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {project.name}
+                </h3>
+                <p className="text-muted-foreground mb-4 min-h-[3rem] text-sm leading-relaxed">
                   {project.description || "No description available"}
                 </p>
                 
@@ -83,9 +91,9 @@ const Projects = () => {
                 </div>
                 
                 {project.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.topics.slice(0, 3).map((topic) => (
-                      <span key={topic} className="px-2 py-1 bg-primary/10 text-primary text-xs rounded">
+                      <span key={topic} className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md border border-primary/20">
                         {topic}
                       </span>
                     ))}
@@ -93,9 +101,9 @@ const Projects = () => {
                 )}
                 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" asChild>
+                  <Button variant="outline" size="sm" className="flex-1" asChild>
                     <a href={project.html_url} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-1" />
+                      <Github className="w-4 h-4 mr-2" />
                       GitHub
                     </a>
                   </Button>

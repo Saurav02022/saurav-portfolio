@@ -21,7 +21,7 @@ export const useGitHubProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/Saurav02022/repos?sort=updated&per_page=10');
+        const response = await fetch('https://api.github.com/users/Saurav02022/repos?sort=updated&per_page=100');
         if (!response.ok) {
           throw new Error('Failed to fetch repositories');
         }
