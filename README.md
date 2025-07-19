@@ -1,7 +1,5 @@
 # 🚀 Saurav Kumar - Frontend Engineer Portfolio
 
-> A modern, responsive portfolio website built with React, TypeScript, and Vite, featuring dynamic GitHub integration and comprehensive professional information.
-
 This portfolio showcases my expertise as a Frontend Engineer with 3+ years of experience in building scalable, high-performance web and mobile applications.
 
 ## ✨ Key Features
@@ -112,9 +110,6 @@ Contributions, issues, and feature requests are welcome!
 - **Work Arrangement**: Remote, Hybrid, On-site
 - **Response Time**: Within 24 hours via email
 
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
