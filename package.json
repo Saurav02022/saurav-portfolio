@@ -1,7 +1,30 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "saurav-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Modern single-page portfolio for Full Stack Engineer showcasing projects, content creation, and open-source contributions",
+  "author": {
+    "name": "Saurav Kumar",
+    "email": "sk729584@gmail.com",
+    "url": "https://github.com/Saurav02022"
+  },
+  "homepage": "https://saurav-portfolio-lovat.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Saurav02022/saurav-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saurav02022/saurav-portfolio/issues"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript",
+    "vite",
+    "tailwindcss",
+    "full-stack",
+    "developer-portfolio"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
