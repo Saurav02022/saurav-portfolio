@@ -17,7 +17,7 @@ export const config = {
       "I'm a Frontend Engineer with over 3 years of experience building scalable, high-performance web and mobile applications using React, Next.js, React Native, and TypeScript. My expertise spans delivering end-to-end features, optimizing rendering performance with advanced techniques like SSR, SSG, ISR, and PPR, and developing reusable, modular components using modern engineering practices.",
 
     journey:
-      "My journey in tech began with an intensive Full Stack Web Development program at Masai School, where I ranked among the top performers and mentored over 20 peers. I've progressed through roles at innovative companies like Neweb Labs and currently at Shikha Learning Labs, contributing to products that serve thousands of users with a focus on performance optimization and scalable architecture.",
+      "My journey in tech began with an intensive Full Stack Web Development program at Masai School, where I ranked among the top performers and mentored over 20 peers. I've progressed through roles at innovative companies like Nuveb and currently at Shikha Learning Labs, contributing to products that serve thousands of users with a focus on performance optimization and scalable architecture.",
 
     passion:
       "I'm passionate about building intuitive user experiences through modern engineering practices, implementing Atomic Design Methodology for scalable component architecture, and leveraging AI productivity tools like Cursor AI, ChatGPT, and Claude to streamline development workflows. My commitment to collaborative delivery in Agile environments ensures high-quality solutions that meet both user needs and business objectives.",
@@ -102,7 +102,7 @@ export const config = {
   hireMe: {
     email: "sk729584@gmail.com",
     subject: "Frontend Engineer Opportunity Discussion",
-    body: "Hi Saurav,\n\nI am interested in discussing a frontend development opportunity with you based on your impressive experience in React, Next.js, and scalable web applications.\n\nI found your portfolio particularly compelling, especially your work on:\n- Performance optimization (70% render time improvement at Neweb Labs)\n- AI integration projects and Cursor AI workflow optimization\n- Progressive Web App development at Shikha Learning Labs\n- Scalable component architecture using Atomic Design\n\nI'd love to schedule a call to discuss how your skills could benefit our team and explore potential collaboration opportunities.\n\nBest regards",
+    body: "Hi Saurav,\n\nI am interested in discussing a frontend development opportunity with you based on your impressive experience in React, Next.js, and scalable web applications.\n\nI found your portfolio particularly compelling, especially your work on:\n- Performance optimization (70% render time improvement at Nuveb)\n- AI integration projects and Cursor AI workflow optimization\n- Progressive Web App development at Shikha Learning Labs\n- Scalable component architecture using Atomic Design\n\nI'd love to schedule a call to discuss how your skills could benefit our team and explore potential collaboration opportunities.\n\nBest regards",
   },
 
   // Enhanced GitHub Configuration
@@ -196,7 +196,7 @@ export const config = {
   experience: [
     {
       title: "Next.js Developer",
-      company: "Shikha Learning Labs Private Limited",
+      company: "Shikha Learning Labs",
       companyUrl: "https://shikhaacademy.org/shikha-labs/",
       location: "Mumbai, Maharashtra, India",
       period: "Nov 2024 -- Present",
@@ -210,7 +210,7 @@ export const config = {
     },
     {
       title: "Full Stack Developer",
-      company: "Neweb Labs Private Limited",
+      company: "Nuveb",
       companyUrl: "https://www.linkedin.com/company/thenuveb/",
       location: "Bengaluru, Karnataka, India",
       period: "May 2023 -- Sep 2024",
