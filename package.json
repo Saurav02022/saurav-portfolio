@@ -1,68 +1,43 @@
 {
-  "name": "saurav-portfolio",
+  "name": "resume-modern-frontend-2ecf35bd",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "description": "Personal portfolio website of Saurav Kumar - Full Stack Engineer with 3+ years experience in MERN Stack, Next.js, React Native, TypeScript, SQL, and NoSQL",
-  "author": {
-    "name": "Saurav Kumar",
-    "email": "sk729584@gmail.com",
-    "url": "https://github.com/Saurav02022"
-  },
-  "homepage": "https://saurav-portfolio-lovat.vercel.app/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Saurav02022/saurav-portfolio.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Saurav02022/saurav-portfolio/issues"
-  },
-  "keywords": [
-    "portfolio",
-    "react",
-    "typescript",
-    "vite",
-    "tailwindcss",
-    "full-stack",
-    "developer-portfolio"
-  ],
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
-    "@tanstack/react-query": "^5.56.2",
+    "@octokit/rest": "^22.0.0",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tailwindcss/cli": "^4.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.462.0",
-    "next-themes": "^0.3.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "sonner": "^1.5.0",
-    "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "lucide-react": "^0.548.0",
+    "motion": "^12.23.24",
+    "next": "16.0.0",
+    "next-themes": "^0.4.6",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
-    "@tailwindcss/typography": "^0.5.15",
-    "@types/node": "^22.5.5",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.9",
-    "globals": "^15.9.0",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.11",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "@tailwindcss/postcss": "^4.1.16",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.0",
+    "tailwindcss": "^4.1.16",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
   }
 }
