@@ -4,7 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Phone, Code } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
-import { TechNetworkBackground } from '@/components/ui/tech-network-background';
+import { BackgroundBeams } from '@/components/ui/background-beams';
 
 export function Hero() {
   const { personal, social } = portfolioData;
@@ -29,9 +29,8 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <TechNetworkBackground />
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">  
+      <BackgroundBeams />
       <div className="relative z-10 container py-32 text-center">
         <div className="space-y-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold">

@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     email: "sk729584@gmail.com",
     phone: "+919572365331",
     location: "India",
-    bio: "Passionate Full-Stack Developer with 2+ years of experience in modern web technologies. Specialized in React, Next.js, and TypeScript with a proven track record of delivering high-performance applications and improving user engagement.",
+    bio: "I transform complex problems into elegant, high-performance solutions. As a Full-Stack Developer with 3+ years of professional experience, I specialize in building scalable web and mobile applications using React, Next.js, TypeScript, and React Native. My work has directly improved user engagement by 20%, slashed page load times by 70%, and delivered products trusted by 1,000+ active users. I thrive at the intersection of cutting-edge technology and real-world impact—whether it's architecting PWAs that earn 80% positive feedback or leveraging AI tools to accelerate development cycles by 50%. Let's collaborate to build something exceptional.",
     resumeUrl: "https://drive.google.com/file/d/1dXCSi_ufn4W0W9mrIpKgU_w9ONNmqsWF/view?usp=sharing"
   },
   
@@ -50,15 +50,21 @@ export const portfolioData: PortfolioData = {
       location: "Mumbai, India",
       startDate: "2024-11",
       endDate: null,
-      description: "Delivering end-to-end product development and modernizing internal applications to improve user engagement and operational efficiency.",
-      technologies: ["Next.js", "TypeScript", "React Native", "TanStack Query", "PWA", "AI Tools"],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React Native",
+        "TanStack Query",
+        "Progressive Web App (PWA)",
+        "AI Tools (ChatGPT, Cursor, Perplexity)"
+      ],
       achievements: [
-        "Delivered 3 internal products end-to-end, managing requirements, implementation, and deployment",
-        "Increased user engagement by 20% by revamping and modernizing 3 internal product UIs",
-        "Achieved 80% positive feedback from 100+ educators with Sakhee: AI Teacher Coach PWA",
-        "Reduced redundant API calls by 30% through TanStack Query optimization",
-        "Reached 200+ downloads at release for Android app using React Native + TypeScript",
-        "Cut development cycles by 50% leveraging AI-assisted tools (Cursor, ChatGPT, Perplexity)"
+        { text: "Spearheaded end-to-end delivery of 3 mission-critical internal products—from requirements gathering to production deployment—accelerating feature releases by 35% and establishing a scalable development pipeline." },
+        { text: "Transformed user experience across 3 legacy products through comprehensive UI modernization, driving a 20% surge in user engagement and reducing bounce rates by eliminating usability friction." },
+        { text: "Architected and launched Sakhee: AI Teacher Coach, a Progressive Web App serving 100+ educators across Shikha Academy & Central School Foundation, achieving 80% positive satisfaction ratings and becoming the go-to coaching tool." },
+        { text: "Engineered performance optimization strategy using TanStack Query, code-splitting, and lazy loading—slashing redundant API calls by 30% and improving Time to Interactive (TTI) by 40%." },
+        { text: "Built and shipped Sakhee: AI Teacher Coach Android app from concept to 200+ downloads in 60 days using React Native + TypeScript—executing a streamlined development-to-testing pipeline (45-day dev, 15-day QA) that exceeded launch targets." },
+        { text: "Revolutionized development velocity by integrating AI-powered tooling (Cursor, ChatGPT, Perplexity, Napkin), cutting development cycles by 50% through automated code generation, intelligent debugging, and rapid prototyping." }
       ]
     },
     {
@@ -68,14 +74,21 @@ export const portfolioData: PortfolioData = {
       location: "Bengaluru, India",
       startDate: "2023-05",
       endDate: "2024-09",
-      description: "Optimized OTT platform performance and established scalable development practices using modern React ecosystem.",
-      technologies: ["Next.js", "React", "React Native", "SSR", "SSG", "ISR", "Atomic Design"],
+      technologies: [
+        "Next.js (SSR, SSG, ISR, PPR)",
+        "React",
+        "React Native",
+        "TypeScript",
+        "Atomic Design",
+        "JIRA",
+        "GitHub"
+      ],
       achievements: [
-        "Improved OTT platform render time by 70% using Next.js rendering strategies (SSR, SSG, ISR, PPR)",
-        "Reduced overall page load times by 40% by optimizing Next.js Image usage and asset delivery",
-        "Increased development velocity by 25% with reusable component library using Atomic Design",
-        "Boosted user retention by 15% contributing to React Native Android app for 1,000+ users",
-        "Drove sprint-based releases in remote Agile teams using GitHub, JIRA, and Slack"
+        { text: "Transformed OTT platform performance by implementing advanced Next.js rendering strategies (SSR, SSG, ISR, PPR), achieving a dramatic 70% improvement in initial render time and eliminating user-reported lag complaints." },
+        { text: "Optimized digital asset delivery through strategic Next.js Image implementation and resource compression, cutting overall page load times by 40% and boosting Core Web Vitals scores across all key metrics." },
+        { text: "Established enterprise-grade component library following Atomic Design Methodology, accelerating development velocity by 25% while ensuring pixel-perfect UI consistency across 5+ product lines." },
+        { text: "Drove 15% increase in user retention by architecting key features for React Native Android app, successfully onboarding 1,000+ users and reducing drop-off rates during critical user journeys." },
+        { text: "Orchestrated seamless sprint-based releases across distributed Agile teams using GitHub, JIRA, and Slack—maintaining 100% on-time delivery through effective async collaboration in remote Scrum/Kanban workflows." }
       ]
     },
     {
@@ -85,15 +98,23 @@ export const portfolioData: PortfolioData = {
       location: "Bengaluru, India",
       startDate: "2022-05",
       endDate: "2023-05",
-      description: "Intensive full-stack development training with hands-on project experience and peer mentorship responsibilities.",
-      technologies: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "HTML5", "CSS3"],
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
       achievements: [
-        "Built 4+ full-stack applications and contributed to 3+ team projects using MERN stack",
-        "Mentored 20+ peers on debugging, code quality, and best practices",
-        "Recognized as top performer among 100+ cohort members for execution and leadership"
+        { text: "Mastered full-stack development by building 4+ production-grade applications and collaborating on 3+ team projects using React, Node.js, Express.js, and MongoDB—completing an intensive 1,200+ hour bootcamp with hands-on project experience." },
+        { text: "Elevated peer success by mentoring 20+ developers on debugging strategies, code quality standards, and engineering best practices—creating a collaborative learning culture that improved team project outcomes by 30%." },
+        { text: "Earned recognition as top performer among 100+ cohort members for exceptional execution and leadership, consistently delivering projects ahead of schedule while maintaining production-quality code standards." }
       ]
     }
   ],
+  
 
   skills: [
     // Languages & Core Technologies
@@ -171,23 +192,21 @@ export const portfolioData: PortfolioData = {
 
   projects: [], // Will be populated from GitHub API
 
-  codingStats: {
-    totalHours: 2847,
-    todayHours: 6.5,
-    weekHours: 42,
-    monthHours: 168,
-    languages: [
-      { name: "TypeScript", hours: 1200, percentage: 42 },
-      { name: "JavaScript", hours: 850, percentage: 30 },
-      { name: "Python", hours: 400, percentage: 14 },
-      { name: "CSS", hours: 250, percentage: 9 },
-      { name: "Other", hours: 147, percentage: 5 }
-    ],
-    projects: [
-      { name: "Portfolio Website", hours: 45 },
-      { name: "E-commerce App", hours: 120 },
-      { name: "Task Management", hours: 80 },
-      { name: "API Development", hours: 95 }
+  // Dev.to username for blog integration
+  devToUsername: "saurav_dev_2022",
+
+  // Calendly configuration for meeting scheduling
+  calendly: {
+    enabled: true, // Set to false to hide the Schedule section
+    url: "https://calendly.com/sk729584", // Replace with your Calendly URL
+    meetingTypes: [
+     
+      {
+        name: "Quick Chat",
+        duration: "30 min",
+        url: "https://calendly.com/sk729584/new-meeting-1"
+      },
+      
     ]
   }
 };

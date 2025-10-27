@@ -3,7 +3,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { GraduationCap, Calendar, MapPin } from 'lucide-react';
+import { GraduationCap, Calendar, MapPin, BookOpen } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 
 export function Education() {
@@ -18,6 +18,9 @@ export function Education() {
     <section id="education" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
+          <div className="flex items-center justify-center mb-4">
+            <BookOpen className="h-6 w-6 text-primary" />
+          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Education
           </h2>
@@ -28,7 +31,7 @@ export function Education() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
           {education.map((edu) => (
-            <Card key={edu.id} className="flex flex-col h-full">
+            <Card key={edu.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <Avatar>
@@ -45,7 +48,7 @@ export function Education() {
                 </div>
               </CardHeader>
 
-              <CardContent className="space-y-3 flex-grow">
+              <CardContent className="space-y-3 grow">
                 <div>
                   <div className="font-medium line-clamp-1">{edu.degree}</div>
                   <div className="text-sm text-muted-foreground line-clamp-1">{edu.field}</div>

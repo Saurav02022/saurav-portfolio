@@ -11,7 +11,14 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // Set mounted to true after component mounts to prevent hydration mismatch
+  // This is the recommended pattern for next-themes to avoid SSR hydration errors
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,9 +30,9 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -83,8 +90,11 @@ export function Navbar() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+                  suppressHydrationWarning
                 >
-                  {theme === 'dark' ? (
+                  {!mounted ? (
+                    <Sun className="h-5 w-5" />
+                  ) : theme === 'dark' ? (
                     <Moon className="h-5 w-5" />
                   ) : theme === 'light' ? (
                     <Sun className="h-5 w-5" />
@@ -93,7 +103,7 @@ export function Navbar() {
                   )}
                 </Button>
 
-                {themeMenuOpen && (
+                {themeMenuOpen && mounted && (
                   <>
                     <div 
                       className="fixed inset-0 z-40" 
