@@ -15,6 +15,10 @@ export interface SocialLink {
   username?: string;
 }
 
+export interface Achievement {
+  text: string;
+}
+
 export interface Experience {
   id: string;
   title: string;
@@ -22,9 +26,8 @@ export interface Experience {
   location: string;
   startDate: string;
   endDate: string | null;
-  description: string;
   technologies: string[];
-  achievements: string[];
+  achievements: Achievement[];
 }
 
 export interface Skill {
@@ -92,6 +95,35 @@ export interface CodingTimeStats {
   }[];
 }
 
+export interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  cover_image: string;
+  published_at: string;
+  tag_list: string[];
+  reading_time_minutes: number;
+  public_reactions_count: number;
+  comments_count: number;
+  user: {
+    name: string;
+    username: string;
+    profile_image: string;
+  };
+}
+
+
+export interface CalendlyConfig {
+  enabled: boolean;
+  url: string;
+  meetingTypes: {
+    name: string;
+    duration: string;
+    url: string;
+  }[];
+}
+
 export interface PortfolioData {
   personal: PersonalInfo;
   social: SocialLink[];
@@ -99,5 +131,6 @@ export interface PortfolioData {
   skills: Skill[];
   education: Education[];
   projects: Project[];
-  codingStats: CodingTimeStats;
+  calendly?: CalendlyConfig;
+  devToUsername?: string;
 }

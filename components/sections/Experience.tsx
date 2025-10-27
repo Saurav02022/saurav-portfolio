@@ -1,10 +1,10 @@
 "use client";
 
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Calendar, MapPin, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Calendar, MapPin, CheckCircle2, Briefcase } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 
 export function Experience() {
@@ -12,16 +12,35 @@ export function Experience() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  };
+
+  const calculateDuration = (startDate: string, endDate: string | null) => {
+    const start = new Date(startDate);
+    const end = endDate ? new Date(endDate) : new Date();
+    
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    
+    if (years === 0 && months === 0) {
+      return 'Less than a month';
+    }
+    
+    const yearText = years > 0 ? `${years} ${years === 1 ? 'year' : 'years'}` : '';
+    const monthText = months > 0 ? `${months} ${months === 1 ? 'month' : 'months'}` : '';
+    
+    return [yearText, monthText].filter(Boolean).join(' ');
   };
 
   return (
     <section id="experience" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <ChevronDown className="h-6 w-6 rotate-180" />
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Professional Experience
           </h2>
@@ -30,46 +49,92 @@ export function Experience() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-8 px-4">
+        <div className="max-w-5xl mx-auto space-y-6">
           {experience.map((exp) => (
-            <Card key={exp.id}>
-              <CardHeader>
-                <CardTitle>{exp.title}</CardTitle>
-                <CardDescription>{exp.company}</CardDescription>
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">
+            <Card 
+              key={exp.id} 
+              className="hover:shadow-lg transition-shadow border-l-4 border-l-primary/40 overflow-hidden"
+            >
+              <CardHeader className="space-y-4 pb-6">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <div className="space-y-2 flex-1">
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-lg bg-primary/10 mt-1">
+                        <Briefcase className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold tracking-tight">
+                          {exp.title}
+                        </h3>
+                        <p className="text-lg font-semibold text-muted-foreground mt-1">
+                          {exp.company}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {!exp.endDate && (
+                    <Badge variant="default" className="self-start whitespace-nowrap">
+                      Current Role
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
+                    <Calendar className="h-4 w-4 shrink-0" />
                     <span>
                       {formatDate(exp.startDate)} - {exp.endDate ? formatDate(exp.endDate) : 'Present'}
+                      <span className="mx-2">•</span>
+                      <span className="font-medium">{calculateDuration(exp.startDate, exp.endDate)}</span>
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
+                    <MapPin className="h-4 w-4 shrink-0" />
                     <span>{exp.location}</span>
                   </div>
                 </div>
               </CardHeader>
 
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">{exp.description}</p>
+              <Separator />
 
-                <Separator />
-
-                <div className="space-y-2">
-                  {exp.achievements.map((achievement, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-4 w-4 shrink-0" />
-                      <span className="text-sm">{achievement}</span>
-                    </div>
-                  ))}
+              <CardContent className="pt-6 space-y-6">
+                {/* Achievements */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                    Key Achievements
+                  </h4>
+                  <div className="space-y-3">
+                    {exp.achievements.map((achievement, idx) => (
+                      <div 
+                        key={idx} 
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                      >
+                        <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5 text-primary" />
+                        <span className="text-sm leading-relaxed">{achievement.text}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <Separator />
+                <Separator className="my-4" />
 
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, idx) => (
-                    <Badge key={idx} variant="secondary">{tech}</Badge>
-                  ))}
+                {/* Technologies */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                    Technologies Used
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, idx) => (
+                      <Badge 
+                        key={idx} 
+                        variant="secondary" 
+                        className="px-3 py-1 text-xs font-medium hover:bg-primary/20 transition-colors"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Phone, Code, ChevronDown } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, Code } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
-import { TechNetworkBackground } from '@/components/ui/tech-network-background';
+import { BackgroundBeams } from '@/components/ui/background-beams';
 
 export function Hero() {
   const { personal, social } = portfolioData;
@@ -29,9 +29,8 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <TechNetworkBackground />
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">  
+      <BackgroundBeams />
       <div className="relative z-10 container py-32 text-center">
         <div className="space-y-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold">
@@ -70,9 +69,6 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-6 w-6 text-muted-foreground" />
-        </div>
       </div>
     </section>
   );

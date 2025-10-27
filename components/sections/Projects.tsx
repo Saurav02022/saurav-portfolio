@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Github, ExternalLink, Star, ChevronDown } from 'lucide-react';
+import { Github, ExternalLink, Star, Folder } from 'lucide-react';
 import { Project } from '@/lib/types';
 
 export function Projects() {
@@ -42,7 +42,7 @@ export function Projects() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
-            <ChevronDown className="h-6 w-6 rotate-180" />
+            <Folder className="h-6 w-6 text-primary" />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Latest Projects
@@ -78,7 +78,7 @@ export function Projects() {
           <>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto px-4">
               {projects.slice(0, 3).map((project) => (
-                <Card key={project.id} className="flex flex-col h-full">
+                <Card key={project.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <CardTitle className="line-clamp-1">{project.name}</CardTitle>
@@ -90,7 +90,7 @@ export function Projects() {
                     <CardDescription className="line-clamp-2">{project.description}</CardDescription>
                   </CardHeader>
                   
-                  <CardContent className="flex-grow">
+                  <CardContent className="grow">
                     <div className="flex flex-wrap gap-2">
                       {project.language && (
                         <Badge variant="secondary">{project.language}</Badge>
