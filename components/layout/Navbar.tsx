@@ -57,7 +57,7 @@ export function Navbar() {
               SK
             </button>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
               {navItems.map((item) => (
                 <button
                   key={item.name}

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Clock, Activity, ChevronDown, Code2 } from 'lucide-react';
+import { Clock, Activity, Code2 } from 'lucide-react';
 
 export function CodingTime() {
   // Demo data - replace with real data from WakaTime or GitHub
@@ -18,9 +18,6 @@ export function CodingTime() {
     <section id="coding-activity" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <ChevronDown className="h-6 w-6 rotate-180" />
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Coding Activity
           </h2>

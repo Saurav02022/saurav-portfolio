@@ -9,7 +9,7 @@ import {
   SiTailwindcss, SiMongodb, SiGit, SiGithub, SiVercel,
   SiRedux, SiFirebase, SiJest, SiCypress, SiExpress
 } from 'react-icons/si';
-import { ChevronDown, Code2 } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 
 export function Skills() {
   const { skills } = portfolioData;
@@ -81,9 +81,6 @@ export function Skills() {
     <section id="skills" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <ChevronDown className="h-6 w-6 rotate-180" />
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Technical Skills
           </h2>

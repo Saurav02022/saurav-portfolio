@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Phone, Code, ChevronDown } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, Code } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 import { TechNetworkBackground } from '@/components/ui/tech-network-background';
 
@@ -70,9 +70,6 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-6 w-6 text-muted-foreground" />
-        </div>
       </div>
     </section>
   );

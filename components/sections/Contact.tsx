@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, ChevronDown } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 
 export function Contact() {
@@ -34,9 +34,6 @@ export function Contact() {
     <section id="contact" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <ChevronDown className="h-6 w-6 rotate-180" />
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Get In Touch
           </h2>
