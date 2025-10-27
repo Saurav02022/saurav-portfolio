@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sauravkumar.dev",
+    url: "saurav-portfolio-lovat.vercel.app",
     title: "Saurav Kumar - Full-Stack Engineer",
     description: "Professional portfolio showcasing modern web development projects and expertise",
     siteName: "Saurav Kumar Portfolio",
