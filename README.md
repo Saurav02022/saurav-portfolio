@@ -37,12 +37,12 @@ A production-ready, fully responsive portfolio website showcasing professional e
 
 ### ✨ Highlights
 
-- **Real-time Data**: Live coding statistics from WakaTime API
+- **Real-time Data**: Live coding statistics from WakaTime API with privacy-focused design
 - **Dynamic Content**: Blog posts fetched from Dev.to
 - **Modern UI/UX**: Built with shadcn/ui and Aceternity UI components
 - **Theme Support**: Seamless dark/light mode (defaults to dark mode)
 - **Fully Responsive**: Mobile-first design approach
-- **Type-Safe**: 100% TypeScript for robust code quality
+- **Type-Safe**: 100% TypeScript with enhanced type safety and comprehensive error handling
 
 ---
 
@@ -55,7 +55,7 @@ A production-ready, fully responsive portfolio website showcasing professional e
 - Accessible color contrast (WCAG AA compliant)
 
 ### 📊 **Real-time Integrations**
-- **WakaTime**: Live coding statistics and language breakdown
+- **WakaTime**: Live coding statistics with language breakdown and development tools (editors/IDEs) - privacy-focused design
 - **Dev.to**: Automatic blog post synchronization
 - **GitHub**: Repository showcase with live stats
 - **Calendly**: Direct meeting scheduling integration
@@ -66,12 +66,13 @@ A production-ready, fully responsive portfolio website showcasing professional e
 3. **Skills Showcase**: Technical proficiencies with interactive categories
 4. **Projects Gallery**: GitHub-integrated project showcase
 5. **Blog Integration**: Latest articles from Dev.to
-6. **Coding Stats**: Real-time development metrics from WakaTime
+6. **Coding Stats**: Real-time development metrics from WakaTime with top languages and development tools (privacy-focused, shows editors instead of projects)
 7. **Education**: Academic background and certifications
 8. **Contact & Scheduling**: Multiple ways to connect
 
 ### 🚀 **Performance Optimized**
 - Server-Side Rendering (SSR) with Next.js 16
+- React performance optimizations (useMemo, useCallback) for expensive computations
 - Optimized images with next/image
 - Code splitting and lazy loading
 - Minimal bundle size (<300KB gzipped)
@@ -306,6 +307,8 @@ Modify theme colors in `app/globals.css`:
 3. Get your API key from [Settings](https://wakatime.com/settings/account)
 4. Add to `.env.local`: `WAKATIME_API_KEY=your_api_key`
 5. Make your profile public in WakaTime settings
+
+**Note**: The CodingTime component displays top languages and development tools (editors/IDEs) instead of projects for privacy reasons. This provides insights into your coding activity without exposing sensitive project information.
 
 ### Dev.to (Blog Integration)
 
