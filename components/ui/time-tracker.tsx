@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, X, Move } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Clock, Move } from 'lucide-react';
 
 export function TimeTracker() {
   const [seconds, setSeconds] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -20,39 +18,86 @@ export function TimeTracker() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const getClientCoordinates = (e: MouseEvent | TouchEvent) => {
+    if ('touches' in e) {
+      return {
+        clientX: e.touches[0]?.clientX ?? 0,
+        clientY: e.touches[0]?.clientY ?? 0,
+      };
+    }
+    return {
+      clientX: e.clientX,
+      clientY: e.clientY,
+    };
+  };
+
+  const handleStart = (clientX: number, clientY: number) => {
     if (trackerRef.current) {
       const rect = trackerRef.current.getBoundingClientRect();
       setDragOffset({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: clientX - rect.left,
+        y: clientY - rect.top,
       });
       setIsDragging(true);
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleStart(e.clientX, e.clientY);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    if (touch) {
+      handleStart(touch.clientX, touch.clientY);
+    }
+  };
+
+  const constrainPosition = (x: number, y: number) => {
+    if (!trackerRef.current) return { x, y };
+
+    const rect = trackerRef.current.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+
+    return {
+      x: Math.max(0, Math.min(x, maxX)),
+      y: Math.max(0, Math.min(y, maxY)),
+    };
+  };
+
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = (e: MouseEvent | TouchEvent) => {
       if (isDragging) {
-        setPosition({
-          x: e.clientX - dragOffset.x,
-          y: e.clientY - dragOffset.y,
-        });
+        const { clientX, clientY } = getClientCoordinates(e);
+        const newPosition = constrainPosition(
+          clientX - dragOffset.x,
+          clientY - dragOffset.y
+        );
+        setPosition(newPosition);
       }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
       setIsDragging(false);
     };
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('mouseup', handleEnd);
+      document.addEventListener('touchmove', handleMove, { passive: false });
+      document.addEventListener('touchend', handleEnd);
+      document.addEventListener('touchcancel', handleEnd);
     }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('mouseup', handleEnd);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('touchend', handleEnd);
+      document.removeEventListener('touchcancel', handleEnd);
     };
   }, [isDragging, dragOffset]);
 
@@ -67,8 +112,6 @@ export function TimeTracker() {
       seconds: `${secs}s`,
     };
   };
-
-  if (!isVisible) return null;
 
   const time = formatTime(seconds);
 
@@ -86,15 +129,17 @@ export function TimeTracker() {
         ...style,
         transition: isDragging ? 'none' : 'all 0.2s ease-out',
         userSelect: 'none',
+        touchAction: 'none',
       }}
     >
       <div className={`bg-card border border-border rounded-2xl shadow-lg backdrop-blur-sm ${
         isDragging ? 'shadow-2xl scale-105' : ''
       } transition-all duration-200`}>
-        <div className="flex items-center gap-4 px-6 py-4">
+        <div className="flex items-center gap-3 px-6 py-4">
           <div
-            className="flex items-center gap-3 cursor-grab active:cursor-grabbing"
+            className="flex items-center gap-3 cursor-grab active:cursor-grabbing select-none"
             onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
           >
             <div className="p-2 rounded-full bg-primary/10">
               <Clock className="h-5 w-5 text-primary" />
@@ -111,14 +156,6 @@ export function TimeTracker() {
               </div>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 rounded-full"
-            onClick={() => setIsVisible(false)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </div>
       </div>
     </div>
