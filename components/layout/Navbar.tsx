@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Moon, Sun, Download, Menu, X, Monitor, Check } from 'lucide-react';
+import { Github, Moon, Sun, Download, Menu, X, Check } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { portfolioData } from '@/lib/portfolio-data';
 
@@ -96,10 +96,8 @@ export function Navbar() {
                     <Sun className="h-5 w-5" />
                   ) : theme === 'dark' ? (
                     <Moon className="h-5 w-5" />
-                  ) : theme === 'light' ? (
-                    <Sun className="h-5 w-5" />
                   ) : (
-                    <Monitor className="h-5 w-5" />
+                    <Sun className="h-5 w-5" />
                   )}
                 </Button>
 
@@ -137,20 +135,6 @@ export function Navbar() {
                           <span>Dark</span>
                         </div>
                         {theme === 'dark' && <Check className="h-4 w-4" />}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setTheme('system');
-                          setThemeMenuOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Monitor className="h-4 w-4" />
-                          <span>System</span>
-                        </div>
-                        {theme === 'system' && <Check className="h-4 w-4" />}
                       </button>
                     </div>
                   </>

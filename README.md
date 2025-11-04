@@ -40,7 +40,7 @@ A production-ready, fully responsive portfolio website showcasing professional e
 - **Real-time Data**: Live coding statistics from WakaTime API
 - **Dynamic Content**: Blog posts fetched from Dev.to
 - **Modern UI/UX**: Built with shadcn/ui and Aceternity UI components
-- **Theme Support**: Seamless dark/light mode with system preference detection
+- **Theme Support**: Seamless dark/light mode (defaults to dark mode)
 - **Fully Responsive**: Mobile-first design approach
 - **Type-Safe**: 100% TypeScript for robust code quality
 
