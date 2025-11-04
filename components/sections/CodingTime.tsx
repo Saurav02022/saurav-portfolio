@@ -1,67 +1,86 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Clock, Activity, Code2, TrendingUp } from 'lucide-react';
+import type { WakaTimeStats } from '@/lib/wakatime-api';
 
-interface WakaTimeData {
-  total_seconds: number;
-  daily_average: number;
-  human_readable_total: string;
-  human_readable_daily_average: string;
-  languages: Array<{
-    name: string;
-    percent: number;
-    text: string;
-  }>;
-  projects: Array<{
-    name: string;
-    percent: number;
-    text: string;
-  }>;
-}
+// Constants for configuration
+const TOP_LANGUAGES_LIMIT = 5;
+const TOP_EDITORS_LIMIT = 3;
+const TIME_RANGE = 'last_7_days' as const;
+
+// Type alias for the data we work with
+type WakaTimeData = WakaTimeStats['data'];
 
 export function CodingTime() {
   const [stats, setStats] = useState<WakaTimeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchWakaTimeStats();
-  }, []);
-
-  const fetchWakaTimeStats = async () => {
+  const fetchWakaTimeStats = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch('/api/wakatime/stats?range=last_7_days');
+      
+      const response = await fetch(`/api/wakatime/stats?range=${TIME_RANGE}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
       if (data.success && data.data) {
         setStats(data.data);
       } else {
-        setError('Unable to load WakaTime stats');
+        const errorMessage = data.error || 'Invalid response format from server';
+        throw new Error(errorMessage);
       }
     } catch (err) {
       console.error('Error fetching WakaTime stats:', err);
-      setError('Unable to load WakaTime stats');
+      
+      let errorMessage = 'Unable to load WakaTime stats';
+      if (err instanceof Error) {
+        if (err.message.includes('HTTP error')) {
+          errorMessage = 'Failed to connect to server. Please try again later.';
+        } else if (err.message.includes('fetch')) {
+          errorMessage = 'Network error. Please check your connection.';
+        } else {
+          errorMessage = `Failed to load stats: ${err.message}`;
+        }
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const getTopLanguages = () => {
+  useEffect(() => {
+    fetchWakaTimeStats();
+  }, [fetchWakaTimeStats]);
+
+  const topLanguages = useMemo((): Array<{ name: string; percent: number; text: string }> => {
     if (!stats || !stats.languages) return [];
-    return stats.languages.slice(0, 5);
-  };
+    return stats.languages.slice(0, TOP_LANGUAGES_LIMIT).map((lang) => ({
+      name: lang.name,
+      percent: lang.percent,
+      text: lang.text,
+    }));
+  }, [stats]);
 
-  const getTopProjects = () => {
-    if (!stats || !stats.projects) return [];
-    return stats.projects.slice(0, 4);
-  };
+  const topEditors = useMemo((): Array<{ name: string; percent: number; text: string }> => {
+    if (!stats || !stats.editors) return [];
+    return stats.editors.slice(0, TOP_EDITORS_LIMIT).map((editor) => ({
+      name: editor.name,
+      percent: editor.percent,
+      text: editor.text,
+    }));
+  }, [stats]);
 
   return (
     <section id="coding-activity" className="py-24">
@@ -104,7 +123,7 @@ export function CodingTime() {
               ))}
             </div>
 
-            {/* Languages & Projects Skeleton */}
+            {/* Languages & Editors Skeleton */}
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
               {[1, 2].map((i) => (
                 <Card key={i}>
@@ -113,7 +132,7 @@ export function CodingTime() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      {[1, 2, 3].map((j) => (
+                      {[1, 2, 3, 4, 5].map((j) => (
                         <Skeleton key={j} className="h-4 w-full" />
                       ))}
                     </div>
@@ -161,60 +180,66 @@ export function CodingTime() {
               </Card>
             </div>
 
-            {/* Languages & Projects */}
+            {/* Languages & Editors */}
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
               {/* Top Languages */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle>Top Languages</CardTitle>
-                  <CardDescription>Most used programming languages</CardDescription>
+                  <CardDescription>Most used programming languages in the last 7 days</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {getTopLanguages().map((lang, index) => (
-                      <div key={index} className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="font-medium">{lang.name}</span>
-                          <span className="text-muted-foreground">{lang.text}</span>
-                        </div>
-                        <div className="w-full bg-muted rounded-full h-2">
-                          <div
-                            className="bg-primary h-2 rounded-full transition-all"
-                            style={{ width: `${lang.percent}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Top Projects */}
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle>Top Projects</CardTitle>
-                  <CardDescription>Most active projects</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {getTopProjects().length > 0 ? (
-                      getTopProjects().map((project, index) => (
-                        <div key={index} className="space-y-2">
+                    {topLanguages.length > 0 ? (
+                      topLanguages.map((lang) => (
+                        <div key={lang.name} className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
-                            <span className="font-medium truncate">{project.name}</span>
-                            <span className="text-muted-foreground">{project.text}</span>
+                            <span className="font-medium">{lang.name}</span>
+                            <span className="text-muted-foreground">{lang.text}</span>
                           </div>
                           <div className="w-full bg-muted rounded-full h-2">
                             <div
                               className="bg-primary h-2 rounded-full transition-all"
-                              style={{ width: `${project.percent}%` }}
+                              style={{ width: `${lang.percent}%` }}
                             />
                           </div>
                         </div>
                       ))
                     ) : (
                       <p className="text-sm text-muted-foreground text-center py-4">
-                        No project data available
+                        No language data available
+                      </p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Top Editors */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle>Development Tools</CardTitle>
+                  <CardDescription>Most used code editors and IDEs</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {topEditors.length > 0 ? (
+                      topEditors.map((editor) => (
+                        <div key={editor.name} className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="font-medium">{editor.name}</span>
+                            <span className="text-muted-foreground">{editor.text}</span>
+                          </div>
+                          <div className="w-full bg-muted rounded-full h-2">
+                            <div
+                              className="bg-primary h-2 rounded-full transition-all"
+                              style={{ width: `${editor.percent}%` }}
+                            />
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-sm text-muted-foreground text-center py-4">
+                        No editor data available
                       </p>
                     )}
                   </div>
