@@ -37,7 +37,6 @@ A production-ready, fully responsive portfolio website showcasing professional e
 
 ### ✨ Highlights
 
-- **Real-time Data**: Live coding statistics from WakaTime API with privacy-focused design
 - **Dynamic Content**: Blog posts fetched from Dev.to
 - **Modern UI/UX**: Built with shadcn/ui and Aceternity UI components
 - **Theme Support**: Seamless dark/light mode (defaults to dark mode)
@@ -55,7 +54,6 @@ A production-ready, fully responsive portfolio website showcasing professional e
 - Accessible color contrast (WCAG AA compliant)
 
 ### 📊 **Real-time Integrations**
-- **WakaTime**: Live coding statistics with language breakdown and development tools (editors/IDEs) - privacy-focused design
 - **Dev.to**: Automatic blog post synchronization
 - **GitHub**: Repository showcase with live stats
 - **Calendly**: Direct meeting scheduling integration
@@ -66,9 +64,8 @@ A production-ready, fully responsive portfolio website showcasing professional e
 3. **Skills Showcase**: Technical proficiencies with interactive categories
 4. **Projects Gallery**: GitHub-integrated project showcase
 5. **Blog Integration**: Latest articles from Dev.to
-6. **Coding Stats**: Real-time development metrics from WakaTime with top languages and development tools (privacy-focused, shows editors instead of projects)
-7. **Education**: Academic background and certifications
-8. **Contact & Scheduling**: Multiple ways to connect
+6. **Education**: Academic background and certifications
+7. **Contact & Scheduling**: Multiple ways to connect
 
 ### 🚀 **Performance Optimized**
 - Server-Side Rendering (SSR) with Next.js 16
@@ -104,7 +101,6 @@ A production-ready, fully responsive portfolio website showcasing professional e
 
 ### **Features & Integrations**
 - **[next-themes](https://github.com/pacocoursey/next-themes)** - Theme management
-- **[WakaTime API](https://wakatime.com/developers)** - Coding statistics
 - **[Dev.to API](https://developers.forem.com/api)** - Blog integration
 - **[Octokit](https://github.com/octokit/rest.js)** - GitHub API client
 - **[Calendly](https://calendly.com/)** - Meeting scheduling
@@ -147,9 +143,6 @@ pnpm install
 Create a `.env.local` file in the root directory:
 
 ```env
-# WakaTime API (Optional - for real-time coding stats)
-WAKATIME_API_KEY=your_wakatime_api_key
-
 # Dev.to API (Optional - for blog integration)
 # Note: Dev.to API doesn't require a key for public articles
 
@@ -189,8 +182,6 @@ npm start
 │   │   ├── github/
 │   │   │   ├── projects/        # GitHub repositories
 │   │   │   └── stats/           # GitHub statistics
-│   │   └── wakatime/
-│   │       └── stats/           # WakaTime coding stats
 │   ├── globals.css              # Global styles & animations
 │   ├── layout.tsx               # Root layout with providers
 │   └── page.tsx                 # Main portfolio page
@@ -205,7 +196,6 @@ npm start
 │   │   ├── Skills.tsx           # Technical skills showcase
 │   │   ├── Projects.tsx         # GitHub projects gallery
 │   │   ├── Blog.tsx             # Dev.to blog integration
-│   │   ├── CodingTime.tsx       # WakaTime statistics
 │   │   ├── Education.tsx        # Academic background
 │   │   ├── Schedule.tsx         # Calendly integration
 │   │   └── Contact.tsx          # Contact information
@@ -225,7 +215,6 @@ npm start
 │   ├── github-api.ts            # GitHub API utilities
 │   ├── github-stats.ts          # GitHub statistics
 │   ├── devto-api.ts             # Dev.to API utilities
-│   ├── wakatime-api.ts          # WakaTime API utilities
 │   └── utils.ts                 # Helper functions
 │
 ├── public/                      # Static assets
@@ -299,16 +288,6 @@ Modify theme colors in `app/globals.css`:
 ---
 
 ## 🔌 API Integration
-
-### WakaTime (Coding Statistics)
-
-1. Create a [WakaTime account](https://wakatime.com/)
-2. Install WakaTime plugin in your code editor
-3. Get your API key from [Settings](https://wakatime.com/settings/account)
-4. Add to `.env.local`: `WAKATIME_API_KEY=your_api_key`
-5. Make your profile public in WakaTime settings
-
-**Note**: The CodingTime component displays top languages and development tools (editors/IDEs) instead of projects for privacy reasons. This provides insights into your coding activity without exposing sensitive project information.
 
 ### Dev.to (Blog Integration)
 
@@ -451,7 +430,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [Lucide](https://lucide.dev/) - Beautiful & consistent icons
 - [Vercel](https://vercel.com/) - Hosting & deployment platform
-- [WakaTime](https://wakatime.com/) - Automatic time tracking
 - [Dev.to](https://dev.to/) - Developer blogging platform
 
 ---
