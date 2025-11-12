@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Phone, Code } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 import { BackgroundBeams } from '@/components/ui/background-beams';
+import { TechStackMarquee } from '@/components/ui/tech-stack-marquee';
 
 export function Hero() {
   const { personal, social } = portfolioData;
@@ -67,6 +68,8 @@ export function Hero() {
               </Button>
             ))}
           </div>
+
+          <TechStackMarquee />
         </div>
 
       </div>

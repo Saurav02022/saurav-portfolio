@@ -1,7 +1,11 @@
 import { GitHubRepo, Project } from './types';
+import { portfolioData } from './portfolio-data';
+import { API_BASE_URLS, CACHE_TIMES } from './constants';
+import { formatDateFull } from './date-utils';
 
-const GITHUB_USERNAME = 'Saurav02022';
-const GITHUB_API_BASE = 'https://api.github.com';
+// Get GitHub username from centralized portfolio data
+const GITHUB_USERNAME = portfolioData.social.find(s => s.name === 'GitHub')?.username || 'Saurav02022';
+const GITHUB_API_BASE = API_BASE_URLS.GITHUB;
 
 export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
   try {
@@ -12,7 +16,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
           'Accept': 'application/vnd.github.v3+json',
           'User-Agent': 'Portfolio-App'
         },
-        next: { revalidate: 3600 } // Cache for 1 hour
+        next: { revalidate: CACHE_TIMES.GITHUB_REPOS } // Cache for 1 hour
       }
     );
 
@@ -57,14 +61,8 @@ export async function getLatestProjects(count: number = 3): Promise<Project[]> {
   return sortedRepos.map(transformRepoToProject);
 }
 
-export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
-}
+// Export formatDate for backwards compatibility
+export { formatDateFull as formatDate };
 
 export function getLanguageColor(language: string): string {
   const colors: Record<string, string> = {

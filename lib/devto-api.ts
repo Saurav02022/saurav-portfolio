@@ -1,6 +1,8 @@
 import { BlogPost } from './types';
+import { API_BASE_URLS, CACHE_TIMES } from './constants';
+import { formatDateLong, getReadingTime as getReadingTimeUtil } from './date-utils';
 
-const DEV_TO_API_BASE = 'https://dev.to/api';
+const DEV_TO_API_BASE = API_BASE_URLS.DEVTO;
 
 /**
  * Fetch articles from Dev.to for a specific user
@@ -16,7 +18,7 @@ export async function fetchDevToArticles(
     const response = await fetch(
       `${DEV_TO_API_BASE}/articles?username=${username}&per_page=${perPage}`,
       {
-        next: { revalidate: 3600 } // Revalidate every hour
+        next: { revalidate: CACHE_TIMES.DEVTO_ARTICLES } // Revalidate every hour
       }
     );
 
@@ -42,7 +44,7 @@ export async function fetchDevToArticle(articleId: number): Promise<BlogPost | n
     const response = await fetch(
       `${DEV_TO_API_BASE}/articles/${articleId}`,
       {
-        next: { revalidate: 3600 }
+        next: { revalidate: CACHE_TIMES.DEVTO_ARTICLES }
       }
     );
 
@@ -58,28 +60,7 @@ export async function fetchDevToArticle(articleId: number): Promise<BlogPost | n
   }
 }
 
-/**
- * Format date for display
- * @param dateString - ISO date string
- * @returns Formatted date string
- */
-export function formatBlogDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-}
-
-/**
- * Get reading time text
- * @param minutes - Reading time in minutes
- * @returns Formatted reading time string
- */
-export function getReadingTime(minutes: number): string {
-  if (minutes < 1) return 'Less than a minute';
-  if (minutes === 1) return '1 minute read';
-  return `${minutes} min read`;
-}
+// Export date utilities for backwards compatibility
+export { formatDateLong as formatBlogDate };
+export { getReadingTimeUtil as getReadingTime };
 

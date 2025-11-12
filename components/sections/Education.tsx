@@ -1,18 +1,12 @@
-"use client";
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { GraduationCap, Calendar, MapPin, BookOpen } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
+import { formatDateLong } from '@/lib/date-utils';
 
 export function Education() {
   const { education } = portfolioData;
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  };
 
   return (
     <section id="education" className="py-24">
@@ -57,7 +51,7 @@ export function Education() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-4 w-4" />
                   <span>
-                    {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                    {formatDateLong(edu.startDate)} - {formatDateLong(edu.endDate)}
                   </span>
                 </div>
 

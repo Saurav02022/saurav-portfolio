@@ -164,7 +164,14 @@ export const portfolioData: PortfolioData = {
     // Project Management & Workflow
     { name: "JIRA", category: "Tools", proficiency: 85, icon: "jira" },
     { name: "Agile/Scrum", category: "Tools", proficiency: 85, icon: "agile" },
-    { name: "Kanban", category: "Tools", proficiency: 85, icon: "kanban" }
+    { name: "Kanban", category: "Tools", proficiency: 85, icon: "kanban" },
+
+    // AI Tools & Modern Development
+    { name: "Cursor AI", category: "Tools", proficiency: 90, icon: "cursor" },
+    { name: "ChatGPT", category: "Tools", proficiency: 90, icon: "openai" },
+    { name: "Claude AI", category: "Tools", proficiency: 85, icon: "anthropic" },
+    { name: "Perplexity", category: "Tools", proficiency: 85, icon: "perplexity" },
+    { name: "Replit", category: "Tools", proficiency: 80, icon: "replit" }
   ],
 
   education: [

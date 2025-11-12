@@ -79,22 +79,6 @@ export interface GitHubRepo {
   archived: boolean;
 }
 
-export interface CodingTimeStats {
-  totalHours: number;
-  todayHours: number;
-  weekHours: number;
-  monthHours: number;
-  languages: {
-    name: string;
-    hours: number;
-    percentage: number;
-  }[];
-  projects: {
-    name: string;
-    hours: number;
-  }[];
-}
-
 export interface BlogPost {
   id: number;
   title: string;

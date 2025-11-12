@@ -1,41 +1,13 @@
-"use client";
-
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, MapPin, CheckCircle2, Briefcase } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
+import { formatDateShort, calculateDuration } from '@/lib/date-utils';
 
 export function Experience() {
   const { experience } = portfolioData;
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
-
-  const calculateDuration = (startDate: string, endDate: string | null) => {
-    const start = new Date(startDate);
-    const end = endDate ? new Date(endDate) : new Date();
-    
-    let years = end.getFullYear() - start.getFullYear();
-    let months = end.getMonth() - start.getMonth();
-    
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-    
-    if (years === 0 && months === 0) {
-      return 'Less than a month';
-    }
-    
-    const yearText = years > 0 ? `${years} ${years === 1 ? 'year' : 'years'}` : '';
-    const monthText = months > 0 ? `${months} ${months === 1 ? 'month' : 'months'}` : '';
-    
-    return [yearText, monthText].filter(Boolean).join(' ');
-  };
 
   return (
     <section id="experience" className="py-24">
@@ -84,7 +56,7 @@ export function Experience() {
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 shrink-0" />
                     <span>
-                      {formatDate(exp.startDate)} - {exp.endDate ? formatDate(exp.endDate) : 'Present'}
+                      {formatDateShort(exp.startDate)} - {exp.endDate ? formatDateShort(exp.endDate) : 'Present'}
                       <span className="mx-2">•</span>
                       <span className="font-medium">{calculateDuration(exp.startDate, exp.endDate)}</span>
                     </span>

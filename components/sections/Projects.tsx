@@ -1,22 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Github, ExternalLink, Star, Folder } from 'lucide-react';
 import { Project } from '@/lib/types';
+import { portfolioData } from '@/lib/portfolio-data';
 
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/github/projects');
@@ -29,13 +26,15 @@ export function Projects() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const gradients = [
-    'from-purple-500 via-blue-500 to-cyan-500',
-    'from-green-400 via-teal-500 to-green-600',
-    'from-purple-600 via-pink-500 to-blue-500',
-  ];
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
+
+  // Get GitHub URL from portfolio data
+  const githubProfile = portfolioData.social.find(s => s.name === 'GitHub');
+  const githubUrl = githubProfile?.url || 'https://github.com/Saurav02022';
 
   return (
     <section id="projects" className="py-24">
@@ -128,7 +127,7 @@ export function Projects() {
 
             <div className="text-center">
               <Button
-                onClick={() => window.open('https://github.com/Saurav02022?tab=repositories', '_blank')}
+                onClick={() => window.open(`${githubUrl}?tab=repositories`, '_blank')}
                 variant="outline"
                 size="lg"
               >

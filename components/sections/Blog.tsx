@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,19 +11,15 @@ import { formatBlogDate, getReadingTime } from '@/lib/devto-api';
 import Image from 'next/image';
 
 interface BlogProps {
-  username?: string;
+  username: string; // Required prop - must be provided from portfolio data
 }
 
-export function Blog({ username = 'yourusername' }: BlogProps) {
+export function Blog({ username }: BlogProps) {
   const [articles, setArticles] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchArticles();
-  }, [username]);
-
-  const fetchArticles = async () => {
+  const fetchArticles = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -41,7 +37,11 @@ export function Blog({ username = 'yourusername' }: BlogProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [username]);
+
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
 
   return (
     <section id="blog" className="py-24">
@@ -128,21 +128,21 @@ export function Blog({ username = 'yourusername' }: BlogProps) {
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Clock className="h-4 w-4" />
-                        <span>{getReadingTime(article.reading_time_minutes)}</span>
+                        <span>{getReadingTime(article.reading_time_minutes) || 'N/A'}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Heart className="h-4 w-4" />
-                        <span>{article.public_reactions_count}</span>
+                        <span>{article.public_reactions_count || 'N/A'}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <MessageCircle className="h-4 w-4" />
-                        <span>{article.comments_count}</span>
+                        <span>{article.comments_count || 'N/A'}</span>
                       </div>
                     </div>
 
                     <div className="text-xs text-muted-foreground mt-2">
-                      {formatBlogDate(article.published_at)}
-                    </div>
+  {article.published_at ? formatBlogDate(article.published_at) : 'Date unavailable'}
+</div>
                   </CardContent>
 
                   <CardFooter className="mt-auto">
