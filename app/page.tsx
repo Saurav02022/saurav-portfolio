@@ -5,10 +5,10 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Blog } from "@/components/sections/Blog";
 import { Education } from "@/components/sections/Education";
-import { CodingTime } from "@/components/sections/CodingTime";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { TimeTracker } from "@/components/ui/time-tracker";
+import { ErrorBoundary } from "@/components/error-boundary";
 import { portfolioData } from "@/lib/portfolio-data";
 
 export default function Home() {
@@ -26,16 +26,17 @@ export default function Home() {
       <Skills />
       
       {/* Projects - Showcase work with real examples */}
-      <Projects />
+      <ErrorBoundary>
+        <Projects />
+      </ErrorBoundary>
       
       {/* Blog - Thought leadership and personal branding */}
-      <Blog username={portfolioData.devToUsername} />
+      <ErrorBoundary>
+        <Blog username={portfolioData.devToUsername || 'saurav_dev_2022'} />
+      </ErrorBoundary>
       
       {/* Education - Academic background */}
       <Education />
-      
-      {/* Coding Time - Unique differentiator */}
-      <CodingTime />
       
       {/* Contact & Schedule - Combined final call to action */}
       <Contact />
