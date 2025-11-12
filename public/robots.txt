@@ -1,0 +1,16 @@
+# Robots.txt for Saurav Kumar Portfolio
+# Allow all search engines to index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://saurav-portfolio-lovat.vercel.app/sitemap.xml
+
+# Crawl delay (optional - 1 second between requests)
+Crawl-delay: 1
+
+# Disallow specific paths (add if needed in future)
+# Disallow: /api/
+# Disallow: /admin/
+

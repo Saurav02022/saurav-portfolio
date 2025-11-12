@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
+import { StructuredData } from "@/components/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,53 +20,117 @@ export const metadata: Metadata = {
     default: "Saurav Kumar | Full-Stack Developer | React • Next.js • TypeScript Expert",
     template: "%s | Saurav Kumar - Full-Stack Developer"
   },
-  description: "Experienced Full-Stack Developer with 2+ years building scalable web applications. Specialized in React, Next.js, TypeScript, and React Native. Proven track record: 20% user engagement increase, 70% faster render times, 1000+ active users. Available for freelance projects and full-time opportunities.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'icon',
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        rel: 'icon',
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
+  },
+  manifest: '/site.webmanifest',
+  description: "🚀 Saurav Kumar - Full-Stack Developer specializing in React, Next.js, TypeScript & React Native. 3+ years building high-performance web apps with measurable results: ⚡ 70% faster load times • 📈 20% engagement boost • 👥 1000+ active users. Available for hire: Freelance projects & full-time roles. Expert in MERN stack, PWA development, performance optimization. Based in India, working remotely worldwide.",
   keywords: [
-    // Primary Skills
-    "Full-Stack Developer",
-    "React Developer",
-    "Next.js Developer",
-    "TypeScript Developer",
-    "React Native Developer",
-    // Frontend Technologies
-    "Frontend Engineer",
-    "React.js Expert",
-    "Next.js Expert",
-    "JavaScript Developer",
-    "Tailwind CSS",
-    "Responsive Web Design",
-    // Backend & Full-Stack
-    "Node.js Developer",
-    "RESTful API Development",
-    "Full-Stack Engineer",
-    "MERN Stack Developer",
-    // Specific Tools & Libraries
-    "Redux Toolkit",
-    "TanStack Query",
+    // Primary Roles & Titles
+    "Saurav Kumar Full-Stack Developer",
+    "React Developer for hire",
+    "Next.js Developer India",
+    "TypeScript Expert",
+    "React Native Mobile Developer",
+    "Senior Frontend Engineer",
+    "MERN Stack Specialist",
+    
+    // Core Technologies
+    "React.js development",
+    "Next.js 14 App Router",
+    "TypeScript development",
+    "JavaScript ES6+",
+    "Node.js backend",
+    "Express.js API",
+    "MongoDB database",
+    
+    // Frontend Excellence
+    "React Hooks expert",
+    "Redux Toolkit state management",
+    "TanStack Query data fetching",
+    "Tailwind CSS styling",
+    "Responsive web design",
+    "Mobile-first development",
+    "Progressive Web Apps PWA",
+    "Single Page Applications SPA",
+    
+    // Performance & Quality
+    "Web performance optimization",
+    "Core Web Vitals expert",
+    "SEO optimization",
+    "Web accessibility WCAG",
+    "Code splitting lazy loading",
+    "Server-side rendering SSR",
+    "Static site generation SSG",
+    
+    // Testing & DevOps
+    "Jest unit testing",
+    "Cypress E2E testing",
     "React Testing Library",
-    "Jest",
-    "Cypress",
-    // Modern Practices
-    "PWA Development",
-    "Performance Optimization",
-    "Web Accessibility",
-    "SEO Optimization",
-    "Mobile-First Design",
-    // Cloud & DevOps
-    "Vercel",
-    "Firebase",
-    "Supabase",
-    "CI/CD",
-    "Git",
-    "GitHub Actions",
-    // Location & Work
-    "India",
-    "Remote Developer",
-    "Freelance Developer",
+    "CI/CD pipelines",
+    "Git version control",
+    "GitHub Actions automation",
+    "Vercel deployment",
+    
+    // Services & Solutions
+    "custom web application development",
+    "e-commerce website development",
+    "SaaS application development",
+    "API integration services",
+    "legacy code modernization",
+    "website performance audit",
+    
+    // Work Arrangements
+    "remote full-stack developer India",
+    "freelance React developer",
+    "contract developer available",
+    "hire dedicated developer",
+    "full-time developer opportunities",
+    
+    // Location & Availability
+    "India based developer",
+    "remote work worldwide",
+    "IST timezone developer",
+    "immediate availability",
+    
+    // Problem Solving
+    "scalable web applications",
+    "high-performance websites",
+    "responsive user interfaces",
+    "cross-browser compatibility",
+    "mobile app development",
+    
+    // Industry Experience
+    "EdTech platform development",
+    "OTT platform optimization",
+    "enterprise web applications",
+    "startup technical consultant",
+    
     // Personal Brand
-    "Saurav Kumar",
-    "Portfolio",
-    "Hire Full-Stack Developer"
+    "Saurav Kumar portfolio",
+    "sk729584 at gmail",
+    "github Saurav02022",
   ],
   authors: [
     { 
@@ -141,6 +206,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
