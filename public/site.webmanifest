@@ -1,0 +1,29 @@
+{
+  "name": "Saurav Kumar - Full-Stack Developer | React • Next.js • TypeScript Expert",
+  "short_name": "Saurav Kumar",
+  "description": "🚀 Expert Full-Stack Developer specializing in React, Next.js, TypeScript & React Native. 3+ years building high-performance web applications with proven results: 70% faster load times, 20% engagement boost, 1000+ active users. Available for hire - Freelance & Full-time. MERN Stack Expert based in India.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
