@@ -20,9 +20,12 @@ import {
   SiCypress,
   SiOpenai,
   SiReplit,
-  SiJira
+  SiJira,
+  SiSentry,
+  SiHotjar,
+  SiGooglecloud
 } from 'react-icons/si';
-import { Sparkles, Terminal, Compass } from 'lucide-react';
+import { Sparkles, Terminal, Compass, Store } from 'lucide-react';
 
 /**
  * Tech Stack Item Type Definition
@@ -104,6 +107,7 @@ export const TECH_STACK_BY_CATEGORY = {
   
   'State Management & Data Fetching': [
     { name: 'Redux Toolkit', icon: SiRedux },
+    { name: 'Zustand', icon: Store },
     { name: 'Context API', icon: SiReact },
     { name: 'TanStack Query', icon: SiReact },
   ],
@@ -129,12 +133,19 @@ export const TECH_STACK_BY_CATEGORY = {
     { name: 'Jest', icon: SiJest },
     { name: 'Cypress', icon: SiCypress },
   ],
+
+  'Monitoring & Analytics': [
+    { name: 'Sentry', icon: SiSentry },
+    { name: 'Firebase Analytics', icon: SiFirebase },
+    { name: 'Hotjar', icon: SiHotjar },
+  ],
   
   'DevOps & Deployment': [
     { name: 'Git', icon: SiGit },
     { name: 'GitHub', icon: SiGithub },
     { name: 'Vercel', icon: SiVercel },
     { name: 'Netlify', icon: SiNetlify },
+    { name: 'GCP', icon: SiGooglecloud },
   ],
   
   'AI-Powered Development': [
@@ -181,6 +192,10 @@ export const getIconByName = (iconName: string): React.ComponentType<{ className
     perplexity: Compass,
     replit: SiReplit,
     jira: SiJira,
+    zustand: Store,
+    sentry: SiSentry,
+    hotjar: SiHotjar,
+    gcp: SiGooglecloud,
   };
   
   return iconMap[iconName] || SiReact;

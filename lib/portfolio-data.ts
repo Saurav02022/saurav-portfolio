@@ -59,12 +59,11 @@ export const portfolioData: PortfolioData = {
         "AI Tools (ChatGPT, Cursor, Perplexity)"
       ],
       achievements: [
-        { text: "Spearheaded end-to-end delivery of 3 mission-critical internal products—from requirements gathering to production deployment—accelerating feature releases by 35% and establishing a scalable development pipeline." },
-        { text: "Transformed user experience across 3 legacy products through comprehensive UI modernization, driving a 20% surge in user engagement and reducing bounce rates by eliminating usability friction." },
-        { text: "Architected and launched Sakhee: AI Teacher Coach, a Progressive Web App serving 100+ educators across Shikha Academy & Central School Foundation, achieving 80% positive satisfaction ratings and becoming the go-to coaching tool." },
-        { text: "Engineered performance optimization strategy using TanStack Query, code-splitting, and lazy loading—slashing redundant API calls by 30% and improving Time to Interactive (TTI) by 40%." },
-        { text: "Built and shipped Sakhee: AI Teacher Coach Android app from concept to 200+ downloads in 60 days using React Native + TypeScript—executing a streamlined development-to-testing pipeline (45-day dev, 15-day QA) that exceeded launch targets." },
-        { text: "Revolutionized development velocity by integrating AI-powered tooling (Cursor, ChatGPT, Perplexity, Napkin), cutting development cycles by 50% through automated code generation, intelligent debugging, and rapid prototyping." }
+        { text: "Launched the first version of the Sakhee AI Teacher Coach, a web app with Next.js, TypeScript, TanStack Query, and Supabase—supporting class creation, audio uploads, rubric-based AI feedback, and bilingual workflows." },
+        { text: "Converted Sakhee into an offline-first PWA using service workers and IndexedDB caching, enabling reliable usage in low-connectivity government-school environments." },
+        { text: "Delivered the Sakhee Android App end-to-end using React Native, TypeScript, TanStack Query, and Supabase; deployed to 200+ teachers across 50 schools with stable offline-first flows." },
+        { text: "Developed the complete frontend for the multi-role AI-Assessed Portfolio Portal using Next.js, TypeScript, TanStack Query, and Supabase—supporting 1k+ users with guided reflections, submission workflows, and AI-generated evaluations." },
+        { text: "Improved development velocity by 40% through structured AI-assisted workflows using Cursor, ChatGPT, Claude, and Perplexity while maintaining manual review quality." }
       ]
     },
     {
@@ -84,11 +83,10 @@ export const portfolioData: PortfolioData = {
         "GitHub"
       ],
       achievements: [
-        { text: "Transformed OTT platform performance by implementing advanced Next.js rendering strategies (SSR, SSG, ISR, PPR), achieving a dramatic 70% improvement in initial render time and eliminating user-reported lag complaints." },
-        { text: "Optimized digital asset delivery through strategic Next.js Image implementation and resource compression, cutting overall page load times by 40% and boosting Core Web Vitals scores across all key metrics." },
-        { text: "Established enterprise-grade component library following Atomic Design Methodology, accelerating development velocity by 25% while ensuring pixel-perfect UI consistency across 5+ product lines." },
-        { text: "Drove 15% increase in user retention by architecting key features for React Native Android app, successfully onboarding 1,000+ users and reducing drop-off rates during critical user journeys." },
-        { text: "Orchestrated seamless sprint-based releases across distributed Agile teams using GitHub, JIRA, and Slack—maintaining 100% on-time delivery through effective async collaboration in remote Scrum/Kanban workflows." }
+        { text: "Improved load performance for a mid-scale OTT platform with 50k monthly viewers, achieving ~70% faster page loads through optimized SSR/ISR/SSG, refined API patterns, and bundle-size reductions." },
+        { text: "Reduced image load latency by ~40% for a film campaign platform used by ~18k creators and viewers using optimized Next.js <Image> configurations and caching strategies." },
+        { text: "Contributed to a React Native Android app with 10k+ users, improving onboarding and activation flows and helping lift early retention by ~15%." },
+        { text: "Developed shared UI component libraries for web and mobile, reducing repeat implementation work by ~25% and improving design consistency across teams." }
       ]
     },
     {
@@ -108,9 +106,8 @@ export const portfolioData: PortfolioData = {
         "CSS3"
       ],
       achievements: [
-        { text: "Mastered full-stack development by building 4+ production-grade applications and collaborating on 3+ team projects using React, Node.js, Express.js, and MongoDB—completing an intensive 1,200+ hour bootcamp with hands-on project experience." },
-        { text: "Elevated peer success by mentoring 20+ developers on debugging strategies, code quality standards, and engineering best practices—creating a collaborative learning culture that improved team project outcomes by 30%." },
-        { text: "Earned recognition as top performer among 100+ cohort members for exceptional execution and leadership, consistently delivering projects ahead of schedule while maintaining production-quality code standards." }
+        { text: "Built 4+ full-stack applications using React, Node.js, Express, and MongoDB—covering authentication, modular architecture, and production-ready UI + API integration." },
+        { text: "Guided 20+ developers through debugging sessions, component design reviews, and best practices, improving overall project reliability." }
       ]
     }
   ],
@@ -130,8 +127,13 @@ export const portfolioData: PortfolioData = {
     
     // State Management & Data Fetching
     { name: "Redux Toolkit", category: "Frontend", proficiency: 85, icon: "redux" },
-    { name: "Context API", category: "Frontend", proficiency: 90, icon: "react" },
+    { name: "Zustand", category: "Frontend", proficiency: 85, icon: "zustand" },
     { name: "TanStack Query", category: "Frontend", proficiency: 85, icon: "react" },
+    
+    // Monitoring & Analytics
+    { name: "Sentry", category: "Tools", proficiency: 80, icon: "sentry" },
+    { name: "Firebase Analytics", category: "Tools", proficiency: 80, icon: "firebase" },
+    { name: "Hotjar", category: "Tools", proficiency: 75, icon: "hotjar" },
     
     // Testing & Quality Assurance
     { name: "Jest", category: "Tools", proficiency: 80, icon: "jest" },
@@ -160,6 +162,7 @@ export const portfolioData: PortfolioData = {
     { name: "GitHub Actions", category: "DevOps", proficiency: 80, icon: "github" },
     { name: "Vercel", category: "DevOps", proficiency: 85, icon: "vercel" },
     { name: "Netlify", category: "DevOps", proficiency: 80, icon: "netlify" },
+    { name: "GCP", category: "DevOps", proficiency: 75, icon: "gcp" },
     
     // Project Management & Workflow
     { name: "JIRA", category: "Tools", proficiency: 85, icon: "jira" },
