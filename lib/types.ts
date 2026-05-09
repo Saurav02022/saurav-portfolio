@@ -62,7 +62,10 @@ export interface Project {
   description: string;
   html_url: string;
   homepage?: string;
+  /** Primary language (same as first entry of `languages` when GitHub returned bytes breakdown). */
   language: string;
+  /** Languages from GitHub `repos/.../languages`, by share of codebase (largest first). */
+  languages: string[];
   stargazers_count: number;
   topics: string[];
   pushed_at: string;

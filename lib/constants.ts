@@ -29,6 +29,8 @@ export const API_LIMITS = {
   DEFAULT_PROJECTS: 6,
   /** Default number of articles to display */
   DEFAULT_ARTICLES: 6,
+  /** Cap language badges per repo (from GitHub languages API, sorted by bytes) */
+  MAX_LANGUAGES_PER_PROJECT: 8,
 } as const;
 
 /**
