@@ -24,7 +24,7 @@ export interface CommitActivity {
   days: number[];
 }
 
-const GITHUB_USERNAME = 'Saurav02022';
+const GITHUB_USERNAME = 'saurav02022';
 
 // Initialize Octokit (GitHub API client)
 const octokit = new Octokit({

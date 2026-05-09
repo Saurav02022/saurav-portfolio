@@ -17,7 +17,7 @@ export function Experience() {
             Professional Experience
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Building high-performance applications with measurable impact
+            Full-stack, mobile, and AI-backed delivery with clear ownership from design to production.
           </p>
         </div>
 

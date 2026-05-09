@@ -5,9 +5,7 @@ import Marquee from 'react-fast-marquee';
 import { PRIMARY_TECH_STACK } from '@/lib/tech-stack';
 
 /**
- * TechStackMarquee component displays an infinite scrolling carousel of tech stack icons
- * Uses shared PRIMARY_TECH_STACK constant for consistency across the portfolio
- * Prioritized by market demand and strategic positioning for 2024-2025
+ * Infinite scrolling tech icons (hero) — matches resume emphasis
  */
 export function TechStackMarquee(): React.ReactElement {
   return (

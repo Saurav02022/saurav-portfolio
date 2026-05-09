@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://saurav-portfolio-lovat.vercel.app/sitemap.xml
+Sitemap: https://saurav02022-portfolio.vercel.app/sitemap.xml
 
 # Crawl delay (optional - 1 second between requests)
 Crawl-delay: 1

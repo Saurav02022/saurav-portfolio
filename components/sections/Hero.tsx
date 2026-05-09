@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Phone, Code } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, Code, Globe } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 import { BackgroundBeams } from '@/components/ui/background-beams';
 import { TechStackMarquee } from '@/components/ui/tech-stack-marquee';
@@ -25,6 +25,7 @@ export function Hero() {
       case 'mail': return <Mail className="h-5 w-5" />;
       case 'phone': return <Phone className="h-5 w-5" />;
       case 'code': return <Code className="h-5 w-5" />;
+      case 'globe': return <Globe className="h-5 w-5" />;
       default: return null;
     }
   };

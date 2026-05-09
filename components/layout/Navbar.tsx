@@ -89,7 +89,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => window.open('https://github.com/Saurav02022', '_blank')}
+                onClick={() => window.open("https://github.com/saurav02022", "_blank")}
               >
                 <Github className="h-5 w-5" />
               </Button>

@@ -6,7 +6,7 @@ import { MetadataRoute } from 'next';
  * Update priorities and change frequencies as needed
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://saurav-portfolio-lovat.vercel.app';
+  const baseUrl = 'https://saurav02022-portfolio.vercel.app';
   const currentDate = new Date();
 
   return [

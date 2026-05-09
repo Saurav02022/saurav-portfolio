@@ -14,11 +14,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://saurav02022-portfolio.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://saurav-portfolio-lovat.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Saurav Kumar | Full-Stack Developer | React • Next.js • TypeScript Expert",
-    template: "%s | Saurav Kumar - Full-Stack Developer"
+    default: "Saurav Kumar | Software Engineer | React • Next.js • FastAPI",
+    template: "%s | Saurav Kumar",
   },
   icons: {
     icon: [
@@ -45,98 +47,32 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  description: "🚀 Saurav Kumar - Full-Stack Developer specializing in React, Next.js, TypeScript & React Native. 3+ years building high-performance web apps with measurable results: ⚡ 70% faster load times • 📈 20% engagement boost • 👥 1000+ active users. Available for hire: Freelance projects & full-time roles. Expert in MERN stack, PWA development, performance optimization. Based in India, working remotely worldwide.",
+  description:
+    "Software engineer with about three years of experience shipping full-stack and mobile products, including AI-assisted EdTech systems (Next.js, FastAPI, PostgreSQL, Google Gemini) and high-traffic media platforms. Based in India; open to remote roles.",
   keywords: [
-    // Primary Roles & Titles
-    "Saurav Kumar Full-Stack Developer",
-    "React Developer for hire",
-    "Next.js Developer India",
-    "TypeScript Expert",
-    "React Native Mobile Developer",
-    "Senior Frontend Engineer",
-    "MERN Stack Specialist",
-    
-    // Core Technologies
-    "React.js development",
-    "Next.js 14 App Router",
-    "TypeScript development",
-    "JavaScript ES6+",
-    "Node.js backend",
-    "Express.js API",
-    "MongoDB database",
-    
-    // Frontend Excellence
-    "React Hooks expert",
-    "Redux Toolkit state management",
-    "TanStack Query data fetching",
-    "Tailwind CSS styling",
-    "Responsive web design",
-    "Mobile-first development",
-    "Progressive Web Apps PWA",
-    "Single Page Applications SPA",
-    
-    // Performance & Quality
-    "Web performance optimization",
-    "Core Web Vitals expert",
-    "SEO optimization",
-    "Web accessibility WCAG",
-    "Code splitting lazy loading",
-    "Server-side rendering SSR",
-    "Static site generation SSG",
-    
-    // Testing & DevOps
-    "Jest unit testing",
-    "Cypress E2E testing",
-    "React Testing Library",
-    "CI/CD pipelines",
-    "Git version control",
-    "GitHub Actions automation",
-    "Vercel deployment",
-    
-    // Services & Solutions
-    "custom web application development",
-    "e-commerce website development",
-    "SaaS application development",
-    "API integration services",
-    "legacy code modernization",
-    "website performance audit",
-    
-    // Work Arrangements
-    "remote full-stack developer India",
-    "freelance React developer",
-    "contract developer available",
-    "hire dedicated developer",
-    "full-time developer opportunities",
-    
-    // Location & Availability
-    "India based developer",
-    "remote work worldwide",
-    "IST timezone developer",
-    "immediate availability",
-    
-    // Problem Solving
-    "scalable web applications",
-    "high-performance websites",
-    "responsive user interfaces",
-    "cross-browser compatibility",
-    "mobile app development",
-    
-    // Industry Experience
-    "EdTech platform development",
-    "OTT platform optimization",
-    "enterprise web applications",
-    "startup technical consultant",
-    
-    // Personal Brand
-    "Saurav Kumar portfolio",
-    "sk729584 at gmail",
-    "github Saurav02022",
+    "Saurav Kumar",
+    "Software Engineer India",
+    "Full stack developer",
+    "Next.js",
+    "React Native",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "Google Gemini",
+    "Supabase",
+    "Docker",
+    "Google Cloud Run",
+    "Playwright",
+    "Cypress",
+    "EdTech developer",
+    "OTT platform performance",
   ],
   authors: [
-    { 
-      name: "Saurav Kumar", 
-      url: "https://github.com/Saurav02022" 
-    }
+    {
+      name: "Saurav Kumar",
+      url: "https://github.com/saurav02022",
+    },
   ],
   creator: "Saurav Kumar",
   publisher: "Saurav Kumar",
@@ -145,17 +81,18 @@ export const metadata: Metadata = {
   // Open Graph Metadata for Social Sharing
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://saurav-portfolio-lovat.vercel.app",
-    title: "Saurav Kumar | Full-Stack Developer | React • Next.js • TypeScript Expert",
-    description: "Experienced Full-Stack Developer specializing in React, Next.js, and TypeScript. 2+ years building high-performance web applications with proven results: 20% engagement boost, 70% faster load times, 1000+ users served.",
-    siteName: "Saurav Kumar - Full-Stack Developer Portfolio",
+    locale: "en_IN",
+    url: SITE_URL,
+    title: "Saurav Kumar | Software Engineer",
+    description:
+      "Software engineer building production web and mobile systems with Next.js, FastAPI, PostgreSQL, and Google Gemini. Experience across EdTech at scale and media platform performance.",
+    siteName: "Saurav Kumar — Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saurav Kumar - Full-Stack Developer Portfolio",
+        alt: "Saurav Kumar — Software engineer portfolio",
       },
     ],
   },
@@ -163,8 +100,9 @@ export const metadata: Metadata = {
   // Twitter Card Metadata
   twitter: {
     card: "summary_large_image",
-    title: "Saurav Kumar | Full-Stack Developer | React • Next.js • TypeScript",
-    description: "Building scalable web applications with React, Next.js & TypeScript. 3+ years experience. 20% engagement ↑, 70% faster renders, 1000+ users. Open to opportunities.",
+    title: "Saurav Kumar | Software Engineer",
+    description:
+      "Full-stack and mobile delivery with Next.js, FastAPI, PostgreSQL, and Gemini. About three years in production systems for education and media.",
     creator: "@saurav02022",
     images: ["/og-image.png"],
   },
@@ -195,7 +133,7 @@ export const metadata: Metadata = {
   
   // Alternate Languages (if you add i18n in future)
   alternates: {
-    canonical: "https://saurav-portfolio-lovat.vercel.app",
+    canonical: SITE_URL,
   },
 };
 

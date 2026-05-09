@@ -4,10 +4,15 @@ import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { portfolioData } from '@/lib/portfolio-data';
-import { Separator } from '@/components/ui/separator';
 
 export function Footer() {
-  const { personal } = portfolioData;
+  const { personal, social } = portfolioData;
+  const githubUrl =
+    social.find((s) => s.name === "GitHub")?.url ??
+    "https://github.com/saurav02022";
+  const linkedInUrl =
+    social.find((s) => s.name === "LinkedIn")?.url ??
+    "https://www.linkedin.com/in/saurav02022/";
   const currentYear = new Date().getFullYear();
 
   return (
@@ -24,14 +29,14 @@ export function Footer() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => window.open('https://github.com/Saurav02022', '_blank')}
+              onClick={() => window.open(githubUrl, "_blank")}
             >
               <Github className="h-4 w-4" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => window.open('https://www.linkedin.com/in/saurav-kumar-9b5b3b1b0/', '_blank')}
+              onClick={() => window.open(linkedInUrl, "_blank")}
             >
               <Linkedin className="h-4 w-4" />
             </Button>

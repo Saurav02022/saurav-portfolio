@@ -19,7 +19,7 @@ export function Skills() {
             Technical Skills
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive toolkit for building modern, scalable web applications with AI-powered productivity
+            Languages, frameworks, databases, LLM tooling, and deployment — aligned with hands-on production work.
           </p>
         </div>
 

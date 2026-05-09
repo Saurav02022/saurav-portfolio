@@ -34,7 +34,7 @@ export function Projects() {
 
   // Get GitHub URL from portfolio data
   const githubProfile = portfolioData.social.find(s => s.name === 'GitHub');
-  const githubUrl = githubProfile?.url || 'https://github.com/Saurav02022';
+  const githubUrl = githubProfile?.url || 'https://github.com/saurav02022';
 
   return (
     <section id="projects" className="py-24">
