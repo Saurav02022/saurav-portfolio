@@ -7,17 +7,20 @@ import { portfolioData } from '@/lib/portfolio-data';
 import { formatDateShort, calculateDuration } from '@/lib/date-utils';
 
 export function Experience() {
-  const { experience } = portfolioData;
+  const { experience, personal } = portfolioData;
 
   return (
     <section id="experience" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Professional Experience
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+            Experience
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Full-stack, mobile, and AI-backed delivery with clear ownership from design to production.
+            Selected roles — implementation through production, with measurable outcomes.
+          </p>
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-muted-foreground max-w-prose mx-auto text-center">
+            {personal.experienceIntro}
           </p>
         </div>
 
@@ -25,7 +28,7 @@ export function Experience() {
           {experience.map((exp) => (
             <Card 
               key={exp.id} 
-              className="hover:shadow-lg transition-shadow border-l-4 border-l-primary/40 overflow-hidden"
+              className="border-l-4 border-l-primary/40 overflow-hidden transition-colors duration-200 hover:border-border"
             >
               <CardHeader className="space-y-4 pb-6">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
@@ -74,13 +77,13 @@ export function Experience() {
                 {/* Achievements */}
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                    Key Achievements
+                    Highlights
                   </h4>
                   <div className="space-y-3">
                     {exp.achievements.map((achievement, idx) => (
                       <div 
                         key={idx} 
-                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/40 transition-colors duration-200"
                       >
                         <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5 text-primary" />
                         <span className="text-sm leading-relaxed">{achievement.text}</span>
@@ -101,7 +104,7 @@ export function Experience() {
                       <Badge 
                         key={idx} 
                         variant="secondary" 
-                        className="px-3 py-1 text-xs font-medium hover:bg-primary/20 transition-colors"
+                        className="px-3 py-1 text-xs font-medium hover:bg-muted/80 transition-colors duration-200"
                       >
                         {tech}
                       </Badge>

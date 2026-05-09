@@ -119,6 +119,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Fixed navbar — anchor jumps land below the bar */
+  main section[id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @layer utilities {

@@ -1,6 +1,6 @@
 import { GitHubRepo, Project } from './types';
 import { portfolioData } from './portfolio-data';
-import { API_BASE_URLS, CACHE_TIMES } from './constants';
+import { API_BASE_URLS, CACHE_TIMES, API_LIMITS } from './constants';
 import { formatDateFull } from './date-utils';
 
 // Get GitHub username from centralized portfolio data
@@ -50,7 +50,9 @@ export function transformRepoToProject(repo: GitHubRepo): Project {
   };
 }
 
-export async function getLatestProjects(count: number = 3): Promise<Project[]> {
+export async function getLatestProjects(
+  count: number = API_LIMITS.DEFAULT_PROJECTS,
+): Promise<Project[]> {
   const repos = await fetchGitHubRepos();
   
   // Sort by last pushed date and take the latest ones

@@ -50,11 +50,11 @@ export function Blog({ username }: BlogProps) {
           <div className="flex items-center justify-center mb-4">
             <TrendingUp className="h-6 w-6 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Latest Blog Posts
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+            Articles
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Sharing insights, tutorials, and experiences from my development journey
+            Notes and tutorials on Dev.to when I publish — not a complete archive of everything I write.
           </p>
         </div>
 
@@ -171,15 +171,15 @@ export function Blog({ username }: BlogProps) {
             </div>
           </>
         ) : (
-          <div className="text-center py-12">
+          <div className="text-center py-12 max-w-md mx-auto px-4">
             <p className="text-muted-foreground mb-4">
-              No articles found. Start writing on Dev.to!
+              No articles loaded right now — the feed may be empty or temporarily unavailable. You can still browse past posts on Dev.to from the link below.
             </p>
             <Button
-              onClick={() => window.open('https://dev.to/new', '_blank')}
+              onClick={() => window.open(`https://dev.to/${username}`, '_blank')}
               variant="outline"
             >
-              Write Your First Article
+              Open Dev.to profile
             </Button>
           </div>
         )}

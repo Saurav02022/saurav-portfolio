@@ -21,7 +21,6 @@ import {
   SiFastapi,
   SiPostgresql,
   SiDocker,
-  SiGooglegemini,
   SiGithubactions,
   SiJira,
   SiNetlify,
@@ -50,13 +49,13 @@ export interface TechStackItem {
  * Primary stack shown in the hero marquee (resume-aligned ordering)
  */
 export const PRIMARY_TECH_STACK: TechStackItem[] = [
-  { name: 'TypeScript', icon: SiTypescript, category: 'Frontend' },
-  { name: 'React', icon: SiReact, category: 'Frontend' },
   { name: 'Next.js', icon: SiNextdotjs, category: 'Frontend' },
+  { name: 'TypeScript', icon: SiTypescript, category: 'Frontend' },
+  { name: 'React Native', icon: SiReact, category: 'Frontend' },
   { name: 'Python', icon: SiPython, category: 'Backend' },
   { name: 'FastAPI', icon: SiFastapi, category: 'Backend' },
   { name: 'PostgreSQL', icon: SiPostgresql, category: 'Database' },
-  { name: 'Google Gemini', icon: SiGooglegemini, category: 'AI Tools' },
+  { name: 'React', icon: SiReact, category: 'Frontend' },
   { name: 'Node.js', icon: SiNodedotjs, category: 'Backend' },
   { name: 'Docker', icon: SiDocker, category: 'DevOps' },
   { name: 'Git', icon: SiGit, category: 'DevOps' },
@@ -65,7 +64,7 @@ export const PRIMARY_TECH_STACK: TechStackItem[] = [
 ];
 
 /**
- * Full stack by category — aligned with the CV skill groups
+ * Full stack by category — canonical source for the Skills section (single list; edit here only).
  */
 export const TECH_STACK_BY_CATEGORY = {
   'Languages': [
@@ -100,8 +99,7 @@ export const TECH_STACK_BY_CATEGORY = {
   ],
 
   'AI & LLMs': [
-    { name: 'Google Gemini', icon: SiGooglegemini },
-    { name: 'Structured outputs', icon: Sparkles },
+    { name: 'Structured LLM outputs', icon: Sparkles },
     { name: 'LLM API integration', icon: Bot },
     { name: 'Cursor AI', icon: MousePointer2 },
     { name: 'ChatGPT', icon: SiOpenai },
@@ -161,7 +159,6 @@ export const getIconByName = (
     fastapi: SiFastapi,
     postgresql: SiPostgresql,
     docker: SiDocker,
-    gemini: SiGooglegemini,
     githubactions: SiGithubactions,
     playwright: TestTube2,
     testing: TestTube2,

@@ -1,6 +1,21 @@
 export interface PersonalInfo {
   name: string;
   title: string;
+  /** One or two factual lines under the title — aligned with site metadata / bio. */
+  introLine: string;
+  /** Quiet hero strip — technologies from hands-on production work. */
+  heroCoreStack: string[];
+  /** One- or two-line bridge under Experience — not a repeat of the full bio. */
+  experienceIntro: string;
+  /**
+   * Preferred: first day of professional work on your CV (YYYY-MM-DD). Midnight local time is used as the anchor.
+   */
+  careerStartDate?: string;
+  /**
+   * Fallback when only month+year is on the CV (YYYY-MM). Treated as the 1st of that month.
+   * Ignored if `careerStartDate` is set. If both omitted, earliest `experience.startDate` + day 1 is used.
+   */
+  careerStartMonth?: string;
   email: string;
   phone: string;
   location: string;
@@ -28,13 +43,6 @@ export interface Experience {
   endDate: string | null;
   technologies: string[];
   achievements: Achievement[];
-}
-
-export interface Skill {
-  name: string;
-  category: 'Frontend' | 'Backend' | 'Database' | 'DevOps' | 'Tools' | 'Languages';
-  proficiency: number; // 1-100
-  icon?: string;
 }
 
 export interface Education {
@@ -112,7 +120,6 @@ export interface PortfolioData {
   personal: PersonalInfo;
   social: SocialLink[];
   experience: Experience[];
-  skills: Skill[];
   education: Education[];
   projects: Project[];
   calendly?: CalendlyConfig;

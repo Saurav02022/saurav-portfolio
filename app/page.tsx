@@ -7,17 +7,19 @@ import { Blog } from "@/components/sections/Blog";
 import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
-import { TimeTracker } from "@/components/ui/time-tracker";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { portfolioData } from "@/lib/portfolio-data";
+import { resolveCareerStartIsoDate } from "@/lib/career-tenure";
 
 export default function Home() {
+  const careerStartIso = resolveCareerStartIsoDate(portfolioData);
+
   return (
     <main className="relative bg-white dark:bg-black min-h-screen transition-colors duration-300">
       <Navbar />
       
       {/* Hero Section - First Impression */}
-      <Hero />
+      <Hero careerStartIso={careerStartIso} />
       
       {/* Experience - What employers look for first */}
       <Experience />
@@ -30,7 +32,7 @@ export default function Home() {
         <Projects />
       </ErrorBoundary>
       
-      {/* Blog - Thought leadership and personal branding */}
+      {/* Blog — Dev.to articles */}
       <ErrorBoundary>
         <Blog username={portfolioData.devToUsername || 'saurav_dev_2022'} />
       </ErrorBoundary>
@@ -42,8 +44,6 @@ export default function Home() {
       <Contact />
       
       <Footer />
-
-      <TimeTracker />
     </main>
   );
 }

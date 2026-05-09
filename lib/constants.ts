@@ -26,7 +26,7 @@ export const API_LIMITS = {
   /** Maximum number of blog articles to fetch */
   MAX_ARTICLES: 6,
   /** Default number of projects to display */
-  DEFAULT_PROJECTS: 3,
+  DEFAULT_PROJECTS: 6,
   /** Default number of articles to display */
   DEFAULT_ARTICLES: 6,
 } as const;

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Moon, Sun, Download, Menu, X, Check } from 'lucide-react';
+import { Github, Moon, Sun, Menu, X, Check, FileText } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { portfolioData } from '@/lib/portfolio-data';
 
@@ -13,12 +13,12 @@ export function Navbar() {
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Set mounted to true after component mounts to prevent hydration mismatch
-  // This is the recommended pattern for next-themes to avoid SSR hydration errors
-  // eslint-disable-next-line react-hooks/set-state-in-effect
+  // Mounted gate for next-themes — avoids icon mismatch during SSR hydration
   useEffect(() => {
-    setMounted(true);
-  }, []); // Empty deps array is correct - only run on mount
+    startTransition(() => {
+      setMounted(true);
+    });
+  }, []);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -40,20 +40,18 @@ export function Navbar() {
 
   const navItems = [
     { name: 'Experience', href: '#experience' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Blog', href: '#blog' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const githubUrl =
+    portfolioData.social.find((s) => s.name === 'GitHub')?.url ??
+    'https://github.com/saurav02022';
 
-  const handleDownloadResume = () => {
+  const handleOpenResume = () => {
     window.open(portfolioData.personal.resumeUrl, '_blank');
   };
 
@@ -66,32 +64,40 @@ export function Navbar() {
       }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-2xl font-bold hover:text-primary transition-colors"
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-2xl font-bold text-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Scroll to top"
             >
               SK
-            </button>
+            </a>
 
             <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+                  href={item.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
                 >
                   {item.name}
-                </button>
+                </a>
               ))}
             </div>
 
             <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => window.open("https://github.com/saurav02022", "_blank")}
-              >
-                <Github className="h-5 w-5" />
+              <Button variant="ghost" size="icon" asChild>
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub profile"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
               </Button>
 
               <div className="relative">
@@ -100,6 +106,9 @@ export function Navbar() {
                   size="icon"
                   onClick={() => setThemeMenuOpen(!themeMenuOpen)}
                   suppressHydrationWarning
+                  type="button"
+                  aria-label="Choose colour theme"
+                  aria-expanded={themeMenuOpen}
                 >
                   {!mounted ? (
                     <Sun className="h-5 w-5" />
@@ -119,11 +128,12 @@ export function Navbar() {
                     
                     <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50 py-2">
                       <button
+                        type="button"
                         onClick={() => {
                           setTheme('light');
                           setThemeMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors duration-200"
                       >
                         <div className="flex items-center gap-3">
                           <Sun className="h-4 w-4" />
@@ -133,11 +143,12 @@ export function Navbar() {
                       </button>
 
                       <button
+                        type="button"
                         onClick={() => {
                           setTheme('dark');
                           setThemeMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors duration-200"
                       >
                         <div className="flex items-center gap-3">
                           <Moon className="h-4 w-4" />
@@ -151,12 +162,13 @@ export function Navbar() {
               </div>
 
               <Button
-                onClick={handleDownloadResume}
+                type="button"
+                onClick={handleOpenResume}
                 size="sm"
                 className="hidden md:flex"
               >
-                <Download className="h-4 w-4" />
-                Resume
+                <FileText className="h-4 w-4" />
+                Open resume
               </Button>
 
               <Button
@@ -164,6 +176,9 @@ export function Navbar() {
                 size="icon"
                 className="md:hidden"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                type="button"
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
@@ -176,23 +191,25 @@ export function Navbar() {
         <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-lg md:hidden">
           <div className="flex flex-col items-center justify-center h-full gap-8">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.name}
-                onClick={() => handleNavClick(item.href)}
-                className="text-2xl hover:text-primary transition-colors font-medium"
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-2xl hover:text-primary transition-colors duration-200 font-medium"
               >
                 {item.name}
-              </button>
+              </a>
             ))}
             <Button
+              type="button"
               onClick={() => {
-                handleDownloadResume();
+                handleOpenResume();
                 setMobileMenuOpen(false);
               }}
               size="lg"
             >
-              <Download className="h-5 w-5" />
-              Resume
+              <FileText className="h-5 w-5" />
+              Open resume
             </Button>
           </div>
         </div>

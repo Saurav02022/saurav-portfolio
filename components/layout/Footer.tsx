@@ -26,36 +26,49 @@ export function Footer() {
 
           {/* Social Links */}
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => window.open(githubUrl, "_blank")}
-            >
-              <Github className="h-4 w-4" />
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+              >
+                <Github className="h-4 w-4" />
+              </a>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => window.open(linkedInUrl, "_blank")}
-            >
-              <Linkedin className="h-4 w-4" />
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href={linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => window.location.href = `mailto:${personal.email}`}
-            >
-              <Mail className="h-4 w-4" />
+            <Button variant="ghost" size="icon" asChild>
+              <a href={`mailto:${personal.email}`} aria-label={`Email ${personal.name}`}>
+                <Mail className="h-4 w-4" />
+              </a>
             </Button>
           </div>
 
-          {/* Email */}
-          <a
-            href={`mailto:${personal.email}`}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {personal.email}
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm">
+            <a
+              href={`mailto:${personal.email}`}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {personal.email}
+            </a>
+            <a
+              href={personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Open resume
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -15,17 +15,17 @@ export function Education() {
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-6 w-6 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
             Education
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Academic foundation and professional training
+            Undergraduate maths grounding; MCA in progress online weekends alongside employment.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
           {education.map((edu) => (
-            <Card key={edu.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
+            <Card key={edu.id} className="flex flex-col h-full transition-colors duration-200 hover:border-primary/20">
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <Avatar>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
+import { SITE_URL } from "@/lib/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://saurav02022-portfolio.vercel.app";
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Saurav Kumar | Software Engineer | React • Next.js • FastAPI",
+    default: "Saurav Kumar | Full stack engineer — Next.js, TypeScript, React Native, FastAPI",
     template: "%s | Saurav Kumar",
   },
   icons: {
@@ -48,18 +49,17 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   description:
-    "Software engineer with about three years of experience shipping full-stack and mobile products, including AI-assisted EdTech systems (Next.js, FastAPI, PostgreSQL, Google Gemini) and high-traffic media platforms. Based in India; open to remote roles.",
+    "Full stack engineer in India (three years) shipping Next.js and React Native apps with FastAPI, PostgreSQL and TypeScript — EdTech at 117 schools; prior streaming performance work. Open to remote roles.",
   keywords: [
     "Saurav Kumar",
-    "Software Engineer India",
-    "Full stack developer",
+    "Full stack engineer India",
+    "Remote friendly developer",
     "Next.js",
     "React Native",
     "TypeScript",
     "Python",
     "FastAPI",
     "PostgreSQL",
-    "Google Gemini",
     "Supabase",
     "Docker",
     "Google Cloud Run",
@@ -83,16 +83,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    title: "Saurav Kumar | Software Engineer",
+    title: "Saurav Kumar | Full stack engineer · EdTech · Media performance",
     description:
-      "Software engineer building production web and mobile systems with Next.js, FastAPI, PostgreSQL, and Google Gemini. Experience across EdTech at scale and media platform performance.",
+      "Production web and mobile stacks, Postgres-backed APIs, offline-first PWAs at school scale and earlier OTT performance improvements. Includes accountable metrics on-page. Based in India.",
     siteName: "Saurav Kumar — Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saurav Kumar — Software engineer portfolio",
+        alt: "Saurav Kumar — Full stack engineer portfolio",
       },
     ],
   },
@@ -100,9 +100,9 @@ export const metadata: Metadata = {
   // Twitter Card Metadata
   twitter: {
     card: "summary_large_image",
-    title: "Saurav Kumar | Software Engineer",
+    title: "Saurav Kumar | Full stack engineer · EdTech · Media performance",
     description:
-      "Full-stack and mobile delivery with Next.js, FastAPI, PostgreSQL, and Gemini. About three years in production systems for education and media.",
+      "Production web and mobile stacks, Postgres-backed APIs, offline-first PWAs at school scale and earlier OTT performance improvements. Based in India.",
     creator: "@saurav02022",
     images: ["/og-image.png"],
   },
@@ -124,13 +124,11 @@ export const metadata: Metadata = {
   // Additional Metadata
   category: "Technology",
   classification: "Portfolio Website",
-  
-  // Verification (Add your verification codes if you have them)
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
-  
+
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
+
   // Alternate Languages (if you add i18n in future)
   alternates: {
     canonical: SITE_URL,
@@ -143,7 +141,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-IN" suppressHydrationWarning>
       <head>
         <StructuredData />
       </head>

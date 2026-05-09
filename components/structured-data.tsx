@@ -3,16 +3,16 @@
  * Provides rich snippets for search engines (Google, Bing, etc.)
  */
 
-const SITE_URL = "https://saurav02022-portfolio.vercel.app";
+import { SITE_URL } from "@/lib/site-config";
 
 export function StructuredData() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Saurav Kumar",
-    jobTitle: "Software Engineer",
+    jobTitle: "Full stack engineer",
     description:
-      "Software engineer experienced in full-stack, mobile, and AI-integrated delivery. Work has included production systems for 50,000+ users across 117 schools, with strong focus on Next.js, FastAPI, PostgreSQL, React Native, and Google Gemini.",
+      "India-based full stack engineer shipping Next.js, TypeScript, React Native, Python, FastAPI, and PostgreSQL — production EdTech at scale and media performance work. Open to remote roles.",
     url: SITE_URL,
     image: `${SITE_URL}/og-image.png`,
     email: "sk729584@gmail.com",
@@ -42,7 +42,7 @@ export function StructuredData() {
       {
         "@type": "EducationalOrganization",
         name: "Munger University",
-        description: "B.Sc. Mathematics (Honours)",
+        description: "B.Sc. Mathematics (Honors)",
       },
     ],
     knowsAbout: [
@@ -61,7 +61,6 @@ export function StructuredData() {
       "MongoDB",
       "Docker",
       "Google Cloud Run",
-      "Google Gemini",
       "Playwright",
       "Cypress",
       "Full-Stack Development",
@@ -69,23 +68,23 @@ export function StructuredData() {
     ],
     hasOccupation: {
       "@type": "Occupation",
-      name: "Software Engineer",
+      name: "Full stack engineer",
       occupationLocation: {
         "@type": "Country",
         name: "India",
       },
       skills:
-        "TypeScript, React, Next.js, Python, FastAPI, PostgreSQL, Google Gemini, Docker, GitHub Actions",
-      experienceRequirements: "3 years professional experience",
+        "Next.js, TypeScript, React Native, Python, FastAPI, PostgreSQL, Docker, GitHub Actions",
+      experienceRequirements: "Three years professional experience",
     },
   };
 
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Saurav Kumar - Software Engineering",
+    name: "Saurav Kumar - Full stack engineering",
     description:
-      "Full-stack and mobile software development with production experience in EdTech and media platforms, including AI-assisted workflows and offline-first delivery.",
+      "Full stack and mobile software development with production experience in EdTech and media platforms, including AI-assisted workflows and offline-first delivery.",
     provider: {
       "@type": "Person",
       name: "Saurav Kumar",
@@ -116,11 +115,11 @@ export function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Saurav Kumar - Software Engineer Portfolio",
+    name: "Saurav Kumar - Full stack engineer portfolio",
     alternateName: "Saurav Kumar Portfolio",
     url: SITE_URL,
     description:
-      "Professional portfolio outlining software engineering experience in full-stack systems, React Native apps, FastAPI backends, and Gemini-based AI features.",
+      "Professional portfolio outlining full stack experience — React Native apps, FastAPI backends, Next.js surfaces, and structured LLM integrations.",
     author: {
       "@type": "Person",
       name: "Saurav Kumar",

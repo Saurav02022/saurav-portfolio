@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Video, ExternalLink, CheckCircle2, Mail } from 'lucide-react';
+import { Video, ExternalLink, CheckCircle2, Mail } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 
 export function Contact() {
@@ -20,20 +20,24 @@ export function Contact() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
-            <Calendar className="h-6 w-6 text-primary" />
+            <Mail className="h-6 w-6 text-primary" aria-hidden />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Schedule a Meeting
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+            Contact
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Let&apos;s discuss your project, explore collaboration opportunities, or just have a chat about tech
+            Open to full stack roles including remote-friendly teams. Email works well for recruiter screens and JD fit.
+            Prefer a conversation? Grab a calendar slot below.
           </p>
         </div>
 
         {/* Meeting Card */}
         {calendly && calendly.enabled ? (
           <div className="max-w-2xl mx-auto px-4">
-            <Card className="hover:shadow-lg transition-shadow">
+            <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
+              Book a video call
+            </p>
+            <Card className="border transition-colors duration-200 hover:border-primary/25">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <div className="p-4 rounded-full bg-primary/10">
@@ -46,39 +50,40 @@ export function Contact() {
               
               <CardContent className="space-y-6">
                 <p className="text-center text-muted-foreground">
-                  Book a time that works best for you. You&apos;ll receive a confirmation email with meeting details and a calendar invite.
+                  Pick a slot that suits you — you&apos;ll get confirmation and calendar details by email.
                 </p>
 
                 {/* Features */}
                 <div className="bg-muted/50 rounded-lg p-6 space-y-3">
-                  <h3 className="font-semibold text-center mb-4">What to Expect</h3>
+                  <h3 className="font-semibold text-center mb-4">What to expect</h3>
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Virtual meeting via Google Meet or Zoom</span>
+                      <span>Short video meeting</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Instant calendar invite and confirmation email</span>
+                      <span>Invite and confirmation email included</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Perfect for project discussions, collaborations, or tech chats</span>
+                      <span>Good for recruiter intros, scope and fit, lighter architecture chats</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Easy to reschedule using the link in your confirmation email</span>
+                      <span>Reschedule anytime from the confirmation mail</span>
                     </div>
                   </div>
                 </div>
 
                 <Button
+                  type="button"
                   onClick={() => window.open(meetingType.url, '_blank')}
                   size="lg"
                   className="w-full"
                 >
                   <ExternalLink className="h-5 w-5" />
-                  Book a Time Slot
+                  Book a 30-minute slot
                 </Button>
               </CardContent>
             </Card>
@@ -98,7 +103,7 @@ export function Contact() {
         {/* Alternative Contact */}
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground mb-4">
-            Prefer email instead?
+            Email for roles or pitches
           </p>
           <a
             href={`mailto:${personal.email}`}

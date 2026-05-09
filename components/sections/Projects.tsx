@@ -8,6 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Github, ExternalLink, Star, Folder } from 'lucide-react';
 import { Project } from '@/lib/types';
 import { portfolioData } from '@/lib/portfolio-data';
+import { API_LIMITS } from '@/lib/constants';
 
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -47,13 +48,13 @@ export function Projects() {
             Latest Projects
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            My most recent work - showcasing the latest 3 repositories with recent commits
+            My most recent work — the latest {API_LIMITS.DEFAULT_PROJECTS} public repositories by recent commits.
           </p>
         </div>
 
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-            {[1, 2, 3].map((i) => (
+            {Array.from({ length: API_LIMITS.DEFAULT_PROJECTS }, (_, i) => i + 1).map((i) => (
               <Card key={i}>
                 <CardHeader>
                   <Skeleton className="h-6 w-3/4 mb-2" />
@@ -76,7 +77,7 @@ export function Projects() {
         ) : (
           <>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto px-4">
-              {projects.slice(0, 3).map((project) => (
+              {projects.slice(0, API_LIMITS.DEFAULT_PROJECTS).map((project) => (
                 <Card key={project.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between">
