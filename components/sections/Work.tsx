@@ -31,15 +31,28 @@ export function Work() {
                   <Badge key={tag}>{tag}</Badge>
                 ))}
               </div>
-              <a
-                className="repoLink"
-                href={c.repoUrl}
-                target="_blank"
-                rel="noopener"
-                aria-label={`View source — ${c.title}`}
-              >
-                View source <span className="ar">↗</span>
-              </a>
+              <div className="caseLinks">
+                {c.liveUrl && (
+                  <a
+                    className="repoLink"
+                    href={c.liveUrl}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label={`Live app — ${c.title} (opens in new tab)`}
+                  >
+                    Live app <span className="ar">↗</span>
+                  </a>
+                )}
+                <a
+                  className="repoLink"
+                  href={c.repoUrl}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`View source — ${c.title} (opens in new tab)`}
+                >
+                  View source <span className="ar">↗</span>
+                </a>
+              </div>
             </div>
           </article>
         ))}

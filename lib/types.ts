@@ -27,6 +27,7 @@ export interface CaseStudy {
   blocks: CaseBlock[];
   tags: string[];
   repoUrl: string;
+  liveUrl?: string;
 }
 
 export interface DetailLink {
