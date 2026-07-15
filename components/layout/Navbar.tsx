@@ -25,6 +25,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll-lock behind the open mobile menu.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -46,7 +54,7 @@ export function Navbar() {
             </a>
           ))}
           <a className="navcta" href={RESUME_URL} target="_blank" rel="noopener">
-            Résumé
+            Résumé ↗<span className="sr-only"> (opens in new tab)</span>
           </a>
         </nav>
         <button
@@ -103,7 +111,7 @@ export function Navbar() {
             rel="noopener"
             onClick={closeMenu}
           >
-            Download résumé ↓
+            Open résumé ↗<span className="sr-only"> (opens in new tab)</span>
           </a>
         </div>
       </div>

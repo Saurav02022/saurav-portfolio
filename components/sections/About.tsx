@@ -39,7 +39,7 @@ export function About() {
             <div className="dLinks">
               {SOCIALS.map((social) => (
                 <a key={social.label} href={social.url} target="_blank" rel="noopener">
-                  {social.label} ↗
+                  {social.label} ↗<span className="sr-only"> (opens in new tab)</span>
                 </a>
               ))}
             </div>

@@ -19,7 +19,7 @@ export function Hero() {
         </Button>
         <Button asChild variant="ghost">
           <a href={RESUME_URL} target="_blank" rel="noopener">
-            Résumé ↓
+            Résumé ↗<span className="sr-only"> (opens in new tab)</span>
           </a>
         </Button>
       </div>
@@ -33,6 +33,7 @@ export function Hero() {
             rel="noopener"
           >
             {social.label} <span className="ar">↗</span>
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         ))}
       </div>

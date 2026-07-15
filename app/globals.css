@@ -236,6 +236,12 @@ a:hover {
 .mobileMenu {
   display: none;
 }
+.caseLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
 
 /* ---------------------------------------------------------------------------
  * Buttons
@@ -815,11 +821,16 @@ a:hover {
     border-bottom: 1px solid transparent;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.34s ease;
+    /* visibility removes the collapsed menu's links from the tab order;
+       the delay keeps the close animation visible. */
+    visibility: hidden;
+    transition: max-height 0.34s ease, visibility 0s linear 0.34s;
   }
   .mobileMenu.open {
     max-height: 400px;
     border-bottom: 1px solid var(--line);
+    visibility: visible;
+    transition: max-height 0.34s ease;
   }
   .mobileMenu .inner {
     padding: 1.1rem clamp(1.25rem, 5vw, 2.75rem) 1.6rem;
