@@ -1,16 +1,16 @@
 {
-  "name": "Saurav Kumar | Full stack engineer",
+  "name": "Saurav Kumar — Full-Stack Software Engineer",
   "short_name": "Saurav Kumar",
-  "description": "Portfolio of Saurav Kumar — full stack engineer focused on Next.js, TypeScript, React Native, Python, FastAPI, and PostgreSQL, with production experience in EdTech and media platforms.",
+  "description": "Portfolio of Saurav Kumar — full-stack software engineer with 3+ years in production. EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#0B0B0D",
+  "background_color": "#0B0B0D",
   "lang": "en-IN",
   "dir": "ltr",
-  "categories": ["business", "productivity", "utilities"],
+  "categories": ["business", "productivity"],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
