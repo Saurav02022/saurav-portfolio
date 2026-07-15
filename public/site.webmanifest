@@ -1,7 +1,7 @@
 {
   "name": "Saurav Kumar — Full-Stack Software Engineer",
   "short_name": "Saurav Kumar",
-  "description": "Portfolio of Saurav Kumar — full-stack software engineer with 3+ years in production. EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.",
+  "description": "Portfolio of Saurav Kumar — full-stack software engineer, 3+ years in production. EdTech in 117 schools, a 10,000-creator video platform, and LLM features built to survive real use.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -13,16 +13,10 @@
   "categories": ["business", "productivity"],
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
+      "src": "/icon",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

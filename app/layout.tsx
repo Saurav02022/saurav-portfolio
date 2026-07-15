@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { StructuredData } from "@/components/structured-data";
 import { SITE_URL } from "@/lib/site-config";
@@ -23,10 +24,11 @@ const jetbrains = JetBrains_Mono({
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const TITLE = "Saurav Kumar — Full-Stack Software Engineer";
+// ≤160 chars so it doesn't truncate in SERPs.
 const DESCRIPTION =
-  "Saurav Kumar, full-stack software engineer with 3+ years in production. EdTech running across 117 schools, a video platform past 10,000 creators, and LLM features built for reliability.";
+  "Full-stack software engineer, 3+ years in production. EdTech in 117 schools, a 10,000-creator video platform, and LLM features built to survive real use.";
 const OG_DESCRIPTION =
-  "Full-stack engineer, 3+ years. Production EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.";
+  "Full-stack engineer, 3+ years. EdTech across 117 schools, a 10,000+ creator video platform, and LLM features that survive weak networks.";
 
 export const viewport: Viewport = {
   themeColor: "#0B0B0D",
@@ -40,28 +42,9 @@ export const metadata: Metadata = {
     template: "%s — Saurav Kumar",
   },
   description: DESCRIPTION,
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [
-      {
-        rel: "icon",
-        url: "/android-chrome-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        rel: "icon",
-        url: "/android-chrome-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-    ],
-  },
+  // Icons and OG/Twitter images come from the app/ file conventions
+  // (icon.tsx, apple-icon.tsx, opengraph-image.tsx) — generated from design
+  // tokens at build, so the mark can't drift from the site.
   manifest: "/site.webmanifest",
   keywords: [
     "Saurav Kumar",
@@ -87,21 +70,12 @@ export const metadata: Metadata = {
     title: TITLE,
     description: OG_DESCRIPTION,
     siteName: "Saurav Kumar — Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Saurav Kumar — Full-Stack Software Engineer portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: OG_DESCRIPTION,
     creator: "@saurav02022",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -138,7 +112,10 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

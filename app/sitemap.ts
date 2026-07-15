@@ -3,16 +3,15 @@ import { SITE_URL } from '@/lib/site-config';
 
 /**
  * Single canonical URL for this SPA-style portfolio.
- * Do not list hash-only URLs — crawlers treat them as the same resource and sitemaps should use real URLs only.
+ * lastModified is bumped by hand on real content changes — a fresh
+ * new Date() per build and 'daily' frequency are noise signals to crawlers.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
   return [
     {
       url: SITE_URL,
-      lastModified,
-      changeFrequency: 'daily',
+      lastModified: new Date('2026-07-15'),
+      changeFrequency: 'monthly',
       priority: 1,
     },
   ];

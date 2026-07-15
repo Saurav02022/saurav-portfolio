@@ -4,7 +4,7 @@
  */
 
 import { SITE_URL } from "@/lib/site-config";
-import { EMAIL, NAME, PHONE, ROLE, SOCIALS, cases } from "@/lib/portfolio-data";
+import { EMAIL, NAME, ROLE, SOCIALS, cases } from "@/lib/portfolio-data";
 
 export function StructuredData() {
   const personSchema = {
@@ -15,15 +15,14 @@ export function StructuredData() {
     description:
       "Full-stack software engineer with 3+ years in production — EdTech running across 117 schools, a video platform past 10,000 creators, and LLM features built for reliability.",
     url: SITE_URL,
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/opengraph-image`,
     email: EMAIL,
-    telephone: PHONE,
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",
       addressLocality: "Mumbai",
     },
-    sameAs: [...SOCIALS.map((s) => s.url), "https://dev.to/saurav_dev_2022"],
+    sameAs: SOCIALS.map((s) => s.url),
     worksFor: {
       "@type": "Organization",
       name: "Shikha Learning Labs",
@@ -97,7 +96,8 @@ export function StructuredData() {
     name: c.title,
     description: c.summary,
     codeRepository: c.repoUrl,
-    programmingLanguage: "TypeScript",
+    programmingLanguage: ["TypeScript", "Python"],
+    ...(c.liveUrl ? { url: c.liveUrl } : {}),
     author: {
       "@type": "Person",
       name: NAME,
