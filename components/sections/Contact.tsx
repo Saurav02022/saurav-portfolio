@@ -20,10 +20,12 @@ export function Contact() {
             rel="noopener"
           >
             {social.label} <span className="ar">↗</span>
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         ))}
         <a className="social" href={RESUME_URL} target="_blank" rel="noopener">
-          Résumé <span className="ar">↓</span>
+          Résumé <span className="ar">↗</span>
+          <span className="sr-only"> (opens in new tab)</span>
         </a>
       </div>
     </section>
