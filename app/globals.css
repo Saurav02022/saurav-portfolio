@@ -252,9 +252,10 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 1.3rem;
-  flex-wrap: wrap;
-  /* Stays flush right even when the tag row is full and this wraps. */
-  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+  /* Optically centers the link text on the first row of tag pills. */
+  padding-top: 0.32rem;
 }
 
 /* ---------------------------------------------------------------------------
@@ -600,12 +601,17 @@ a:hover {
 .caseFoot {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem 1.5rem;
-  flex-wrap: wrap;
+  /* Links never join the tag flow: tags wrap on the left, links hold the
+     top-right corner — identical structure in every card. */
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 1rem 2rem;
   margin-top: 1.9rem;
   padding-top: 1.4rem;
   border-top: 1px solid var(--line);
+}
+.caseFoot .tags {
+  margin-top: 0;
 }
 .repoLink {
   font-family: var(--ff-mono);
@@ -887,6 +893,13 @@ a:hover {
   .caseGrid {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+  }
+  /* Narrow cards: links get their own row under the tags in every card. */
+  .caseFoot {
+    flex-wrap: wrap;
+  }
+  .caseLinks {
+    padding-top: 0;
   }
   .aboutGrid {
     grid-template-columns: 1fr;
