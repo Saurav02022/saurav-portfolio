@@ -92,7 +92,13 @@ export function Navbar() {
           </svg>
         </button>
       </div>
-      <div className={cn("mobileMenu", menuOpen && "open")} id="mobileMenu">
+      {/* inert removes the collapsed menu's links from the tab order and
+          the accessibility tree (FEEDBACK #9: five invisible focus stops). */}
+      <div
+        className={cn("mobileMenu", menuOpen && "open")}
+        id="mobileMenu"
+        inert={!menuOpen}
+      >
         <div className="inner">
           {NAV_ITEMS.map((item) => (
             <a
