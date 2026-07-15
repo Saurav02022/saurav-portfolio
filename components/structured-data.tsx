@@ -1,34 +1,29 @@
 /**
- * Structured Data (JSON-LD) Component
- * Provides rich snippets for search engines (Google, Bing, etc.)
+ * Structured Data (JSON-LD) — Person, WebSite, projects (SoftwareSourceCode),
+ * and breadcrumbs for rich results.
  */
 
 import { SITE_URL } from "@/lib/site-config";
+import { EMAIL, NAME, PHONE, ROLE, SOCIALS, cases } from "@/lib/portfolio-data";
 
 export function StructuredData() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Saurav Kumar",
-    jobTitle: "Full stack engineer",
+    name: NAME,
+    jobTitle: ROLE,
     description:
-      "India-based full stack engineer shipping Next.js, TypeScript, React Native, Python, FastAPI, and PostgreSQL — production EdTech at scale and media performance work. Open to remote roles.",
+      "Full-stack software engineer with 3+ years in production — EdTech running across 117 schools, a video platform past 10,000 creators, and LLM features built for reliability.",
     url: SITE_URL,
     image: `${SITE_URL}/og-image.png`,
-    email: "sk729584@gmail.com",
-    telephone: "+919572365331",
+    email: EMAIL,
+    telephone: PHONE,
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",
-      addressLocality: "India",
+      addressLocality: "Mumbai",
     },
-    sameAs: [
-      "https://github.com/saurav02022",
-      "https://www.linkedin.com/in/saurav02022/",
-      "https://leetcode.com/u/Saurav02022/",
-      "https://dev.to/saurav_dev_2022",
-      SITE_URL,
-    ],
+    sameAs: [...SOCIALS.map((s) => s.url), "https://dev.to/saurav_dev_2022"],
     worksFor: {
       "@type": "Organization",
       name: "Shikha Learning Labs",
@@ -42,7 +37,7 @@ export function StructuredData() {
       {
         "@type": "EducationalOrganization",
         name: "Munger University",
-        description: "B.Sc. Mathematics (Honors)",
+        description: "B.Sc. Mathematics (Honours)",
       },
     ],
     knowsAbout: [
@@ -52,137 +47,97 @@ export function StructuredData() {
       "React",
       "Next.js",
       "React Native",
-      "Tailwind CSS",
       "FastAPI",
       "Node.js",
-      "Express.js",
       "PostgreSQL",
-      "Supabase",
-      "MongoDB",
+      "Redis",
       "Docker",
       "Google Cloud Run",
       "Playwright",
-      "Cypress",
+      "LLM Integration",
       "Full-Stack Development",
-      "Progressive Web Apps",
+      "Offline-First Applications",
     ],
     hasOccupation: {
       "@type": "Occupation",
-      name: "Full stack engineer",
+      name: ROLE,
       occupationLocation: {
-        "@type": "Country",
-        name: "India",
+        "@type": "City",
+        name: "Mumbai, India",
       },
       skills:
-        "Next.js, TypeScript, React Native, Python, FastAPI, PostgreSQL, Docker, GitHub Actions",
-      experienceRequirements: "Three years professional experience",
-    },
-  };
-
-  const professionalServiceSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Saurav Kumar - Full stack engineering",
-    description:
-      "Full stack and mobile software development with production experience in EdTech and media platforms, including AI-assisted workflows and offline-first delivery.",
-    provider: {
-      "@type": "Person",
-      name: "Saurav Kumar",
-    },
-    areaServed: "Worldwide",
-    serviceType: [
-      "Web Application Development",
-      "Mobile App Development",
-      "API Development",
-      "LLM Integration",
-      "Performance Improvement",
-    ],
-    availableChannel: {
-      "@type": "ServiceChannel",
-      serviceUrl: SITE_URL,
-      servicePhone: {
-        "@type": "ContactPoint",
-        telephone: "+919572365331",
-        contactType: "Customer Service",
-      },
-      servicePostalAddress: {
-        "@type": "PostalAddress",
-        addressCountry: "IN",
-      },
+        "Next.js, TypeScript, React Native, Python, FastAPI, PostgreSQL, Redis, Docker, GitHub Actions",
+      experienceRequirements: "3+ years professional experience",
     },
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Saurav Kumar - Full stack engineer portfolio",
+    name: `${NAME} — ${ROLE} portfolio`,
     alternateName: "Saurav Kumar Portfolio",
     url: SITE_URL,
     description:
-      "Professional portfolio outlining full stack experience — React Native apps, FastAPI backends, Next.js surfaces, and structured LLM integrations.",
+      "Portfolio of Saurav Kumar — full-stack software engineer. Production EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.",
     author: {
       "@type": "Person",
-      name: "Saurav Kumar",
+      name: NAME,
     },
     inLanguage: "en-IN",
     copyrightYear: 2026,
     copyrightHolder: {
       "@type": "Person",
-      name: "Saurav Kumar",
+      name: NAME,
     },
   };
+
+  const projectSchemas = cases.map((c) => ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: c.title,
+    description: c.summary,
+    codeRepository: c.repoUrl,
+    programmingLanguage: "TypeScript",
+    author: {
+      "@type": "Person",
+      name: NAME,
+      url: SITE_URL,
+    },
+  }));
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: SITE_URL,
-      },
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Portfolio",
-        item: `${SITE_URL}/#projects`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
         name: "Experience",
         item: `${SITE_URL}/#experience`,
       },
+      { "@type": "ListItem", position: 3, name: "Work", item: `${SITE_URL}/#work` },
+      { "@type": "ListItem", position: 4, name: "About", item: `${SITE_URL}/#about` },
       {
         "@type": "ListItem",
-        position: 4,
+        position: 5,
         name: "Contact",
         item: `${SITE_URL}/#contact`,
       },
     ],
   };
 
+  const schemas = [personSchema, websiteSchema, ...projectSchemas, breadcrumbSchema];
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(professionalServiceSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
     </>
   );
 }

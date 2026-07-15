@@ -1,113 +1,108 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Hanken_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
 import { SITE_URL } from "@/lib/site-config";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
 });
 
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
+const TITLE = "Saurav Kumar — Full-Stack Software Engineer";
+const DESCRIPTION =
+  "Saurav Kumar, full-stack software engineer with 3+ years in production. EdTech running across 117 schools, a video platform past 10,000 creators, and LLM features built for reliability.";
+const OG_DESCRIPTION =
+  "Full-stack engineer, 3+ years. Production EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.";
+
+export const viewport: Viewport = {
+  themeColor: "#0B0B0D",
+  colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Saurav Kumar | Full stack engineer — Next.js, TypeScript, React Native, FastAPI",
-    template: "%s | Saurav Kumar",
+    default: TITLE,
+    template: "%s — Saurav Kumar",
   },
+  description: DESCRIPTION,
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     other: [
       {
-        rel: 'icon',
-        url: '/android-chrome-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
+        rel: "icon",
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
       },
       {
-        rel: 'icon',
-        url: '/android-chrome-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
+        rel: "icon",
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
       },
     ],
   },
-  manifest: '/site.webmanifest',
-  description:
-    "Full stack engineer in India (three years) shipping Next.js and React Native apps with FastAPI, PostgreSQL and TypeScript — EdTech at 117 schools; prior streaming performance work. Open to remote roles.",
+  manifest: "/site.webmanifest",
   keywords: [
     "Saurav Kumar",
+    "Full-Stack Software Engineer",
     "Full stack engineer India",
-    "Remote friendly developer",
     "Next.js",
     "React Native",
     "TypeScript",
     "Python",
     "FastAPI",
     "PostgreSQL",
-    "Supabase",
-    "Docker",
-    "Google Cloud Run",
-    "Playwright",
-    "Cypress",
+    "LLM engineering",
     "EdTech developer",
-    "OTT platform performance",
   ],
-  authors: [
-    {
-      name: "Saurav Kumar",
-      url: "https://github.com/saurav02022",
-    },
-  ],
+  authors: [{ name: "Saurav Kumar", url: "https://github.com/saurav02022" }],
   creator: "Saurav Kumar",
   publisher: "Saurav Kumar",
   applicationName: "Saurav Kumar Portfolio",
-  
-  // Open Graph Metadata for Social Sharing
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    title: "Saurav Kumar | Full stack engineer · EdTech · Media performance",
-    description:
-      "Production web and mobile stacks, Postgres-backed APIs, offline-first PWAs at school scale and earlier OTT performance improvements. Includes accountable metrics on-page. Based in India.",
+    title: TITLE,
+    description: OG_DESCRIPTION,
     siteName: "Saurav Kumar — Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saurav Kumar — Full stack engineer portfolio",
+        alt: "Saurav Kumar — Full-Stack Software Engineer portfolio",
       },
     ],
   },
-  
-  // Twitter Card Metadata
   twitter: {
     card: "summary_large_image",
-    title: "Saurav Kumar | Full stack engineer · EdTech · Media performance",
-    description:
-      "Production web and mobile stacks, Postgres-backed APIs, offline-first PWAs at school scale and earlier OTT performance improvements. Based in India.",
+    title: TITLE,
+    description: OG_DESCRIPTION,
     creator: "@saurav02022",
     images: ["/og-image.png"],
   },
-  
-  // Robots & SEO
   robots: {
     index: true,
     follow: true,
@@ -120,16 +115,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  
-  // Additional Metadata
   category: "Technology",
   classification: "Portfolio Website",
-
   ...(googleSiteVerification
     ? { verification: { google: googleSiteVerification } }
     : {}),
-
-  // Alternate Languages (if you add i18n in future)
   alternates: {
     canonical: SITE_URL,
   },
@@ -141,22 +131,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" suppressHydrationWarning>
+    <html
+      lang="en-IN"
+      className={`${hanken.variable} ${newsreader.variable} ${jetbrains.variable}`}
+    >
       <head>
         <StructuredData />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-          {children}
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
