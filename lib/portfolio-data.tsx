@@ -7,14 +7,14 @@ import type {
 } from './types';
 
 /* ---------------------------------------------------------------------------
- * Content source of truth — copy comes verbatim from the approved design
- * ("Saurav Kumar - Portfolio.dc.html"). Edit here, not in components.
+ * Content source of truth — every string on the site lives here.
+ * Voice: plain-engineer. Claims stay concrete and consistent with the résumé;
+ * anything unverifiable goes to the NEEDS-INPUT list in BRAND.md / the PR.
  * ------------------------------------------------------------------------- */
 
 export const NAME = 'Saurav Kumar';
 export const ROLE = 'Full-Stack Software Engineer';
 export const EMAIL = 'sk729584@gmail.com';
-export const PHONE = '+919572365331';
 export const LOCATION = 'Mumbai, India';
 
 // ponytail: design links a local PDF, but it can't be exported intact from the
@@ -38,22 +38,20 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const hero = {
   eyebrow: 'Full-Stack Software Engineer · 3+ yrs',
+  // The brand sentence. Echoed (not repeated) in About and the Work intro.
   statement: (
     <>
-      I build full-stack products and the <em>AI</em> that runs inside them —
-      shipped to real users, not demos.
+      I build full-stack products and LLM features that <em>survive</em> weak
+      networks, flaky devices, and async vendor APIs.
     </>
   ),
-  // Copy is frozen — only the verifiable numbers are emphasised, matching the
-  // .mv treatment already used in Experience bullets.
   support: (
     <>
-      Right now I build EdTech software running in{' '}
-      <b className="mv">117 schools</b>. Before that, a video platform that
-      grew past <b className="mv">10,000 creators</b> and served{' '}
+      Right now that&apos;s EdTech running in <b className="mv">117 schools</b>,
+      many on unreliable connections. Before that, a creator video platform
+      that grew past <b className="mv">10,000 creators</b> and served{' '}
       <b className="mv">50,000+ users a month</b>. I own features end to end:
-      the API, the database, the deploy, and the details that decide whether
-      it holds up in production.
+      the API, the database, the deploy.
     </>
   ),
   meta: ['Based in Mumbai, India', 'Open to relocation', '3+ years in production'],
@@ -70,32 +68,28 @@ export const experience: ExperienceRole[] = [
     meta: 'Shantilal Shanghvi Foundation · EdTech · Mumbai, India',
     bullets: [
       <>
-        Cut teacher evaluation from <b className="mv">40 min to 5 min</b> (
-        <b className="mv">87%</b>) by moving scoring to an async Redis queue
-        with FastAPI workers on the Gemini API. It now runs{' '}
-        <b className="mv">400+ evaluations a week</b> and gives{' '}
-        <b className="mv">200+ teachers</b> back{' '}
-        <b className="mv">100+ hours a month</b>.
+        Cut teacher evaluation from <b className="mv">40 minutes to 5–10</b> by
+        moving scoring to an async Redis queue with FastAPI workers on the
+        Gemini API — now <b className="mv">400+ evaluations a week</b> for{' '}
+        <b className="mv">200+ teachers</b>.
       </>,
       <>
         Built and shipped <b className="mv">4 production apps</b> (web and
         Android) as a founding engineer, on a shared Next.js API layer and a
-        PostgreSQL schema I designed. Staged rollouts keep them at a{' '}
-        <b className="mv">96%+ crash-free rate</b> across{' '}
+        PostgreSQL schema I designed; staged rollouts hold them at{' '}
+        <b className="mv">96%+ crash-free</b> across{' '}
         <b className="mv">117 schools</b>.
       </>,
       <>
-        Held a <b className="mv">98% API success rate</b> with{' '}
-        <b className="mv">zero data loss</b> over{' '}
-        <b className="mv">5,000+ student submissions</b>. Jobs are idempotent
-        against a fixed LLM schema, so a failed call retries instead of writing
-        a duplicate.
+        Held a <b className="mv">98% API success rate</b> over{' '}
+        <b className="mv">5,000+ student submissions</b> — the failing 2% retry
+        idempotently against a fixed LLM response schema, so no submission is
+        lost or written twice.
       </>,
       <>
         Stopped data loss at <b className="mv">50+ low-network schools</b> with
-        an offline-first queue in IndexedDB that replays audio in order and
-        syncs on reconnect. Separately, traced an Android bug that deleted
-        unsaved audio and recovered <b className="mv">20+ recordings</b>.
+        an offline-first IndexedDB queue that stores audio locally, replays it
+        in order, and syncs on reconnect.
       </>,
     ],
     tags: [
@@ -116,37 +110,28 @@ export const experience: ExperienceRole[] = [
     meta: 'Open OTT network for creators · Bengaluru, India',
     bullets: [
       <>
-        Grew the creator portal from{' '}
-        <b className="mv">0 to 10,000+ active creators</b>, building the video,
-        scheduling, and payment modules in Next.js and TypeScript over Go REST
-        APIs.
+        Built the creator portal&apos;s video, scheduling, and payment modules
+        in Next.js and TypeScript over Go REST APIs as it grew from{' '}
+        <b className="mv">0 to 10,000+ active creators</b>.
       </>,
       <>
         Cut page load from <b className="mv">8.5s to 2.5s</b> (
         <b className="mv">70%</b>) for <b className="mv">50,000+ monthly users</b>
-        . The catalog pages over-fetched in SSR, so I moved browse to SSG and
-        kept SSR only for personalized routes.
+        : catalog pages over-fetched in SSR, so I moved browse to SSG and kept
+        SSR for personalized routes.
       </>,
       <>
         Dropped image API latency from <b className="mv">3.2s to 1.9s</b> (
         <b className="mv">41%</b>) across <b className="mv">10,000+ items</b> by
-        profiling the resize step and switching server-side resizing to Sharp
-        instead of a cloud CDN.
+        profiling the resize step and moving it to Sharp on the server.
       </>,
     ],
-    tags: [
-      'Next.js',
-      'TypeScript',
-      'Node.js',
-      'Go REST APIs',
-      'Sharp',
-      'React Native',
-    ],
+    tags: ['Next.js', 'TypeScript', 'Node.js', 'Sharp', 'React Native'],
   },
 ];
 
 export const workIntro =
-  'Two things I designed and built myself: a full-stack service and an LLM tool. I picked them because both are mostly about keeping something reliable under real use.';
+  'Two projects I designed and built alone, end to end. Both are about the same problem: staying correct when a third-party API is slow, duplicated, or wrong.';
 
 export const cases: CaseStudy[] = [
   {
@@ -161,15 +146,15 @@ export const cases: CaseStudy[] = [
       },
       {
         label: 'Approach',
-        text: 'Calls go out through Bolna. I structured it in layers (Router, Service, Repository, Store), with Firestore for live data and an in-memory store for local tests.',
+        text: 'Calls go out through Bolna. The backend is layered — router, service, repository, store — so domain logic only talks to a store interface: tests run against an in-memory store, production runs Firestore, and nothing else changes.',
       },
       {
         label: 'Key decisions & trade-offs',
-        text: 'Bolna returns results asynchronously, so webhook handling is idempotent with a polling fallback, both feeding one pipeline. The extra plumbing made retries safe. The repository layer let me test the logic without a live Firestore.',
+        text: 'Bolna reports each call twice: a webhook push and a polling fallback. Both feed one normalization pipeline keyed on the call ID, and the handler only commits on a meaningful status change — so at-least-once delivery from two sources still writes exactly one record.',
       },
       {
         label: 'Outcome',
-        text: 'No more duplicate status updates. A webhook retry and a late poll now resolve to the same result instead of writing twice.',
+        text: 'Duplicate status updates went to zero: a webhook retry and a late poll resolve to the same record. It began as a take-home, so correctness under retries is the outcome I can claim honestly — there are no production order numbers to cite, and I won’t invent them.',
       },
     ],
     tags: [
@@ -202,10 +187,12 @@ export const cases: CaseStudy[] = [
         label: 'Key decisions & trade-offs',
         text: (
           <>
-            I pinned the model to a fixed schema instead of free-form text. It
-            improvises less, and the output stays predictable and easy to
-            review as a diff. <b className="mv">30+</b> Playwright tests mock
-            the API and gate every deploy through GitHub Actions.
+            The model is pinned to a fixed response schema and validated with
+            Pydantic at the service layer — output that doesn&apos;t match
+            never reaches the document, and every change ships as a diff you
+            approve. <b className="mv">30+</b> Playwright tests cover the
+            wizard, error contracts, and export; they mock the API, so they
+            gate the app, not the model.
           </>
         ),
       },
@@ -213,9 +200,9 @@ export const cases: CaseStudy[] = [
         label: 'Outcome',
         text: (
           <>
-            So far it has generated <b className="mv">100+ tailored resumes</b>{' '}
-            with <b className="mv">no broken deployments</b>. Nothing ships
-            unless the test suite passes.
+            I run my own job search on it: <b className="mv">100+</b> tailored
+            resumes so far, and no deploy has broken the flow — nothing merges
+            unless the suite passes. The live app is linked below.
           </>
         ),
       },
@@ -231,6 +218,7 @@ export const cases: CaseStudy[] = [
       'GCP Cloud Run',
     ],
     repoUrl: 'https://github.com/Saurav02022/resume-builder',
+    liveUrl: 'https://resume-builder-saurav02022.vercel.app',
   },
 ];
 
@@ -243,16 +231,15 @@ export const about = {
       <b>Shikha Learning Labs</b>, building EdTech that runs in 117 schools.
     </>,
     <>
-      I like owning the whole path — the API, the database, the deploy, and
-      the small reliability details that decide whether something survives
-      contact with real users. Lately a lot of that has been LLMs in
-      production: evaluation pipelines and schema-locked outputs I can
-      actually trust, plus offline-first flows and idempotent, tested jobs so
-      things hold together on a weak network or a flaky Android device.
+      I like owning the whole path — the API, the database, the deploy. Lately
+      a lot of that has been LLMs in production: schema-locked outputs,
+      idempotent jobs, and offline-first flows, because a feature that only
+      works on good Wi-Fi doesn&apos;t work in the schools we serve.
     </>,
   ],
   basedIn: { value: 'Mumbai, India', sub: 'Open to relocation' },
-  focus: 'Full-stack systems · LLM / AI features · Performance & reliability',
+  focus:
+    'Full-stack + LLM systems built for unreliable networks and third-party APIs',
   education: [
     {
       value: 'IIIT Ranchi — MCA',
