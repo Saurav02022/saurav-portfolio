@@ -1,220 +1,126 @@
 "use client";
 
-import React, { useState, useEffect, startTransition } from 'react';
-import { Button } from '@/components/ui/button';
-import { Github, Moon, Sun, Menu, X, Check, FileText } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { portfolioData } from '@/lib/portfolio-data';
+import { useEffect, useState } from "react";
+import { NAME, NAV_ITEMS, RESUME_URL } from "@/lib/portfolio-data";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [themeMenuOpen, setThemeMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [activeId, setActiveId] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Mounted gate for next-themes — avoids icon mismatch during SSR hydration
   useEffect(() => {
-    startTransition(() => {
-      setMounted(true);
-    });
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+      const pos = window.scrollY + 160;
+      let cur = "";
+      for (const { id } of NAV_ITEMS) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= pos) cur = id;
+      }
+      setActiveId(cur);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll-lock behind the open mobile menu.
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setScrolled(window.scrollY > 20);
-      }, 10); // Debounce by 10ms
-    };
-    
-    // Use passive listener for better scroll performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = "";
     };
-  }, []);
+  }, [menuOpen]);
 
-  const navItems = [
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const githubUrl =
-    portfolioData.social.find((s) => s.name === 'GitHub')?.url ??
-    'https://github.com/saurav02022';
-
-  const handleOpenResume = () => {
-    window.open(portfolioData.personal.resumeUrl, '_blank');
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-background/80 backdrop-blur-md border-b border-border' 
-          : 'bg-transparent'
-      }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+    <header className={cn("nav", scrolled && "scrolled")}>
+      <div className="wrap navInner">
+        <a className="brand" href="#top">
+          {NAME}
+          <span className="dot">.</span>
+        </a>
+        <nav className="navlinks" aria-label="Primary">
+          {NAV_ITEMS.map((item) => (
             <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="text-2xl font-bold text-foreground hover:text-primary transition-colors duration-200"
-              aria-label="Scroll to top"
+              key={item.id}
+              className={cn("navlink", activeId === item.id && "active")}
+              href={`#${item.id}`}
+              aria-current={activeId === item.id ? "true" : undefined}
             >
-              SK
+              <span className="n">{item.num}</span> {item.label}
             </a>
-
-            <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" asChild>
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub profile"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-              </Button>
-
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-                  suppressHydrationWarning
-                  type="button"
-                  aria-label="Choose colour theme"
-                  aria-expanded={themeMenuOpen}
-                >
-                  {!mounted ? (
-                    <Sun className="h-5 w-5" />
-                  ) : theme === 'dark' ? (
-                    <Moon className="h-5 w-5" />
-                  ) : (
-                    <Sun className="h-5 w-5" />
-                  )}
-                </Button>
-
-                {themeMenuOpen && mounted && (
-                  <>
-                    <div 
-                      className="fixed inset-0 z-40" 
-                      onClick={() => setThemeMenuOpen(false)}
-                    />
-                    
-                    <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50 py-2">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setTheme('light');
-                          setThemeMenuOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors duration-200"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Sun className="h-4 w-4" />
-                          <span>Light</span>
-                        </div>
-                        {theme === 'light' && <Check className="h-4 w-4" />}
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setTheme('dark');
-                          setThemeMenuOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-accent transition-colors duration-200"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Moon className="h-4 w-4" />
-                          <span>Dark</span>
-                        </div>
-                        {theme === 'dark' && <Check className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              <Button
-                type="button"
-                onClick={handleOpenResume}
-                size="sm"
-                className="hidden md:flex"
-              >
-                <FileText className="h-4 w-4" />
-                Open resume
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                type="button"
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={mobileMenuOpen}
-              >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-lg md:hidden">
-          <div className="flex flex-col items-center justify-center h-full gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl hover:text-primary transition-colors duration-200 font-medium"
-              >
-                {item.name}
-              </a>
-            ))}
-            <Button
-              type="button"
-              onClick={() => {
-                handleOpenResume();
-                setMobileMenuOpen(false);
-              }}
-              size="lg"
+          ))}
+          <a className="navcta" href={RESUME_URL} target="_blank" rel="noopener">
+            Résumé ↗<span className="sr-only"> (opens in new tab)</span>
+          </a>
+        </nav>
+        <button
+          className={cn("menuBtn", menuOpen && "open")}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobileMenu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <svg
+            className="ic ic-menu"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+          <svg
+            className="ic ic-close"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M5 5l14 14M19 5L5 19" />
+          </svg>
+        </button>
+      </div>
+      {/* inert removes the collapsed menu's links from the tab order and
+          the accessibility tree (FEEDBACK #9: five invisible focus stops). */}
+      <div
+        className={cn("mobileMenu", menuOpen && "open")}
+        id="mobileMenu"
+        inert={!menuOpen}
+      >
+        <div className="inner">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.id}
+              className="mLink"
+              href={`#${item.id}`}
+              onClick={closeMenu}
             >
-              <FileText className="h-5 w-5" />
-              Open resume
-            </Button>
-          </div>
+              <span className="n">{item.num}</span> {item.label}
+            </a>
+          ))}
+          <a
+            className="mCta"
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener"
+            onClick={closeMenu}
+          >
+            Open résumé ↗<span className="sr-only"> (opens in new tab)</span>
+          </a>
         </div>
-      )}
-    </>
+      </div>
+    </header>
   );
 }
-

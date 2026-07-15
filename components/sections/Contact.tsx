@@ -1,120 +1,33 @@
-"use client";
-
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video, ExternalLink, CheckCircle2, Mail } from 'lucide-react';
-import { portfolioData } from '@/lib/portfolio-data';
+import { SectionHead } from "@/components/sections/SectionHead";
+import { EMAIL, RESUME_URL, SOCIALS, contact } from "@/lib/portfolio-data";
 
 export function Contact() {
-  const { personal, calendly } = portfolioData;
-
-  const meetingType = calendly?.meetingTypes?.[0] || {
-    name: 'Quick Chat',
-    duration: '30 min',
-    url: calendly?.url
-  };
-
   return (
-    <section id="contact" className="py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <Mail className="h-6 w-6 text-primary" aria-hidden />
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Contact
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Open to full stack roles including remote-friendly teams. Email works well for recruiter screens and JD fit.
-            Prefer a conversation? Grab a calendar slot below.
-          </p>
-        </div>
-
-        {/* Meeting Card */}
-        {calendly && calendly.enabled ? (
-          <div className="max-w-2xl mx-auto px-4">
-            <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
-              Book a video call
-            </p>
-            <Card className="border transition-colors duration-200 hover:border-primary/25">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 rounded-full bg-primary/10">
-                    <Video className="h-12 w-12 text-primary" />
-                  </div>
-                </div>
-                <CardTitle className="text-2xl">{meetingType.name}</CardTitle>
-                <CardDescription className="text-lg">{meetingType.duration}</CardDescription>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                <p className="text-center text-muted-foreground">
-                  Pick a slot that suits you — you&apos;ll get confirmation and calendar details by email.
-                </p>
-
-                {/* Features */}
-                <div className="bg-muted/50 rounded-lg p-6 space-y-3">
-                  <h3 className="font-semibold text-center mb-4">What to expect</h3>
-                  <div className="space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Short video meeting</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Invite and confirmation email included</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Good for recruiter intros, scope and fit, lighter architecture chats</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Reschedule anytime from the confirmation mail</span>
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  type="button"
-                  onClick={() => window.open(meetingType.url, '_blank')}
-                  size="lg"
-                  className="w-full"
-                >
-                  <ExternalLink className="h-5 w-5" />
-                  Book a 30-minute slot
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        ) : (
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <Card>
-              <CardContent className="py-12">
-                <p className="text-muted-foreground mb-4">
-                  Scheduling is not currently available.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {/* Alternative Contact */}
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground mb-4">
-            Email for roles or pitches
-          </p>
+    <section className="sec wrap" id="contact" aria-labelledby="contact-t">
+      <SectionHead num="04" title="Contact" id="contact-t" />
+      <p className="contactLead serif">{contact.lead}</p>
+      <p className="contactSupport">{contact.support}</p>
+      <a className="bigEmail" href={`mailto:${EMAIL}`}>
+        {EMAIL}
+      </a>
+      <div className="socials">
+        {SOCIALS.map((social) => (
           <a
-            href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            key={social.label}
+            className="social"
+            href={social.url}
+            target="_blank"
+            rel="noopener"
           >
-            <Mail className="h-4 w-4" />
-            {personal.email}
+            {social.label} <span className="ar">↗</span>
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
-        </div>
+        ))}
+        <a className="social" href={RESUME_URL} target="_blank" rel="noopener">
+          Résumé <span className="ar">↗</span>
+          <span className="sr-only"> (opens in new tab)</span>
+        </a>
       </div>
     </section>
   );
 }
-
