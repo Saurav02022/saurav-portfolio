@@ -1,932 +1,114 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
- * Design tokens — source of truth: "Saurav Kumar - Portfolio.dc.html"
+ * Design tokens — source of truth: "Saurav Kumar Portfolio.dc.html"
+ *
+ * Declared in @theme rather than :root so each one also compiles to a utility:
+ * --color-ink → bg-ink/text-ink/border-ink, --spacing-sec → py-sec,
+ * --animate-rise → animate-rise, --breakpoint-nav → nav:flex.
  * ------------------------------------------------------------------------- */
-:root {
-  --bg: #0b0b0d;
-  --bg2: #131317;
-  --bg3: #191921;
-  --fg: #ecebe4;
-  --fg2: #d6d5cd;
-  --muted: #a1a199;
-  --faint: #8c8c84;
-  --line: rgba(236, 235, 228, 0.1);
-  --line2: rgba(236, 235, 228, 0.22);
-  --accent: #e9a23b;
-  --accent-soft: rgba(233, 162, 59, 0.13);
-  --on-accent: #0b0b0d;
-  --ff-sans: var(--font-hanken), system-ui, sans-serif;
-  --ff-serif: var(--font-newsreader), Georgia, serif;
-  --ff-mono: var(--font-jetbrains), ui-monospace, monospace;
-}
+@theme {
+  --color-bg: #f3efe7;
+  --color-bg2: #eae3d6;
+  --color-paper: #fbf8f1;
+  --color-ink: #151310;
+  --color-ink2: #3a352d;
+  --color-muted: #6c6558;
+  /* Was #948c7c, which sat at 2.9:1 on --bg and failed WCAG AA for the 11px
+     metadata it carries (rail labels, dates, captions). Darkened to the
+     lightest value that clears 4.5:1 (now 4.8:1), so the tier stays quieter
+     than --ink2 without being unreadable. */
+  --color-faint: #6f695a;
+  --color-line: rgba(21, 19, 16, 0.15);
+  --color-line2: rgba(21, 19, 16, 0.28);
+  --color-accent: #0a6b57;
+  --color-accent-soft: rgba(10, 107, 87, 0.13);
+  --color-accent-bright: #71a99e;
+  --color-on-accent: #f7f3eb;
+  /* The "Live" status dot — the one green that isn't the brand accent. */
+  --color-live: #2e9e62;
 
-@theme inline {
-  --color-background: var(--bg);
-  --color-background-2: var(--bg2);
-  --color-background-3: var(--bg3);
-  --color-foreground: var(--fg);
-  --color-foreground-2: var(--fg2);
-  --color-muted: var(--muted);
-  --color-faint: var(--faint);
-  --color-line: var(--line);
-  --color-line-2: var(--line2);
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-on-accent: var(--on-accent);
-  --font-sans: var(--ff-sans);
-  --font-serif: var(--ff-serif);
-  --font-mono: var(--ff-mono);
+  /* The design's stacks, verbatim. Deliberately NOT next/font's --font-*
+     vars: those expand to `"X", "X Fallback"`, and the glyphs this design
+     leans on (→ ↗ ✳) sit outside the latin subset, so they'd resolve to
+     Next's proportional metric-fallback instead of a real mono/sans face —
+     the flow arrows rendered 27px wide instead of 12px. The @font-face rules
+     still come from next/font via the .variable classes on <html>. */
+  --font-display: "Syne", sans-serif;
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --container-wrap: 1360px;
+  --spacing-gutter: clamp(20px, 5vw, 56px);
+  --spacing-sec: clamp(78px, 10vw, 140px);
+
+  /* Where the nav swaps to the hamburger and the rail labels drop out. */
+  --breakpoint-nav: 860px;
+
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-marquee: marquee 34s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 /* ---------------------------------------------------------------------------
- * Base
+ * Base — only the rules that have no element to hang a utility on.
  * ------------------------------------------------------------------------- */
-* {
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-}
-html,
-body {
-  margin: 0;
-  background: var(--bg);
-}
-body {
-  color: var(--fg);
-  font-family: var(--ff-sans);
-  font-size: 17px;
-  line-height: 1.65;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  letter-spacing: -0.003em;
-}
-.serif {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-}
-.mono {
-  font-family: var(--ff-mono);
-}
-.muted {
-  color: var(--muted);
-}
-.faint {
-  color: var(--faint);
-}
-.accent {
-  color: var(--accent);
-}
-.mv {
-  color: var(--fg);
-  font-weight: 600;
-}
-/* Nicer multi-line text: paragraphs avoid single-word last lines, display
-   lines wrap to even lengths instead of one long + one short. */
-p,
-.bullet {
-  text-wrap: pretty;
-}
-.heroStatement,
-.contactLead,
-.secTitle,
-.caseTitle {
-  text-wrap: balance;
-}
-a {
-  color: var(--fg);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--accent);
-}
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-::selection {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-.skip {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  background: var(--accent);
-  color: var(--on-accent);
-  padding: 0.6rem 1rem;
-  border-radius: 0 0 8px 0;
-  font-family: var(--ff-mono);
-  font-size: 0.8rem;
-}
-.skip:focus {
-  left: 0;
-}
-.wrap {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding-inline: clamp(1.25rem, 5vw, 2.75rem);
-}
-.sec {
-  padding-block: clamp(5rem, 10vw, 8.5rem);
-  scroll-margin-top: 80px;
-}
-
-/* ---------------------------------------------------------------------------
- * Navigation
- * ------------------------------------------------------------------------- */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.nav.scrolled {
-  background: rgba(11, 11, 13, 0.72);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border-bottom: 1px solid var(--line);
-}
-.navInner {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.brand {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: 1.2rem;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-}
-.brand:hover {
-  color: var(--fg);
-}
-.brand .dot {
-  color: var(--accent);
-}
-.navlinks {
-  display: flex;
-  align-items: center;
-  gap: clamp(1rem, 2.4vw, 2.1rem);
-}
-.navlink {
-  font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: color 0.18s;
-}
-.navlink .n {
-  color: var(--accent);
-  font-size: 0.72rem;
-  opacity: 0.75;
-}
-.navlink:hover {
-  color: var(--fg);
-}
-.navlink.active {
-  color: var(--fg);
-}
-.navlink.active .n {
-  opacity: 1;
-}
-.navcta {
-  font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  padding: 0.5rem 0.95rem;
-  border: 1px solid var(--line2);
-  border-radius: 8px;
-  color: var(--fg);
-  transition: 0.18s;
-}
-.navcta:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-.menuBtn {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--line2);
-  border-radius: 9px;
-  background: transparent;
-  color: var(--fg);
-  cursor: pointer;
-  position: relative;
-}
-/* Invisible hit-area extension — keeps the design's 42px visual while meeting
-   the 44px minimum touch target. */
-.menuBtn::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-}
-.menuBtn .ic-close {
-  display: none;
-}
-.menuBtn.open .ic-menu {
-  display: none;
-}
-.menuBtn.open .ic-close {
-  display: block;
-}
-.mobileMenu {
-  display: none;
-}
-.caseLinks {
-  display: flex;
-  align-items: center;
-  gap: 1.3rem;
-  flex-shrink: 0;
-  white-space: nowrap;
-  /* Optically centers the link text on the first row of tag pills. */
-  padding-top: 0.32rem;
-}
-
-/* ---------------------------------------------------------------------------
- * Buttons
- * ------------------------------------------------------------------------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--ff-sans);
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.85rem 1.45rem;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: transform 0.18s ease, box-shadow 0.18s ease,
-    border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
-}
-.btnPrimary {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-.btnPrimary:hover {
-  color: var(--on-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 34px -12px var(--accent);
-}
-.btnGhost {
-  border-color: var(--line2);
-  color: var(--fg);
-}
-.btnGhost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
-/* ---------------------------------------------------------------------------
- * Hero
- * ------------------------------------------------------------------------- */
-.hero {
-  padding-top: clamp(8rem, 17vh, 11.5rem);
-  padding-bottom: clamp(4rem, 8vw, 6.5rem);
-}
-.heroEyebrow {
-  font-family: var(--ff-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.heroEyebrow::before {
-  content: "";
-  width: 34px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.7;
-}
-.heroName {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(3.4rem, 9.5vw, 7rem);
-  line-height: 0.94;
-  letter-spacing: -0.028em;
-  margin: 0.6rem 0 0;
-}
-.heroStatement {
-  font-weight: 500;
-  font-size: clamp(1.4rem, 3.6vw, 2.4rem);
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  max-width: 32ch;
-  margin: 1.6rem 0 0;
-}
-.heroStatement em {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-weight: 500;
-  color: var(--accent);
-}
-.heroSupport {
-  color: var(--muted);
-  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
-  max-width: 68ch;
-  margin: 1.4rem 0 0;
-}
-.heroMeta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem 1.4rem;
-  margin-top: 1.9rem;
-  font-family: var(--ff-mono);
-  font-size: 0.8rem;
-  color: var(--faint);
-}
-.heroMeta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-.heroMeta span::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.8;
-}
-.heroCtas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 2.3rem;
-}
-
-/* ---------------------------------------------------------------------------
- * Section headers
- * ------------------------------------------------------------------------- */
-.secHead {
-  display: flex;
-  align-items: baseline;
-  gap: 1.1rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-.secNum {
-  font-family: var(--ff-mono);
-  color: var(--accent);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-.secTitle {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(2rem, 4.4vw, 3rem);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin: 0;
-}
-.secRule {
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-  align-self: center;
-  margin-left: 0.6rem;
-}
-.secIntro {
-  color: var(--muted);
-  max-width: 70ch;
-  margin: -1.6rem 0 clamp(2.4rem, 4vw, 3.4rem);
-  font-size: 1.06rem;
-}
-
-/* ---------------------------------------------------------------------------
- * Experience
- * ------------------------------------------------------------------------- */
-.xpList {
-  display: flex;
-  flex-direction: column;
-}
-.xpItem {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: clamp(1rem, 3vw, 3rem);
-  padding: clamp(1.7rem, 3vw, 2.5rem) clamp(0.9rem, 1.5vw, 1.4rem);
-  border-top: 1px solid var(--line);
-  border-radius: 14px;
-  position: relative;
-  transition: background 0.2s ease;
-}
-.xpItem:last-child {
-  border-bottom: 1px solid var(--line);
-}
-.xpItem::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  bottom: 0;
-  width: 2px;
-  border-radius: 2px;
-  background: var(--accent);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.xpItem:hover {
-  background: var(--bg2);
-}
-.xpItem:hover::before {
-  opacity: 1;
-}
-.xpDate {
-  font-family: var(--ff-mono);
-  font-size: 0.8rem;
-  color: var(--faint);
-  letter-spacing: 0.01em;
-  padding-top: 0.5rem;
-  line-height: 1.5;
-}
-.xpItem:hover .xpDate {
-  color: var(--muted);
-}
-.xpRole {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  line-height: 1.12;
-  margin: 0;
-}
-.xpCo {
-  color: var(--accent);
-}
-.xpMeta {
-  font-family: var(--ff-mono);
-  font-size: 0.76rem;
-  color: var(--faint);
-  margin-top: 0.5rem;
-  letter-spacing: 0.01em;
-}
-.bullets {
-  list-style: none;
-  margin: 1.2rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.bullet {
-  position: relative;
-  padding-left: 1.7rem;
-  color: var(--muted);
-  font-size: 1.03rem;
-  line-height: 1.55;
-}
-.bullet::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.75em;
-  width: 15px;
-  height: 1.5px;
-  background: var(--accent);
-  opacity: 0.7;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.4rem;
-}
-.tag {
-  font-family: var(--ff-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  border: 1px solid var(--line);
-  padding: 0.34rem 0.62rem;
-  border-radius: 999px;
-  letter-spacing: 0.01em;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.tag:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-/* ---------------------------------------------------------------------------
- * Work / case studies
- * ------------------------------------------------------------------------- */
-.cases {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 4vw, 3rem);
-}
-.case {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: clamp(1.5rem, 3.2vw, 2.9rem);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.017), transparent);
-  transition: border-color 0.2s ease;
-}
-.case:hover {
-  border-color: var(--line2);
-}
-.caseTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.caseIndex {
-  font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  color: var(--accent);
-}
-.caseTitle {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  margin: 0.3rem 0 0;
-}
-.caseSummary {
-  color: var(--fg2);
-  max-width: 74ch;
-  margin: 0.9rem 0 0;
-  font-size: 1.08rem;
-  line-height: 1.55;
-}
-.caseGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.6rem 2.8rem;
-  margin-top: 1.9rem;
-}
-.caseLabel {
-  font-family: var(--ff-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-.caseLabel::before {
-  content: "";
-  width: 16px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.6;
-}
-.caseText {
-  color: var(--muted);
-  margin: 0.6rem 0 0;
-  font-size: 1rem;
-  line-height: 1.56;
-}
-.caseFoot {
-  display: flex;
-  justify-content: space-between;
-  /* Links never join the tag flow: tags wrap on the left, links hold the
-     top-right corner — identical structure in every card. */
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  gap: 1rem 2rem;
-  margin-top: 1.9rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--line);
-}
-.caseFoot .tags {
-  margin-top: 0;
-}
-.repoLink {
-  font-family: var(--ff-mono);
-  font-size: 0.84rem;
-  color: var(--fg);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: color 0.18s ease;
-}
-.repoLink:hover {
-  color: var(--accent);
-}
-.repoLink .ar {
-  transition: transform 0.18s ease;
-}
-.repoLink:hover .ar {
-  transform: translate(2px, -2px);
-}
-
-/* ---------------------------------------------------------------------------
- * About
- * ------------------------------------------------------------------------- */
-.aboutGrid {
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
-}
-.lead {
-  color: var(--fg2);
-  font-size: clamp(1.1rem, 1.6vw, 1.28rem);
-  line-height: 1.68;
-}
-.lead + .lead {
-  margin-top: 1.3rem;
-  color: var(--muted);
-}
-.lead b {
-  color: var(--fg);
-  font-weight: 600;
-}
-.details {
-  display: flex;
-  flex-direction: column;
-}
-.detailRow {
-  padding: 1.15rem 0;
-  border-top: 1px solid var(--line);
-}
-.detailRow:first-child {
-  padding-top: 0;
-  border-top: none;
-}
-.dLabel {
-  font-family: var(--ff-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--faint);
-}
-.dValue {
-  margin-top: 0.5rem;
-  color: var(--fg);
-  line-height: 1.45;
-}
-.dValue + .dValue {
-  margin-top: 0.7rem;
-}
-.dSub {
-  display: block;
-  font-family: var(--ff-mono);
-  font-size: 0.76rem;
-  color: var(--faint);
-  margin-top: 0.2rem;
-}
-.dLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.1rem;
-  margin-top: 0.5rem;
-}
-.dLinks a {
-  font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-.dLinks a:hover {
-  color: var(--accent);
-}
-
-/* ---------------------------------------------------------------------------
- * Contact
- * ------------------------------------------------------------------------- */
-.contactLead {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  margin: 0;
-  max-width: 15ch;
-}
-.contactSupport {
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  max-width: 64ch;
-  margin: 1.4rem 0 0;
-}
-.bigEmail {
-  display: inline-block;
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: clamp(1.5rem, 4.6vw, 2.7rem);
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-top: 2rem;
-  text-decoration: underline;
-  text-decoration-color: var(--line2);
-  text-underline-offset: 7px;
-  text-decoration-thickness: 1px;
-  transition: color 0.18s ease, text-decoration-color 0.18s ease;
-  word-break: break-word;
-}
-.bigEmail:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-.socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem 1.6rem;
-  margin-top: 2.3rem;
-}
-.social {
-  font-family: var(--ff-mono);
-  font-size: 0.9rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  transition: color 0.18s ease;
-}
-.social:hover {
-  color: var(--accent);
-}
-.social .ar {
-  transition: transform 0.18s ease;
-}
-.social:hover .ar {
-  transform: translate(2px, -2px);
-}
-.heroSocials {
-  margin-top: 2.1rem;
-}
-.heroSocials .social {
-  font-size: 0.84rem;
-}
-
-/* ---------------------------------------------------------------------------
- * Footer
- * ------------------------------------------------------------------------- */
-.foot {
-  border-top: 1px solid var(--line);
-  padding-block: 2.6rem;
-}
-.footInner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.footName {
-  font-family: var(--ff-serif);
-  font-weight: 500;
-  font-size: 1.3rem;
-}
-.footRole {
-  font-family: var(--ff-mono);
-  font-size: 0.76rem;
-  color: var(--faint);
-  margin-top: 0.35rem;
-}
-.footRight {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.55rem;
-}
-.toTop {
-  font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-.toTop:hover {
-  color: var(--accent);
-}
-.copy {
-  font-family: var(--ff-mono);
-  font-size: 0.74rem;
-  color: var(--faint);
-}
-
-/* ---------------------------------------------------------------------------
- * Responsive
- * ------------------------------------------------------------------------- */
-@media (max-width: 860px) {
-  .navlinks {
-    display: none;
-  }
-  .menuBtn {
-    display: inline-flex;
-  }
-  .mobileMenu {
-    display: block;
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    z-index: 49;
-    background: rgba(11, 11, 13, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid transparent;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.34s ease;
-  }
-  .mobileMenu.open {
-    max-height: 400px;
-    border-bottom: 1px solid var(--line);
-  }
-  .mobileMenu .inner {
-    padding: 1.1rem clamp(1.25rem, 5vw, 2.75rem) 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .mLink {
-    font-family: var(--ff-mono);
-    font-size: 1rem;
-    color: var(--fg2);
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .mLink .n {
-    color: var(--accent);
-    font-size: 0.78rem;
-  }
-  .mCta {
-    margin-top: 1.1rem;
-    text-align: center;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-family: var(--ff-mono);
-    font-size: 0.9rem;
-    padding: 0.85rem;
-    border-radius: 10px;
-  }
-  .mCta:hover {
-    color: var(--on-accent);
-  }
-}
-@media (max-width: 760px) {
-  .xpItem {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-    padding-inline: 1rem;
-  }
-  .xpDate {
-    padding-top: 0;
-  }
-  .caseGrid {
-    grid-template-columns: 1fr;
-    gap: 1.4rem;
-  }
-  /* Narrow cards: links get their own row under the tags in every card. */
-  .caseFoot {
-    flex-wrap: wrap;
-  }
-  .caseLinks {
-    padding-top: 0;
-  }
-  .aboutGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 860px) {
-  /* Invisible tap-area extension for text links on touch layouts — padding is
-     cancelled by negative margin so the visual rhythm is unchanged. */
-  .social,
-  .repoLink,
-  .toTop,
-  .dLinks a {
-    padding-block: 0.65rem;
-    margin-block: -0.65rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* The marquee track is 200% wide by construction. */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  /* One ring for every interactive element, so a new link or button can't ship
+     without a visible focus state. */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Unlayered: !important in a layer loses to !important outside one. */
+@media (prefers-reduced-motion: reduce) {
   *,
-  *::before,
-  *::after {
+  ::before,
+  ::after {
+    animation: none !important;
     transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }

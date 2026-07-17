@@ -1,10 +1,14 @@
 /**
- * Structured Data (JSON-LD) — Person, WebSite, projects (SoftwareSourceCode),
- * and breadcrumbs for rich results.
+ * Structured Data (JSON-LD) — Person, WebSite and the six projects
+ * (SoftwareSourceCode).
+ *
+ * No BreadcrumbList: Google requires breadcrumb markup to describe a visible
+ * trail, and this is a single page with no breadcrumbs on it. Marking up the
+ * section anchors as a hierarchy would be describing navigation that isn't there.
  */
 
 import { SITE_URL } from "@/lib/site-config";
-import { EMAIL, NAME, ROLE, SOCIALS, cases } from "@/lib/portfolio-data";
+import { EMAIL, NAME, ROLE, SOCIALS, YEAR, cases } from "@/lib/portfolio-data";
 
 export function StructuredData() {
   const personSchema = {
@@ -13,7 +17,7 @@ export function StructuredData() {
     name: NAME,
     jobTitle: ROLE,
     description:
-      "Full-stack software engineer with 3+ years in production — EdTech running across 117 schools, a video platform past 10,000 creators, and LLM features built for reliability.",
+      "Full-stack + LLM engineer with 3+ years in production — EdTech across 117 schools, a 10,000+ creator video platform, and schema-locked LLM features.",
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
     email: EMAIL,
@@ -66,7 +70,6 @@ export function StructuredData() {
       },
       skills:
         "Next.js, TypeScript, React Native, Python, FastAPI, PostgreSQL, Redis, Docker, GitHub Actions",
-      experienceRequirements: "3+ years professional experience",
     },
   };
 
@@ -77,13 +80,13 @@ export function StructuredData() {
     alternateName: "Saurav Kumar Portfolio",
     url: SITE_URL,
     description:
-      "Portfolio of Saurav Kumar — full-stack software engineer. Production EdTech across 117 schools, a 10,000+ creator video platform, and reliable LLM features.",
+      "Portfolio of Saurav Kumar — full-stack + LLM engineer. Production EdTech across 117 schools, a 10,000+ creator video platform, and schema-locked LLM features.",
     author: {
       "@type": "Person",
       name: NAME,
     },
     inLanguage: "en-IN",
-    copyrightYear: 2026,
+    copyrightYear: Number(YEAR),
     copyrightHolder: {
       "@type": "Person",
       name: NAME,
@@ -96,7 +99,7 @@ export function StructuredData() {
     name: c.title,
     description: c.summary,
     codeRepository: c.repoUrl,
-    programmingLanguage: ["TypeScript", "Python"],
+    programmingLanguage: c.languages,
     ...(c.liveUrl ? { url: c.liveUrl } : {}),
     author: {
       "@type": "Person",
@@ -105,29 +108,7 @@ export function StructuredData() {
     },
   }));
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Experience",
-        item: `${SITE_URL}/#experience`,
-      },
-      { "@type": "ListItem", position: 3, name: "Work", item: `${SITE_URL}/#work` },
-      { "@type": "ListItem", position: 4, name: "About", item: `${SITE_URL}/#about` },
-      {
-        "@type": "ListItem",
-        position: 5,
-        name: "Contact",
-        item: `${SITE_URL}/#contact`,
-      },
-    ],
-  };
-
-  const schemas = [personSchema, websiteSchema, ...projectSchemas, breadcrumbSchema];
+  const schemas = [personSchema, websiteSchema, ...projectSchemas];
 
   return (
     <>

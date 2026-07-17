@@ -1,20 +1,16 @@
 import { ImageResponse } from 'next/og';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { BRAND, brandFont } from '@/lib/brand';
 
 /**
- * OG / Twitter share card, generated at build from the site's design tokens
- * so the LinkedIn preview is a proper 1200×630 card, always in sync with the
- * brand mark. Fonts are committed under assets/fonts (no network at build).
+ * OG / Twitter share card, generated at build from the site's design tokens so
+ * the preview is a proper 1200×630 card that can't drift from the brand. Next
+ * derives og:image, its width/height and og:image:alt from the exports below.
  */
 
 export const alt =
   'Saurav Kumar — Full-Stack Software Engineer. Full-stack products and LLM features that survive weak networks, flaky devices, and async vendor APIs.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-
-const font = (file: string) =>
-  readFileSync(join(process.cwd(), 'assets/fonts', file));
 
 export default function OgImage() {
   return new ImageResponse(
@@ -27,46 +23,50 @@ export default function OgImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '72px 80px 56px',
-          background: '#0b0b0d',
-          color: '#ecebe4',
-          fontFamily: 'Hanken Grotesk',
+          background: BRAND.bg,
+          color: BRAND.ink,
+          fontFamily: 'Instrument Sans',
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {/* The cover eyebrow: a short accent rule, then mono metadata. */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: 14,
-              fontFamily: 'JetBrains Mono',
+              fontFamily: 'Space Mono',
               fontSize: 22,
-              letterSpacing: '0.22em',
-              color: '#e9a23b',
+              letterSpacing: '0.2em',
+              color: BRAND.accent,
             }}
           >
-            <div style={{ width: 40, height: 1.5, background: '#e9a23b' }} />
+            <div style={{ width: 40, height: 2, background: BRAND.accent }} />
             FULL-STACK SOFTWARE ENGINEER · 3+ YRS
           </div>
+          {/* 92px, not the cover's scale: Syne 800 is wide, and past ~94px
+              "Saurav Kumar" breaks across two lines and the stack overflows
+              630px. A name reads as a name on one line. */}
           <div
             style={{
               display: 'flex',
-              fontFamily: 'Newsreader',
-              fontSize: 124,
+              fontFamily: 'Syne',
+              fontSize: 92,
               lineHeight: 1,
-              letterSpacing: '-0.028em',
-              marginTop: 28,
+              letterSpacing: '-0.035em',
+              marginTop: 34,
             }}
           >
-            Saurav Kumar<span style={{ color: '#e9a23b' }}>.</span>
+            Saurav Kumar
           </div>
           <div
             style={{
               display: 'flex',
-              fontSize: 36,
-              lineHeight: 1.35,
-              color: '#d6d5cd',
+              fontSize: 34,
+              lineHeight: 1.4,
+              color: BRAND.ink2,
               maxWidth: 940,
-              marginTop: 30,
+              marginTop: 28,
             }}
           >
             Full-stack products and LLM features that survive weak networks,
@@ -78,17 +78,17 @@ export default function OgImage() {
             display: 'flex',
             alignItems: 'center',
             gap: 28,
-            fontFamily: 'JetBrains Mono',
-            fontSize: 22,
-            color: '#8c8c84',
-            borderTop: '1px solid rgba(236,235,228,0.14)',
+            fontFamily: 'Space Mono',
+            fontSize: 21,
+            color: BRAND.muted,
+            borderTop: `1px solid ${BRAND.line}`,
             paddingTop: 32,
           }}
         >
           <span>EdTech in 117 schools</span>
-          <span style={{ color: '#e9a23b' }}>·</span>
+          <span style={{ color: BRAND.accent }}>·</span>
           <span>50,000+ users a month</span>
-          <span style={{ color: '#e9a23b' }}>·</span>
+          <span style={{ color: BRAND.accent }}>·</span>
           <span>Mumbai, India</span>
         </div>
       </div>
@@ -96,17 +96,13 @@ export default function OgImage() {
     {
       ...size,
       fonts: [
-        { name: 'Newsreader', data: font('newsreader-500.ttf'), weight: 500 },
+        { name: 'Syne', data: brandFont('syne-800.ttf'), weight: 800 },
         {
-          name: 'Hanken Grotesk',
-          data: font('hanken-grotesk-500.ttf'),
-          weight: 500,
-        },
-        {
-          name: 'JetBrains Mono',
-          data: font('jetbrains-mono-400.ttf'),
+          name: 'Instrument Sans',
+          data: brandFont('instrument-sans-400.ttf'),
           weight: 400,
         },
+        { name: 'Space Mono', data: brandFont('space-mono-400.ttf'), weight: 400 },
       ],
     }
   );

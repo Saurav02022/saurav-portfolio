@@ -1,31 +1,66 @@
 import type { ReactNode } from 'react';
 
-export interface NavItem {
+/** A page section, as listed by the cover index rail and the mobile menu. */
+export interface Section {
   num: string;
+  /** Label in the mobile menu and top nav. */
+  label: string;
+  /** Cover-rail label, when the design spells it out differently. */
+  indexLabel?: string;
+  id: string;
+}
+
+export interface NavItem {
   label: string;
   id: string;
 }
 
 export interface ExperienceRole {
   dates: string;
-  role: string;
   company: string;
-  meta: string;
+  /** Role · org · place, stacked on their own lines. */
+  meta: string[];
+  summary: ReactNode;
   bullets: ReactNode[];
   tags: string[];
 }
 
-export interface CaseBlock {
+/** A Role/Challenge/Key decision/Outcome row in a case study. */
+export interface CaseFact {
   label: string;
   text: ReactNode;
+  /** Design assigns each row its own weight: muted is the default. */
+  tone?: 'plain' | 'strong';
+}
+
+/** One step in a case figure; `note` marks the highlighted step — the point of the figure. */
+export interface CaseFigureStep {
+  n: string;
+  text: string;
+  note?: string;
+}
+
+/** The bordered mechanism figure every case card carries. */
+export interface CaseFigure {
+  /** Caption after the figure number, e.g. "trust pipeline". */
+  caption: string;
+  /** Right-hand caption, e.g. "input → gate → export". */
+  sub: string;
+  steps: CaseFigureStep[];
 }
 
 export interface CaseStudy {
-  index: string;
+  feature: string;
+  kind: string;
+  live?: boolean;
+  year: string;
   title: string;
   summary: string;
-  blocks: CaseBlock[];
+  facts: CaseFact[];
+  fig: CaseFigure;
   tags: string[];
+  /** Languages actually written in this project — feeds SoftwareSourceCode JSON-LD. */
+  languages: string[];
   repoUrl: string;
   liveUrl?: string;
 }
@@ -35,7 +70,17 @@ export interface DetailLink {
   url: string;
 }
 
-export interface EducationEntry {
+export interface RailRow {
+  label: string;
   value: string;
-  sub: string;
+  sub?: string;
+  /** Focus row caps its measure so it wraps with the others. */
+  narrow?: boolean;
+}
+
+export interface ToolkitRow {
+  num: string;
+  label: string;
+  tools: string;
+  note: string;
 }

@@ -1,122 +1,149 @@
 # Saurav Kumar — Portfolio · Design Spec
 
-Single-page, dark, typography-led portfolio for a full-stack + LLM engineer.
+Single-page, light, typography-led portfolio for a full-stack + LLM engineer.
 Voice is plain-engineer: concrete claims, no hype. The visual system is quiet
 so the writing carries the page.
 
-Source of truth: `Saurav Kumar - Portfolio.dc.html` (this project) and the
-synced Next.js codebase (`saurav-portfolio/`). Both must stay in step.
+Source of truth: `Saurav Kumar Portfolio.dc.html` and this codebase. Both must
+stay in step. Copy lives in `lib/portfolio-data.tsx` — every string on the site
+is there, and nowhere else.
 
 ---
 
 ## 1. Foundations
 
-### Color tokens
-Defined once on `.page` (and mirrored in `globals.css` `:root`).
+### Tokens
+Declared once in `app/globals.css` under `@theme`, so each one compiles to a
+Tailwind utility as well as a CSS variable. There is no separate Tailwind config
+file — Tailwind v4 reads the CSS.
 
-| Token | Value | Use |
-|---|---|---|
-| `--bg` | `#0B0B0D` | Page background |
-| `--bg2` | `#131317` | Row hover (experience) |
-| `--bg3` | `#191921` | Reserved elevated surface |
-| `--fg` | `#ECEBE4` | Primary text (warm off-white) |
-| `--fg2` | `#D6D5CD` | Lead paragraphs, case summaries |
-| `--muted` | `#A1A199` | Body / secondary text |
-| `--faint` | `#8C8C84` | Meta, dates, captions |
-| `--line` | `rgba(236,235,228,.10)` | Hairline dividers, borders |
-| `--line2` | `rgba(236,235,228,.22)` | Stronger borders, ghost button |
-| `--accent` | `#E9A23B` | Amber — the only chromatic color |
-| `--accent-soft` | `rgba(233,162,59,.13)` | Accent hover fills |
-| `--on-accent` | `#0B0B0D` | Text on amber |
+| Token | Value | Utility | Use |
+|---|---|---|---|
+| `--color-bg` | `#F3EFE7` | `bg-bg` | Page ground (warm paper) |
+| `--color-bg2` | `#EAE3D6` | `bg-bg2` | Experience band |
+| `--color-paper` | `#FBF8F1` | `bg-paper` | Figure interiors |
+| `--color-ink` | `#151310` | `text-ink` | Primary text, inverted surfaces |
+| `--color-ink2` | `#3A352D` | `text-ink2` | Leads, case summaries |
+| `--color-muted` | `#6C6558` | `text-muted` | Body / secondary text |
+| `--color-faint` | `#6F695A` | `text-faint` | Meta, dates, captions |
+| `--color-line` | `rgb(21 19 16 / .15)` | `border-line` | Hairline dividers |
+| `--color-line2` | `rgb(21 19 16 / .28)` | `border-line2` | Stronger borders |
+| `--color-accent` | `#0A6B57` | `text-accent` | Teal — the only chromatic colour |
+| `--color-accent-soft` | `rgb(10 107 87 / .13)` | `bg-accent-soft` | Section numbers, gate fills |
+| `--color-accent-bright` | `#71A99E` | `text-accent-bright` | Accent on the ink ground |
+| `--color-on-accent` | `#F7F3EB` | `text-on-accent` | Text on ink; `/NN` for its tints |
+| `--color-live` | `#2E9E62` | `bg-live` | The "Live" status dot only |
 
-Accent is deliberately scarce: eyebrow, section numbers, `<em>` in the hero,
-tick marks, hover states, `::selection`. Never a large amber fill except the
-primary button. Accent is tweakable (see §6): amber / teal / terracotta / lilac.
+Accent is deliberately scarce: eyebrow, section numbers, `<em>` in the cover,
+bullet markers, hover states, `::selection`. Never a large teal fill.
+
+`--color-faint` is pinned to the lightest value that still clears WCAG AA
+(4.8:1 on `--color-bg`) — it carries 11px metadata, so it cannot go lighter.
 
 ### Type
-- **Serif** — Newsreader 500 (`--ff-serif`): name, section titles, role titles,
-  case titles, contact lead, big email, brand mark. Carries all display weight.
-- **Sans** — Hanken Grotesk (`--ff-sans`): body, leads, buttons. Base 17px / 1.65,
-  `letter-spacing:-.003em`.
-- **Mono** — JetBrains Mono (`--ff-mono`): eyebrow, nav, section numbers, dates,
-  meta, tags, labels, links. Every "instrument panel" element is mono + uppercase
-  + wide tracking.
+- **Display** — Syne 600/700/800 (`font-display`): brand mark, cover title,
+  section titles, case titles, company names, big email. Carries all display weight.
+- **Sans** — Instrument Sans (`font-sans`): body, leads, buttons. Base 17px / 1.6.
+- **Mono** — Space Mono (`font-mono`): eyebrow, nav, dates, meta, tags, captions,
+  labels, links. Every "instrument panel" element is mono + uppercase + wide tracking.
 
-The serif ↔ mono contrast (literary display against technical metadata) is the
-core visual idea. Do not introduce a fourth family.
+The display ↔ mono contrast (expressive against technical metadata) is the core
+visual idea. Do not introduce a fourth family.
 
-Display sizing is fluid via `clamp()` — e.g. hero name `clamp(3.4rem,9.5vw,7rem)`,
-section title `clamp(2rem,4.4vw,3rem)`. `text-wrap:balance` on headlines,
-`text-wrap:pretty` on paragraphs and bullets.
+Font stacks are declared literally (`"Syne", sans-serif`), **not** as next/font's
+`--font-*` variables: those expand to `"Syne", "Syne Fallback"`, and the glyphs
+this design leans on (→ ↗ ✳) sit outside the latin subset, so they would resolve
+to Next's proportional metric-fallback instead of a real mono face. The
+`@font-face` rules still come from next/font via the `.variable` classes on `<html>`.
+
+Display sizing is fluid via `clamp()` — cover title `clamp(40px,6.4vw,86px)`,
+section title `clamp(38px,6vw,78px)`. `text-balance` on headlines, `text-pretty`
+on paragraphs and bullets. Prose measures are capped in `ch`.
 
 ### Layout & spacing
-- `.wrap` — `max-width:1140px`, fluid inline padding `clamp(1.25rem,5vw,2.75rem)`.
-- `.sec` — vertical rhythm `clamp(5rem,10vw,8.5rem)`; `.compact` density halves it.
-- `scroll-margin-top:80px` so anchored sections clear the fixed nav.
-- Prose measures are capped in `ch` (hero support 68, secIntro 70, caseSummary 74,
-  contactSupport 64) for even line lengths.
+- `WRAP` (`lib/styles.ts`) — `max-w-wrap` (1360px) with the fluid `px-gutter`
+  (`clamp(20px,5vw,56px)`). The page's only measure.
+- `<Section>` (`components/layout/Section.tsx`) — `py-sec`
+  (`clamp(78px,10vw,140px)`), `scroll-mt-19` so anchors clear the fixed nav, and
+  the optional vertical rail label.
 
 ---
 
 ## 2. Components
 
-**Nav** — fixed, transparent until scrolled; then translucent blur + hairline
-(`.nav.scrolled`). Serif brand mark with amber dot. Mono links with `01–04`
-numbers; active link tracked by scroll-spy. Ghost résumé CTA. Collapses to a
-hamburger + slide-down menu below 860px (`inert` when closed).
+**Nav** — fixed, transparent until scrolled; then translucent blur + hairline.
+Display brand mark with a teal ✳. Mono links tracked by scroll-spy, which sets
+`aria-current`. Collapses to an "Index" button below 860px (`nav:` breakpoint)
+opening a native `<dialog>` via `showModal()` — the platform supplies the focus
+trap, Esc-to-close, focus restore and inert background.
 
-**Hero** — mono eyebrow with a leading rule; oversized serif name; serif/sans
-statement with one amber italic `<em>`; muted support paragraph with `.mv`
-(foreground-weighted) numbers; mono meta dots; primary + ghost buttons; mono
-social row.
+**Cover** — mono bar (role · discipline · location · year) over a rule; mono
+eyebrow with a leading accent rule; oversized display title with one teal `<em>`;
+support paragraph; primary / ghost / quiet buttons; and an index rail listing the
+five numbered sections with a mono stats block. Staggered `rise` on entry.
 
-**Section head** — mono number · serif title · hairline rule filling the row.
+**Marquee** — ink band, mono uppercase, two identical strips scrolled -50%.
+`aria-hidden` — it is decoration, and its content is stated elsewhere on the page.
 
-**Experience** (`.xpItem`) — two-column grid (190px mono date | content).
-Hover reveals `--bg2` fill + a 2px amber left edge. Serif role with amber company,
-mono meta, dash-marker bullets, mono tag pills.
+**Section head** — oversized ghost number in `accent-soft`, then the title, with
+the intro baseline-aligned into the same row where a section has one. Without an
+intro the title carries the pull-up onto the number instead.
 
-**Work / case study** (`.case`) — bordered rounded card with a whisper gradient.
-Mono index, serif title, `--fg2` summary, then a 2-col grid of labeled blocks
-(Problem / Approach / Key decisions & trade-offs / Outcome). Footer separates
-tags (left, wrapping) from `.caseLinks` (right, no-wrap: Live app + View source).
-Below 760px the grid and footer stack.
+**Work / case study** — six features, one identical card, sorted by how much
+verifiable engineering each repo holds. Per card: mono meta row over a rule
+(Feature NN · kind · year, with origin — take-home, hackathon — stated in the
+kind on purpose), then a prose column (title, summary, facts, links) beside a
+bordered figure. Each figure is a numbered step list from `fig` in the case
+data — the highlighted step (the one with a `note`) is the point of the
+mechanism. Fig numbers derive from list position. Facts are a `<dl>` of
+Role / Challenge / Key decision / Outcome.
 
-**About** — 1.55fr text / 1fr detail rail. Leads in `--fg2`→`--muted`; rail is a
-stack of hairline-separated Label/Value rows (Based in · Focus · Education · Elsewhere).
+**Experience** — two-column row (mono dates + company | prose), 2px ink rules
+top and bottom, dash-marker bullets, mono tag pills. `<b>` in the copy is a
+weight shift, never colour.
 
-**Contact** — big serif lead, muted support, underlined serif mailto, mono social row.
+**About** — prose column + a detail rail of hairline-separated Label/Value rows.
 
-**Footer** — serif name + mono role left; back-to-top + copyright right.
+**Toolkit** — inverted: ink ground, `accent-bright` labels, `on-accent` tints
+for the body. Five rows, then the languages line.
+
+**Contact** — oversized display title, muted support, big display mailto, and a
+mono "Elsewhere" list.
+
+**Footer** — display name + mono meta left; colophon + back-to-top right.
 
 ---
 
 ## 3. Motion
-Restrained: 0.15–0.3s ease transitions on color, border, background, and small
-transforms. Primary button lifts 2px with an amber shadow; link arrows nudge
-`translate(2px,-2px)` on hover; nav fades in its background on scroll. All of it
-is disabled under `prefers-reduced-motion`.
+Restrained. `rise` (20px + fade, 0.6–0.8s) staggers the cover on load; a shared
+`Reveal` observer applies the same idea to `[data-reveal]` elements on scroll,
+staggering by `85ms × the attribute value`. Hover transitions are 0.2s on colour,
+border and small transforms. The primary button lifts 2px.
+
+All of it is disabled under `prefers-reduced-motion` — including `Reveal`, which
+checks the media query and returns before hiding anything, so nothing can be left
+invisible.
 
 ## 4. Accessibility
-Skip link; `:focus-visible` amber outline; `aria-labelledby` per section;
-scroll-spy sets `aria-current`; mobile menu is `inert` when closed; touch targets
-get invisible padding to clear 44px (menu button `::after`, text links below 860px);
-`sr-only` "(opens in new tab)" on external links.
+Skip link to `<main>`; teal `:focus-visible` ring on every link and button;
+`aria-labelledby` per section; scroll-spy sets `aria-current`; the mobile menu is
+a native modal `<dialog>`; 44px minimum touch targets on the menu buttons;
+"(opens in new tab)" in the `aria-label` of every external link; decorative
+glyphs (→ ↗ ✳ /) are `aria-hidden`. Body text meets WCAG AA.
 
-## 5. Responsive breakpoints
-- **≤860px** — nav → hamburger; touch tap-area padding on links.
-- **≤760px** — experience & case grids collapse to one column; case footer wraps;
-  hero statement measure tightens to 26ch.
+## 5. Responsive
+- **≥860px** (`nav:`) — nav links and the vertical rail labels appear.
+- **<860px** — nav collapses to the Index dialog; rail labels drop out.
 
-## 6. Tweakable props (DC)
-- **accent** (color) — `#E9A23B` default; amber / teal `#6FB2A3` / terracotta
-  `#E0785C` / lilac `#A99BF2`. Rebinds `--accent` across the whole page.
-- **density** (enum) — Comfortable / Compact; Compact tightens section padding.
+Everything else is intrinsic: `flex-wrap` with `flex-[grow_shrink_basis]` and
+`min-w-[min(100%,Npx)]` on each column, so sections reflow on content width
+rather than on breakpoints.
 
-## 7. Rules
-- Amber stays scarce — accent, not decoration. Max one large amber surface (the button).
-- Serif for anything human-facing and expressive; mono for anything machine/metadata.
-- Numbers in prose get `.mv`, not color.
-- No emoji, no gradients-as-decoration, no borders-with-left-accent card trope.
-- Claims stay concrete and verifiable; unverified metrics never ship (see the RTO
-  Shield outcome, which states the take-home caveat rather than inventing numbers).
+## 6. Rules
+- Teal stays scarce — accent, not decoration.
+- Display for anything human-facing and expressive; mono for anything
+  machine/metadata.
+- No emoji, no gradients-as-decoration.
+- Claims stay concrete and verifiable; unverified metrics never ship (see the
+  RTO Shield outcome, which states the take-home caveat rather than inventing
+  numbers). This applies to the OG card and JSON-LD too.
