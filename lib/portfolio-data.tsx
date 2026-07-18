@@ -422,16 +422,33 @@ export const community: CommunityEntry[] = [
   {
     dates: '2026 — present',
     org: 'Social Summer of Code',
-    meta: ['Mentor', 'Open-source programme', 'Two projects'],
+    meta: ['Mentor', 'Open-source programme', 'Two projects · 41 developers'],
     summary: (
       <>
         Social Summer of Code is an open-source programme: contributors ship real
         features on real repositories, and a mentor sits on the other side of the
-        review. I mentor two of the 2026 projects — turning a roadmap into issues
-        someone can actually finish, then reading what comes back.
+        review. I mentor two of the 2026 projects — <b>41 developers between them</b> —
+        turning a roadmap into issues someone can actually finish, then reading what
+        comes back.
       </>
     ),
-    projects: [{ name: 'EduFlow AI' }, { name: 'VidyAI++' }],
+    projects: [
+      {
+        name: 'EduFlow AI',
+        stat: '23 contributors · 31 forks',
+        blurb: 'A study platform the cohort is building out across 100 SSoC-tagged issues.',
+        did: 'Scoping the harder issues before anyone starts — asking for the approach and the user flow in writing first, so a contributor knows what "done" means before they open the editor.',
+        url: 'https://github.com/prabhakarshukla/EduFlow-AI',
+      },
+      {
+        name: 'VidyAI++',
+        stat: '23 contributors · 35 forks',
+        blurb:
+          'An education companion that reads attention from the webcam and adapts the lesson, plus Gemini tutoring and voice navigation.',
+        did: 'Filed 5 of the issues the cohort is working through — a crashing missing import, a service worker serving stale pages after deploy, 44 TypeScript errors the build was ignoring, and a build that fails without DATABASE_URL.',
+        url: 'https://github.com/jai3546/AI_ROCKERS',
+      },
+    ],
     tags: ['Mentoring', 'Code review', 'Issue triage'],
   },
   {
@@ -480,7 +497,7 @@ export const about = {
     {
       label: 'Mentoring',
       value: 'Social Summer of Code 2026',
-      sub: 'EduFlow AI · VidyAI++',
+      sub: 'EduFlow AI · VidyAI++ · 41 developers',
     },
     { label: 'Now', value: 'MCA, IIIT Ranchi', sub: '2026–2028 · weekend program' },
     {
