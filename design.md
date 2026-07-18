@@ -89,11 +89,8 @@ five numbered sections with a mono stats block. Staggered `rise` on entry.
 the intro baseline-aligned into the same row where a section has one. Without an
 intro the title carries the pull-up onto the number instead.
 
-**Work / case study** — three features, one identical card, sorted by how much
-verifiable engineering each repo holds, then an "Also built" list where three
-more projects each get one compact row (title + kind beside a one-line summary,
-tags, and a source link). Depth beats count: the three that prove the most get
-the page, the rest get a line and a link. Per card: mono meta row over a rule
+**Work / case study** — six features, one identical card, sorted by how much
+verifiable engineering each repo holds. Per card: mono meta row over a rule
 (Feature NN · kind · year, with origin — take-home, hackathon — stated in the
 kind on purpose), then a prose column (title, summary, facts, links) beside a
 bordered figure. Each figure is a numbered step list from `fig` in the case

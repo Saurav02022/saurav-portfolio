@@ -65,22 +65,6 @@ export interface CaseStudy {
   liveUrl?: string;
 }
 
-/**
- * A project listed compactly under "Also built" rather than given a full case
- * card — same standard of honesty, less of the page.
- */
-export interface BriefProject {
-  title: string;
-  kind: string;
-  /** One line: what it is, and the part that was actually hard. */
-  summary: string;
-  tags: string[];
-  /** Feeds SoftwareSourceCode JSON-LD, same as a full case. */
-  languages: string[];
-  repoUrl: string;
-  liveUrl?: string;
-}
-
 export interface DetailLink {
   label: string;
   url: string;
