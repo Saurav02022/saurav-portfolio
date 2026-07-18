@@ -426,9 +426,9 @@ export const community: CommunityEntry[] = [
     summary: (
       <>
         Social Summer of Code pairs contributors with maintainers on live repositories
-        for a season. I mentor two of the 2026 projects — scoping issues, and asking for
-        the approach and user flow in writing before anyone starts coding. The two repos
-        drew <b>41 distinct contributors</b> over the programme.
+        for a season. I mentor two of the 2026 projects — triage and scoping rather than
+        writing the code: what gets built, in what order, and what done looks like. The
+        two repos have drawn <b>41 distinct contributors</b> between them.
       </>
     ),
     projects: [
@@ -436,7 +436,7 @@ export const community: CommunityEntry[] = [
         name: 'EduFlow AI',
         stat: '23 contributors · 31 forks',
         blurb: 'A study platform, with roughly 100 SSoC-tagged issues open to the cohort.',
-        did: 'I scope the harder issues myself and ask for the approach and user flow in writing before a contributor starts.',
+        did: 'Asked for a written approach and user flow on one of the harder issues before the contributor started building.',
         url: 'https://github.com/prabhakarshukla/EduFlow-AI',
       },
       {
