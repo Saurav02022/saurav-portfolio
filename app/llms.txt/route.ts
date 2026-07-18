@@ -1,0 +1,86 @@
+import {
+  EMAIL,
+  LOCATION,
+  NAME,
+  RESUME_URL,
+  ROLE,
+  SOCIALS,
+  cases,
+  community,
+  experience,
+} from '@/lib/portfolio-data';
+import { SITE_URL } from '@/lib/site-config';
+
+/**
+ * llms.txt — the site in one plain-text file, for the models that read it
+ * instead of the page. Same claims as the page, generated from the same data,
+ * so the two can't drift.
+ */
+export const dynamic = 'force-static';
+
+const line = (s: string) => s.replace(/\s+/g, ' ').trim();
+
+function body() {
+  const work = cases
+    .map((c) => {
+      const links = [`[source](${c.repoUrl})`, c.liveUrl && `[live](${c.liveUrl})`]
+        .filter(Boolean)
+        .join(' · ');
+      return `- **${c.title}** (${c.year}, ${c.kind}) — ${line(c.summary)} ${links}`;
+    })
+    .join('\n');
+
+  const roles = experience
+    .map((r) => `- **${r.company}** — ${r.meta.join(' · ')} (${r.dates})`)
+    .join('\n');
+
+  const openSource = community
+    .map((entry) => {
+      const projects = entry.projects
+        .map((p) => {
+          const name = p.url ? `[${p.name}](${p.url})` : p.name;
+          const count = p.contributors ? ` (${p.contributors} contributors)` : '';
+          return `- **${name}**${count}${p.blurb ? ` — ${p.blurb}` : ''}${p.did ? ` ${p.did}` : ''}`;
+        })
+        .join('\n');
+      return `### ${entry.org} — ${entry.meta.join(' · ')} (${entry.dates})\n\n${projects}`;
+    })
+    .join('\n\n');
+
+  const links = [
+    ...SOCIALS.map((s) => `- [${s.label}](${s.url})`),
+    `- [Résumé](${RESUME_URL})`,
+    `- Email: ${EMAIL}`,
+  ].join('\n');
+
+  return `# ${NAME}
+
+> ${ROLE} in ${LOCATION}. Ships production TypeScript and Python — Next.js front ends,
+> Node and FastAPI services, and LLM features that have to behave under real inputs.
+
+Everything below is on ${SITE_URL}. Each project links to its source; nothing here
+claims a metric that isn't in the repo.
+
+## Selected work
+
+${work}
+
+## Experience
+
+${roles}
+
+## Open source
+
+${openSource}
+
+## Contact
+
+${links}
+`;
+}
+
+export function GET() {
+  return new Response(body(), {
+    headers: { 'content-type': 'text/plain; charset=utf-8' },
+  });
+}

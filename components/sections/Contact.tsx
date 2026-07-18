@@ -8,7 +8,7 @@ export function Contact() {
   return (
     <Section id="contact" labelledBy="con-h">
       <SectionHead
-        num="05"
+        num="06"
         title={contact.title}
         id="con-h"
         className="mb-[clamp(30px,4vw,52px)]"

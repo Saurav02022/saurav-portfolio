@@ -8,7 +8,7 @@ const PROSE = 'max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-pretty';
 export function About() {
   return (
     <Section id="about" labelledBy="about-h" rail="Engineering POV">
-      <SectionHead num="03" title="About" id="about-h" className="mb-[clamp(40px,5vw,64px)]" />
+      <SectionHead num="04" title="About" id="about-h" className="mb-[clamp(40px,5vw,64px)]" />
 
       <div className="flex flex-wrap items-start gap-[clamp(32px,5vw,80px)]">
         <div className="min-w-[min(100%,300px)] flex-[1_1_460px]" data-reveal="0">

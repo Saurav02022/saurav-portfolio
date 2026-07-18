@@ -1,5 +1,6 @@
 import type {
   CaseStudy,
+  CommunityEntry,
   DetailLink,
   ExperienceRole,
   NavItem,
@@ -38,9 +39,10 @@ export const SOCIALS: DetailLink[] = [
 export const SECTIONS: Section[] = [
   { num: '01', label: 'Work', indexLabel: 'Selected Work', id: 'work' },
   { num: '02', label: 'Experience', id: 'experience' },
-  { num: '03', label: 'About', id: 'about' },
-  { num: '04', label: 'Toolkit', id: 'toolkit' },
-  { num: '05', label: 'Contact', id: 'contact' },
+  { num: '03', label: 'Open source', id: 'open-source' },
+  { num: '04', label: 'About', id: 'about' },
+  { num: '05', label: 'Toolkit', id: 'toolkit' },
+  { num: '06', label: 'Contact', id: 'contact' },
 ];
 
 /** Top nav — unnumbered, and Toolkit is deliberately not in it. */
@@ -48,6 +50,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Index', id: 'top' },
   { label: 'Work', id: 'work' },
   { label: 'Experience', id: 'experience' },
+  { label: 'Open source', id: 'open-source' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ];
@@ -407,6 +410,58 @@ export const experience: ExperienceRole[] = [
       </>,
     ],
     tags: ['Next.js', 'TypeScript', 'Node.js', 'Go microservices', 'Sharp', 'React Native'],
+  },
+];
+
+export const communityIntro =
+  'Two halves of the same habit: reviewing other people’s code, and shipping into repositories I don’t own.';
+
+/* Every number and link here resolves to something a reader can open. Projects
+ * without a verified repo carry no count and no link rather than a guess. */
+export const community: CommunityEntry[] = [
+  {
+    dates: '2026 — present',
+    org: 'Social Summer of Code',
+    meta: ['Mentor', 'Open-source programme', 'Two projects'],
+    summary: (
+      <>
+        Social Summer of Code is an open-source programme: contributors ship real
+        features on real repositories, and a mentor sits on the other side of the
+        review. I mentor two of the 2026 projects — turning a roadmap into issues
+        someone can actually finish, then reading what comes back.
+      </>
+    ),
+    projects: [{ name: 'EduFlow AI' }, { name: 'VidyAI++' }],
+    tags: ['Mentoring', 'Code review', 'Issue triage'],
+  },
+  {
+    dates: '2025 — 2026',
+    org: 'Contributions',
+    meta: ['Merged pull requests', 'Repositories I don’t own'],
+    summary: (
+      <>
+        Smaller than the work above, and worth saying plainly: a handful of merged
+        pull requests into other people&rsquo;s projects, mostly front-end systems work
+        that the maintainers had left for later.
+      </>
+    ),
+    projects: [
+      {
+        name: 'AlgoFi',
+        blurb:
+          'A decentralised NFT marketplace on the Algorand testnet — mint art, music and collectibles, then trade them.',
+        did: 'Built the persistent dark/light theme across the app — 11 files, and the dashboard hover states in an earlier PR.',
+        url: 'https://github.com/denshaw-09/AlgoFi',
+        contributors: 11,
+      },
+      {
+        name: 'first-contributions',
+        blurb: 'The walkthrough a lot of people make their first pull request against.',
+        did: 'Translated the walkthrough’s image alt text into Gujarati.',
+        url: 'https://github.com/firstcontributions/first-contributions',
+      },
+    ],
+    tags: ['Open source', 'React', 'Theming', 'Localisation'],
   },
 ];
 

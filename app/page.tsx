@@ -6,6 +6,7 @@ import { Cover } from '@/components/sections/Cover';
 import { Marquee } from '@/components/sections/Marquee';
 import { Work } from '@/components/sections/Work';
 import { Experience } from '@/components/sections/Experience';
+import { Community } from '@/components/sections/Community';
 import { About } from '@/components/sections/About';
 import { Toolkit } from '@/components/sections/Toolkit';
 import { Contact } from '@/components/sections/Contact';
@@ -33,6 +34,7 @@ export default function Home() {
         <Marquee />
         <Work />
         <Experience />
+        <Community />
         <About />
         <Toolkit />
         <Contact />

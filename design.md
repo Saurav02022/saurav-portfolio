@@ -80,7 +80,7 @@ trap, Esc-to-close, focus restore and inert background.
 **Cover** — mono bar (role · discipline · location · year) over a rule; mono
 eyebrow with a leading accent rule; oversized display title with one teal `<em>`;
 support paragraph; primary / ghost / quiet buttons; and an index rail listing the
-five numbered sections with a mono stats block. Staggered `rise` on entry.
+six numbered sections with a mono stats block. Staggered `rise` on entry.
 
 **Marquee** — ink band, mono uppercase, two identical strips scrolled -50%.
 `aria-hidden` — it is decoration, and its content is stated elsewhere on the page.
@@ -101,6 +101,11 @@ Role / Challenge / Key decision / Outcome.
 **Experience** — two-column row (mono dates + company | prose), 2px ink rules
 top and bottom, dash-marker bullets, mono tag pills. `<b>` in the copy is a
 weight shift, never colour.
+
+**Open source** — the Experience row reused verbatim: same two-column split, same
+2px rules, same tag pills. Mentoring is work, and reading it in the same frame as
+the jobs is the point. Mentored projects are `/`-marker rows; a project only
+carries a contributor count once there is a number to point at.
 
 **About** — prose column + a detail rail of hairline-separated Label/Value rows.
 

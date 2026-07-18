@@ -65,6 +65,29 @@ export interface CaseStudy {
   liveUrl?: string;
 }
 
+/** One project mentored inside an open-source programme. */
+export interface CommunityProject {
+  name: string;
+  /** What the project is, in one line — so a reader knows it without leaving. */
+  blurb?: string;
+  /** What I actually did on it. */
+  did?: string;
+  url?: string;
+  /** Contributors on the project — only ever a number I can point at. */
+  contributors?: number;
+}
+
+/** An open-source / community engagement, laid out like an experience row. */
+export interface CommunityEntry {
+  dates: string;
+  org: string;
+  /** Role · programme · scope, stacked on their own lines. */
+  meta: string[];
+  summary: ReactNode;
+  projects: CommunityProject[];
+  tags: string[];
+}
+
 export interface DetailLink {
   label: string;
   url: string;

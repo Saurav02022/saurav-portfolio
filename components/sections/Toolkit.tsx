@@ -6,7 +6,7 @@ export function Toolkit() {
   return (
     <Section id="toolkit" labelledBy="tk-h" className="border-t-[1.5px] border-ink bg-ink text-bg">
       <SectionHead
-        num="04"
+        num="05"
         title="Toolkit"
         id="tk-h"
         intro={toolkitIntro}
