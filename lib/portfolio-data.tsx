@@ -422,6 +422,11 @@ export const about = {
       value: 'Full-stack + LLM systems for unreliable networks and third-party APIs',
       narrow: true,
     },
+    {
+      label: 'Mentoring',
+      value: 'Social Summer of Code 2026',
+      sub: 'EduFlow AI · VidyAI++',
+    },
     { label: 'Now', value: 'MCA, IIIT Ranchi', sub: '2026–2028 · weekend program' },
     {
       label: 'Before',
