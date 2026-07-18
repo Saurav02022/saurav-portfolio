@@ -39,8 +39,8 @@ function body() {
       const projects = entry.projects
         .map((p) => {
           const name = p.url ? `[${p.name}](${p.url})` : p.name;
-          const count = p.contributors ? ` (${p.contributors} contributors)` : '';
-          return `- **${name}**${count}${p.blurb ? ` — ${p.blurb}` : ''}${p.did ? ` ${p.did}` : ''}`;
+          const stat = p.stat ? ` (${p.stat})` : '';
+          return `- **${name}**${stat}${p.blurb ? ` — ${p.blurb}` : ''}${p.did ? ` ${p.did}` : ''}`;
         })
         .join('\n');
       return `### ${entry.org} — ${entry.meta.join(' · ')} (${entry.dates})\n\n${projects}`;

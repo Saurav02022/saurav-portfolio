@@ -31,9 +31,9 @@ function Project({ project }: { project: CommunityProject }) {
       </span>
       <span>
         {heading}
-        {typeof project.contributors === 'number' && (
+        {project.stat && (
           <span className="ml-2.5 font-mono text-[11px] tracking-[0.08em] text-faint uppercase">
-            {project.contributors} contributors
+            {project.stat}
           </span>
         )}
         {project.blurb && <span className="mt-1 block">{project.blurb}</span>}

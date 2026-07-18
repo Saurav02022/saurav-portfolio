@@ -440,24 +440,24 @@ export const community: CommunityEntry[] = [
     meta: ['Merged pull requests', 'Repositories I don’t own'],
     summary: (
       <>
-        Smaller than the work above, and worth saying plainly: a handful of merged
-        pull requests into other people&rsquo;s projects, mostly front-end systems work
-        that the maintainers had left for later.
+        Two merged pull requests into projects I don&rsquo;t own — both of them
+        systems work the maintainers had parked, not one-line fixes.
       </>
     ),
     projects: [
       {
         name: 'AlgoFi',
+        stat: '11 contributors · 29 forks',
         blurb:
           'A decentralised NFT marketplace on the Algorand testnet — mint art, music and collectibles, then trade them.',
-        did: 'Built the persistent dark/light theme across the app — 11 files, and the dashboard hover states in an earlier PR.',
+        did: 'Built the app-wide dark/light theme and made it survive a reload, across 11 files and +419/−226 lines, merged in 3 commits after review.',
         url: 'https://github.com/denshaw-09/AlgoFi',
-        contributors: 11,
       },
       {
         name: 'first-contributions',
+        stat: '55k stars · 106k forks',
         blurb: 'The walkthrough a lot of people make their first pull request against.',
-        did: 'Translated the walkthrough’s image alt text into Gujarati.',
+        did: 'Translated the walkthrough’s image alt text into Gujarati, so the guide carries for Gujarati speakers reading it through a screen reader.',
         url: 'https://github.com/firstcontributions/first-contributions',
       },
     ],

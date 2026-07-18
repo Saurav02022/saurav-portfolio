@@ -73,8 +73,8 @@ export interface CommunityProject {
   /** What I actually did on it. */
   did?: string;
   url?: string;
-  /** Contributors on the project — only ever a number I can point at. */
-  contributors?: number;
+  /** The project's headline measure — only ever numbers a reader can go check. */
+  stat?: string;
 }
 
 /** An open-source / community engagement, laid out like an experience row. */
