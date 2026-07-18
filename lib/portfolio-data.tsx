@@ -258,6 +258,7 @@ export const cases: CaseStudy[] = [
   {
     feature: 'Feature 05',
     kind: 'LLM product · Full-stack',
+    live: true,
     year: '2025',
     title: 'LinkedIn Hashtag Refresh Engine',
     summary:
@@ -295,6 +296,7 @@ export const cases: CaseStudy[] = [
     tags: ['Next.js', 'NextAuth', 'Gemini API', 'Zod', 'Sentry', 'Docker'],
     languages: ['TypeScript'],
     repoUrl: 'https://github.com/Saurav02022/linkedin-hashtag-refresh-engine-app',
+    liveUrl: 'https://ai-linkedin-hashtag-refresh-engine-app.vercel.app',
   },
   {
     feature: 'Feature 06',

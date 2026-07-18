@@ -31,6 +31,14 @@ export function StructuredData() {
       "@type": "Organization",
       name: "Shikha Learning Labs",
     },
+    // Mentoring is the one role that isn't a job and isn't a repo, so nothing
+    // else in this graph carries it. Agents read memberOf; humans read the page.
+    memberOf: {
+      "@type": "Organization",
+      name: "Social Summer of Code 2026",
+      description:
+        "Open-source programme — mentor on two 2026 projects, EduFlow AI and VidyAI++.",
+    },
     alumniOf: [
       {
         "@type": "EducationalOrganization",
@@ -60,6 +68,8 @@ export function StructuredData() {
       "LLM Integration",
       "Full-Stack Development",
       "Offline-First Applications",
+      "Open Source Mentoring",
+      "Code Review",
     ],
     hasOccupation: {
       "@type": "Occupation",
