@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { TagList } from '@/components/Tag';
 import { Section } from '@/components/layout/Section';
-import { cases, workIntro } from '@/lib/portfolio-data';
-import type { CaseFact, CaseStudy } from '@/lib/types';
+import { alsoBuilt, cases, workIntro } from '@/lib/portfolio-data';
+import type { BriefProject, CaseFact, CaseStudy } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { SectionHead } from './SectionHead';
 
@@ -140,6 +140,38 @@ function Case({ study, index }: { study: CaseStudy; index: number }) {
   );
 }
 
+/** A compact row for the projects that don't carry a full case card. */
+function Brief({ project }: { project: BriefProject }) {
+  return (
+    <li className="flex flex-wrap gap-x-[clamp(24px,4vw,56px)] gap-y-3 border-t border-line py-[clamp(20px,2.4vw,28px)] last:border-b">
+      <div className="min-w-[min(100%,230px)] flex-[1_1_250px]">
+        <h4 className="font-display text-[clamp(19px,2vw,25px)] leading-[1.1] font-bold tracking-[-0.02em] text-balance">
+          {project.title}
+        </h4>
+        <p className="mt-2 font-mono text-[11px] tracking-[0.12em] text-faint uppercase">
+          {project.kind}
+        </p>
+      </div>
+
+      <div className="min-w-[min(100%,280px)] flex-[1.7_1_330px]">
+        <p className="max-w-[58ch] text-[15.5px] text-muted text-pretty">{project.summary}</p>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <TagList tags={project.tags} />
+          <a
+            className={cn(CASE_LINK, CASE_LINK_SECONDARY)}
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${project.title} source (opens in new tab)`}
+          >
+            Source ↗
+          </a>
+        </div>
+      </div>
+    </li>
+  );
+}
+
 export function Work() {
   return (
     <Section id="work" labelledBy="work-h" rail="Selected Work — 2025/26">
@@ -153,6 +185,20 @@ export function Work() {
       {cases.map((study, i) => (
         <Case key={study.title} study={study} index={i} />
       ))}
+
+      <div
+        className="mt-[clamp(56px,8vw,96px)] border-t-[1.5px] border-ink pt-[clamp(26px,3vw,38px)]"
+        data-reveal="0"
+      >
+        <h3 className="mb-6 font-mono text-[12px] font-bold tracking-[0.14em] text-accent uppercase">
+          Also built
+        </h3>
+        <ul>
+          {alsoBuilt.map((project) => (
+            <Brief key={project.title} project={project} />
+          ))}
+        </ul>
+      </div>
     </Section>
   );
 }

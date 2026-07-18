@@ -31,6 +31,7 @@ If you only read two files, read `lib/portfolio-data.tsx` (all the content, in o
 
 A few decisions here were less obvious than they look:
 
+- **Every route prerenders static.** `next build` emits only static routes — the page, the OG card, the icons, `sitemap.xml` and `robots.txt` included. Nothing is server-rendered per request and there's no client-side fetch to wait on, so the whole site is CDN-cacheable.
 - **The image routes can't read CSS variables.** Satori renders the OG card and favicons at build time and has no access to `@theme`, so `lib/brand.ts` mirrors those tokens as plain values and the fonts are committed under `assets/fonts/` — the build never reaches for the network. The two have to be kept in step by hand; that's the trade for a share card that can't drift from the site.
 - **Font stacks are declared literally, not via `next/font`'s `--font-*` variables.** Those expand to `"Syne", "Syne Fallback"`, and the glyphs this design leans on (`→ ↗ ✳`) sit outside the Latin subset — they'd resolve to a proportional metric-fallback instead of the real face.
 - **Reduced motion can't leave anything invisible.** The scroll-reveal observer checks `prefers-reduced-motion` and returns *before* it hides anything, rather than hiding first and animating back — so a reader with motion reduced gets the content, not an empty page.

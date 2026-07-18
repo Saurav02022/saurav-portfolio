@@ -8,7 +8,15 @@
  */
 
 import { SITE_URL } from "@/lib/site-config";
-import { EMAIL, NAME, ROLE, SOCIALS, YEAR, cases } from "@/lib/portfolio-data";
+import {
+  EMAIL,
+  NAME,
+  ROLE,
+  SOCIALS,
+  YEAR,
+  alsoBuilt,
+  cases,
+} from "@/lib/portfolio-data";
 
 export function StructuredData() {
   const personSchema = {
@@ -93,7 +101,9 @@ export function StructuredData() {
     },
   };
 
-  const projectSchemas = cases.map((c) => ({
+  // Every project gets markup — the brief ones are still real work, they just
+  // don't carry a full case card on the page.
+  const projectSchemas = [...cases, ...alsoBuilt].map((c) => ({
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     name: c.title,

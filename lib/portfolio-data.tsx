@@ -1,4 +1,5 @@
 import type {
+  BriefProject,
   CaseStudy,
   DetailLink,
   ExperienceRole,
@@ -81,9 +82,9 @@ export const MARQUEE_ITEMS = [
 ];
 
 export const workIntro =
-  'Six builds, sorted by how much they prove. A job seeker, an ops team, a claims processor: the person on the other end changes from card to card, but the work underneath never does — stay correct when the thing upstream is slow, or fires the same call twice. Where a project started as a take-home or a hackathon, the card says so.';
+  'Three builds in depth, three more in brief. A job seeker, an ops team, a claims processor: the person on the other end changes from card to card, but the work underneath never does — stay correct when the thing upstream is slow, or fires the same call twice. Where a project started as a take-home or a hackathon, the card says so.';
 
-/* Six cases, one card. Sorted by how much verifiable engineering each repo
+/* Three cases, one card. Sorted by how much verifiable engineering each repo
  * holds — tests, architecture, deploy pipeline — not by how shiny the product
  * is. Origin (take-home, hackathon) is stated in the copy on purpose. */
 export const cases: CaseStudy[] = [
@@ -211,125 +212,34 @@ export const cases: CaseStudy[] = [
     languages: ['Python'],
     repoUrl: 'https://github.com/Saurav02022/claims-processing-system',
   },
+];
+
+/* Three more builds, in brief. Same standard, less prominence — the depth is in
+ * the repos, and the three above prove more. */
+export const alsoBuilt: BriefProject[] = [
   {
-    feature: 'Feature 04',
-    kind: 'Marketplace · Full-stack',
-    year: '2026',
     title: 'Intervue — Mock-Interview Marketplace',
+    kind: 'Marketplace · Full-stack',
     summary:
-      'Book a mock interview with credits, meet on a video call that transcribes itself, and get structured feedback generated from the transcript after you hang up.',
-    facts: [
-      {
-        label: 'Role',
-        tone: 'plain',
-        text: 'Sole engineer — both services, schema, CI/CD.',
-      },
-      {
-        label: 'Challenge',
-        text: 'The interesting work starts after the call ends: the transcript webhook can fire more than once, and the feedback pipeline has to survive the repeats without crediting an interviewer twice.',
-      },
-      {
-        label: 'Key decision',
-        text: 'The transcript → Gemini → feedback pipeline is an idempotent upsert keyed on the booking, so a repeated delivery hits the same row instead of paying out again. Clerk JWTs are verified against JWKS inside the FastAPI service, so auth stays stateless across both services, and booking and withdrawal are rate-limited per user with a token bucket.',
-      },
-      {
-        label: 'Outcome',
-        tone: 'strong',
-        text: 'CI builds the image, boots it, and hits /health before any rollout, so a broken container never ships. Auth to GCP is keyless, via Workload Identity.',
-      },
-    ],
-    fig: {
-      caption: 'after the call ends',
-      sub: 'transcript → feedback, once',
-      steps: [
-        { n: '01', text: 'Call ends · Stream webhook fires' },
-        { n: '02', text: 'Transcript pulled · speakers mapped' },
-        { n: '03', text: 'Gemini · structured feedback' },
-        { n: '04', text: 'One payout per booking', note: 'a retry hits the same row; no second credit' },
-      ],
-    },
-    tags: ['Next.js', 'FastAPI', 'Clerk', 'Prisma', 'Stream', 'Gemini API', 'Cloud Run'],
+      'Book with credits, meet on a video call that transcribes itself, then get AI feedback once it ends. The post-call payout is an idempotent upsert keyed on the booking, so a retried webhook never pays an interviewer twice.',
+    tags: ['Next.js', 'FastAPI', 'Clerk', 'Stream', 'Gemini API'],
     languages: ['TypeScript', 'Python'],
     repoUrl: 'https://github.com/Saurav02022/ai-interview',
   },
   {
-    feature: 'Feature 05',
-    kind: 'LLM product · Full-stack',
-    year: '2025',
     title: 'LinkedIn Hashtag Refresh Engine',
+    kind: 'LLM product · Full-stack',
     summary:
-      'A LinkedIn post stops circulating once its hashtags go stale. Paste the post and Gemini drafts three hashtag sets, each aimed at a different kind of reach; sign in, and one click adds your pick as a comment — a second push for something you already wrote.',
-    facts: [
-      {
-        label: 'Role',
-        tone: 'plain',
-        text: 'Sole engineer — product, auth, integrations, packaging.',
-      },
-      {
-        label: 'Challenge',
-        text: 'LinkedIn’s API is the hard part: tokens on a 60-day expiry, permission scopes that differ by account, and responses that need defensive parsing before anything reaches the UI.',
-      },
-      {
-        label: 'Key decision',
-        text: 'Implement the OIDC refresh flow by hand with an error-flagged fallback, validate every request body with Zod behind one typed error envelope, and wire Sentry across client, server and edge so a failure lands somewhere I can see it.',
-      },
-      {
-        label: 'Outcome',
-        tone: 'strong',
-        text: 'The build carries a real decision I can walk through: when Puppeteer scraping proved a dead end on Vercel, I chose free manual paste over paying for a scraping API rather than sink more time into it. It ships with a multi-stage, non-root Dockerfile and a healthcheck; the app itself runs on Vercel.',
-      },
-    ],
-    fig: {
-      caption: 'the plumbing is the product',
-      sub: 'post in → comment out',
-      steps: [
-        { n: '01', text: 'Paste post content' },
-        { n: '02', text: 'Gemini · 3 hashtag sets' },
-        { n: '03', text: 'OIDC · 60-day token refresh', note: 'refresh by hand, flagged fallback' },
-        { n: '04', text: 'One-click comment on the post' },
-      ],
-    },
-    tags: ['Next.js', 'NextAuth', 'Gemini API', 'Zod', 'Sentry', 'Docker'],
+      'Paste a post, get three hashtag sets from Gemini, add your pick as a comment in one click. The work is the plumbing: a hand-rolled 60-day OIDC refresh and one typed error envelope over every route.',
+    tags: ['Next.js', 'NextAuth', 'Gemini API', 'Zod', 'Sentry'],
     languages: ['TypeScript'],
     repoUrl: 'https://github.com/Saurav02022/linkedin-hashtag-refresh-engine-app',
   },
   {
-    feature: 'Feature 06',
-    kind: 'Full-stack · Hackathon · 3 hours',
-    year: '2026',
     title: 'Financial Literacy Assistant',
+    kind: 'Full-stack · Hackathon · 3 hours',
     summary:
-      'Budgeting, saving and investing journeys for financial beginners, built in a three-hour hackathon and deployed to Cloud Run for judging.',
-    facts: [
-      {
-        label: 'Role',
-        tone: 'plain',
-        text: 'Sole engineer — all three journeys, auth, persistence.',
-      },
-      {
-        label: 'Challenge',
-        text: 'Financial guidance can’t be wrong just because a model is down. The numbers have to come from somewhere deterministic.',
-      },
-      {
-        label: 'Key decision',
-        text: 'Split every journey in two: the math is plain TypeScript, and Gemini only writes the coaching on top. When the model fails, the app falls back to fixed guidance instead of erroring.',
-      },
-      {
-        label: 'Outcome',
-        tone: 'strong',
-        text: '10 unit tests cover the deterministic core — the budget and saving math plus the fallback guidance — and every analysis route rejects bad input the same way.',
-      },
-    ],
-    fig: {
-      caption: 'the model never does the math',
-      sub: 'deterministic core · AI on top',
-      steps: [
-        { n: '01', text: 'Journey input · budget / save / invest' },
-        { n: '02', text: 'Deterministic math · plain TypeScript', note: 'stored figures never come from the model' },
-        { n: '03', text: 'Gemini coaching · fixed fallback if down' },
-        { n: '04', text: 'Saved to history' },
-      ],
-    },
+      'Budgeting, saving and investing journeys where the math is deterministic TypeScript and Gemini only writes the coaching on top — with a fixed fallback when the model is down.',
     tags: ['Next.js', 'Supabase', 'Gemini API', 'Vitest'],
     languages: ['TypeScript'],
     repoUrl: 'https://github.com/Saurav02022/financial-literacy-assistant',
