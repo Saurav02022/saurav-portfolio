@@ -103,9 +103,12 @@ top and bottom, dash-marker bullets, mono tag pills. `<b>` in the copy is a
 weight shift, never colour.
 
 **Open source** — the Experience row reused verbatim: same two-column split, same
-2px rules, same tag pills. Mentoring is work, and reading it in the same frame as
-the jobs is the point. Mentored projects are `/`-marker rows; a project only
-carries a contributor count once there is a number to point at.
+2px rules, same tag pills. This is work, and reading it in the same frame as the
+jobs is the point. Two rows, reverse-chronological like Experience, so the arc
+(contributor in the winter cohort, mentor in the summer one) lands without being
+narrated. Projects are `/`-marker rows carrying a stat, a one-clause description
+of the project, then what was actually done — and a row only carries a number
+once that number resolves to something a reader can open.
 
 **About** — prose column + a detail rail of hairline-separated Label/Value rows.
 

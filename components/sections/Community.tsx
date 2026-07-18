@@ -45,7 +45,7 @@ function Project({ project }: { project: CommunityProject }) {
 
 export function Community() {
   return (
-    <Section id="open-source" labelledBy="os-h" rail="Open Source — 2025/26">
+    <Section id="open-source" labelledBy="os-h" rail="Open Source — 2026">
       <SectionHead
         num="03"
         title="Open source"

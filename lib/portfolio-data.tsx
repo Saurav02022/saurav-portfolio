@@ -414,71 +414,68 @@ export const experience: ExperienceRole[] = [
 ];
 
 export const communityIntro =
-  'Two halves of the same habit: reviewing other people’s code, and shipping into repositories I don’t own.';
+  'I came into Social Winter of Code as a contributor and came back to the summer round as a mentor.';
 
 /* Every number and link here resolves to something a reader can open. Projects
  * without a verified repo carry no count and no link rather than a guess. */
 export const community: CommunityEntry[] = [
   {
-    dates: '2026 — present',
+    dates: 'Jun 2026 — present',
     org: 'Social Summer of Code',
-    meta: ['Mentor', 'Open-source programme', 'Two projects · 41 developers'],
+    meta: ['Mentor', 'Open-source programme', 'Two projects'],
     summary: (
       <>
-        Social Summer of Code is an open-source programme: contributors ship real
-        features on real repositories, and a mentor sits on the other side of the
-        review. I mentor two of the 2026 projects — <b>41 developers between them</b> —
-        turning a roadmap into issues someone can actually finish, then reading what
-        comes back.
+        Social Summer of Code pairs contributors with maintainers on live repositories
+        for a season. I mentor two of the 2026 projects — scoping issues, and asking for
+        the approach and user flow in writing before anyone starts coding. The two repos
+        drew <b>41 distinct contributors</b> over the programme.
       </>
     ),
     projects: [
       {
         name: 'EduFlow AI',
         stat: '23 contributors · 31 forks',
-        blurb: 'A study platform the cohort is building out across 100 SSoC-tagged issues.',
-        did: 'Scoping the harder issues before anyone starts — asking for the approach and the user flow in writing first, so a contributor knows what "done" means before they open the editor.',
+        blurb: 'A study platform, with roughly 100 SSoC-tagged issues open to the cohort.',
+        did: 'I scope the harder issues myself and ask for the approach and user flow in writing before a contributor starts.',
         url: 'https://github.com/prabhakarshukla/EduFlow-AI',
       },
       {
-        name: 'VidyAI++',
+        name: 'VidyAI++ (jai3546/AI_ROCKERS)',
         stat: '23 contributors · 35 forks',
-        blurb:
-          'An education companion that reads attention from the webcam and adapts the lesson, plus Gemini tutoring and voice navigation.',
-        did: 'Filed 5 of the issues the cohort is working through — a crashing missing import, a service worker serving stale pages after deploy, 44 TypeScript errors the build was ignoring, and a build that fails without DATABASE_URL.',
+        blurb: 'An AI tutoring app the cohort is hardening.',
+        did: 'Authored 5 of its ~68 SSoC-tagged issues: a missing import crashing the app, a service worker serving stale pages after deploy, 44 TypeScript errors the build was ignoring, and a build that fails without DATABASE_URL.',
         url: 'https://github.com/jai3546/AI_ROCKERS',
       },
     ],
-    tags: ['Mentoring', 'Code review', 'Issue triage'],
+    tags: ['Mentoring', 'Issue scoping'],
   },
   {
-    dates: '2025 — 2026',
-    org: 'Contributions',
-    meta: ['Merged pull requests', 'Repositories I don’t own'],
+    dates: 'Jan 2026',
+    org: 'Social Winter of Code',
+    meta: ['Contributor', 'Open-source programme', 'Two projects'],
     summary: (
       <>
-        Two merged pull requests into projects I don&rsquo;t own — both of them
-        systems work the maintainers had parked, not one-line fixes.
+        The same programme&rsquo;s winter round, from the other side of it. I took
+        labelled issues in two projects and shipped them.
       </>
     ),
     projects: [
       {
         name: 'AlgoFi',
         stat: '11 contributors · 29 forks',
-        blurb:
-          'A decentralised NFT marketplace on the Algorand testnet — mint art, music and collectibles, then trade them.',
-        did: 'Built the app-wide dark/light theme and made it survive a reload, across 11 files and +419/−226 lines, merged in 3 commits after review.',
+        blurb: 'A decentralised NFT marketplace on the Algorand testnet.',
+        did: 'Two merged pull requests. Started on a good-first-issue and finished on a Medium one: the app-wide dark/light theme, made to persist across reloads — 11 files, +419/−226.',
         url: 'https://github.com/denshaw-09/AlgoFi',
       },
       {
-        name: 'first-contributions',
-        stat: '55k stars · 106k forks',
-        blurb: 'The walkthrough a lot of people make their first pull request against.',
-        did: 'Translated the walkthrough’s image alt text into Gujarati, so the guide carries for Gujarati speakers reading it through a screen reader.',
-        url: 'https://github.com/firstcontributions/first-contributions',
+        name: 'BrowsePing',
+        stat: '5 contributors · 15 forks',
+        blurb: 'A browser extension for social browsing.',
+        did: 'Real-time typing indicators — 8 files, +365/−123 over 6 commits, still open for review. Also split the web dashboard epic into five phased issues on the landing-page repo.',
+        url: 'https://github.com/browseping/browser-extension',
       },
     ],
-    tags: ['Open source', 'React', 'Theming', 'Localisation'],
+    tags: ['Open source', 'React'],
   },
 ];
 
@@ -495,9 +492,9 @@ export const about = {
       narrow: true,
     },
     {
-      label: 'Mentoring',
-      value: 'Social Summer of Code 2026',
-      sub: 'EduFlow AI · VidyAI++ · 41 developers',
+      label: 'Open source',
+      value: 'SSoC 2026 mentor · SWoC 2026 contributor',
+      sub: 'EduFlow AI · VidyAI++ · AlgoFi · BrowsePing',
     },
     { label: 'Now', value: 'MCA, IIIT Ranchi', sub: '2026–2028 · weekend program' },
     {
