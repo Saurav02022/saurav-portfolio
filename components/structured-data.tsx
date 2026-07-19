@@ -104,20 +104,25 @@ export function StructuredData() {
     },
   };
 
-  const projectSchemas = cases.map((c) => ({
-    "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
-    name: c.title,
-    description: c.summary,
-    codeRepository: c.repoUrl,
-    programmingLanguage: c.languages,
-    ...(c.liveUrl ? { url: c.liveUrl } : {}),
-    author: {
-      "@type": "Person",
-      name: NAME,
-      url: SITE_URL,
-    },
-  }));
+  // Only the open-source builds get SoftwareSourceCode. The work products have no
+  // public repository, and one of them is a team build — neither should carry a
+  // node whose author is a single person.
+  const projectSchemas = cases
+    .filter((c) => c.repoUrl)
+    .map((c) => ({
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      name: c.title,
+      description: c.summary,
+      codeRepository: c.repoUrl,
+      programmingLanguage: c.languages,
+      ...(c.liveUrl ? { url: c.liveUrl } : {}),
+      author: {
+        "@type": "Person",
+        name: NAME,
+        url: SITE_URL,
+      },
+    }));
 
   const schemas = [personSchema, websiteSchema, ...projectSchemas];
 

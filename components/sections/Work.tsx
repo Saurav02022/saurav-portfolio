@@ -84,15 +84,17 @@ function Case({ study, index }: { study: CaseStudy; index: number }) {
                 Live app ↗
               </a>
             )}
-            <a
-              className={cn(CASE_LINK, study.liveUrl && CASE_LINK_SECONDARY)}
-              href={study.repoUrl}
-              target="_blank"
-              rel="noopener"
-              aria-label={`${study.title} source (opens in new tab)`}
-            >
-              Source ↗
-            </a>
+            {study.repoUrl && (
+              <a
+                className={cn(CASE_LINK, study.liveUrl && CASE_LINK_SECONDARY)}
+                href={study.repoUrl}
+                target="_blank"
+                rel="noopener"
+                aria-label={`${study.title} source (opens in new tab)`}
+              >
+                Source ↗
+              </a>
+            )}
           </div>
         </div>
 

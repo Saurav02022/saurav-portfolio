@@ -61,7 +61,8 @@ export interface CaseStudy {
   tags: string[];
   /** Languages actually written in this project — feeds SoftwareSourceCode JSON-LD. */
   languages: string[];
-  repoUrl: string;
+  /** Absent for work built at a job, where there is no public repository. */
+  repoUrl?: string;
   liveUrl?: string;
 }
 

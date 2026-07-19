@@ -406,11 +406,13 @@ export const experience: ExperienceRole[] = [
     ),
     bullets: [
       <>
-        About <b>200 teachers</b> record around <b>400 classes a week</b> on the AI Teacher
-        Coach. Before it, assessing how a teacher taught meant a mentor sitting through the
+        <b>I built the Android app for the AI Teacher Coach</b> and took it to the Play
+        Store myself, from working out what it needed to do through to testing it with
+        teachers. About <b>200 teachers</b> record around <b>400 classes a week</b> on it.
+        Before this, assessing how a teacher taught meant a mentor sitting through the
         whole class: a sixty-minute class cost a mentor sixty minutes, and it happened only
-        when a mentor was free. The feedback now comes back in{' '}
-        <b>five to ten minutes</b>, with nobody in the room.
+        when a mentor was free. The feedback now comes back in <b>five to ten minutes</b>,
+        with nobody in the room.
       </>,
       <>
         I built the portfolio portal alone, web and Android, start to finish.{' '}
@@ -429,6 +431,18 @@ export const experience: ExperienceRole[] = [
         On Android, unsaved audio was being deleted quietly. Nobody had reported it,
         because nobody knew it had happened. I traced it, and every file now has to prove
         it exists before anything writes over it. <b>20+ recordings</b> came back.
+      </>,
+      <>
+        I also build whole products on my own here. The institute&rsquo;s new website is
+        mine end to end, still in development: <b>14 pages</b> and an admin area where staff
+        edit their own content, with a draft kept separate from what the public sees so a
+        half-finished edit never goes out. It deploys with the new version taking no traffic
+        until it has answered a health check, and the old one still serving if it does not.
+      </>,
+      <>
+        Our repositories carry a knowledge graph I set up, so the AI coding agents we use
+        can answer what depends on what without reading every file first. It runs on the
+        machine, refreshes itself after each commit, and costs nothing to query.
       </>,
     ],
     tags: [
