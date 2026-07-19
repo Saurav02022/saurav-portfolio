@@ -11,7 +11,7 @@ export function Experience() {
   return (
     <Section id="experience" labelledBy="exp-h" className="border-y-[1.5px] border-ink bg-bg2">
       <SectionHead
-        num="02"
+        num="01"
         title="Experience"
         id="exp-h"
         intro={experienceIntro}

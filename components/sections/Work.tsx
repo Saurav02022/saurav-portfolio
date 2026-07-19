@@ -146,7 +146,7 @@ export function Work() {
   return (
     <Section id="work" labelledBy="work-h" rail="Selected Work — 2025/26">
       <SectionHead
-        num="01"
+        num="02"
         title="Selected Work"
         id="work-h"
         intro={workIntro}

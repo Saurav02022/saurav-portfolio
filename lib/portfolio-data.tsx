@@ -38,8 +38,8 @@ export const SOCIALS: DetailLink[] = [
 
 /** Numbered sections — the cover index rail and the mobile menu. */
 export const SECTIONS: Section[] = [
-  { num: '01', label: 'Work', indexLabel: 'Selected Work', id: 'work' },
-  { num: '02', label: 'Experience', id: 'experience' },
+  { num: '01', label: 'Experience', id: 'experience' },
+  { num: '02', label: 'Work', indexLabel: 'Selected Work', id: 'work' },
   { num: '03', label: 'Open source', id: 'open-source' },
   { num: '04', label: 'About', id: 'about' },
   { num: '05', label: 'Toolkit', id: 'toolkit' },
@@ -49,8 +49,8 @@ export const SECTIONS: Section[] = [
 /** Top nav — unnumbered, and Toolkit is deliberately not in it. */
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Index', id: 'top' },
-  { label: 'Work', id: 'work' },
   { label: 'Experience', id: 'experience' },
+  { label: 'Work', id: 'work' },
   { label: 'Open source', id: 'open-source' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
@@ -65,10 +65,10 @@ export const cover = {
     </>
   ),
   support:
-    'Right now that is school software in 117 schools. A teacher records their own class and gets written feedback ten minutes later, with nobody sitting at the back of the room. I own the API behind that app and three others, and I designed the database under all four.',
+    'Right now that is school software my team builds, used by teachers in 117 schools. I own the API behind four of its apps and the database under all four, and I built the teacher coaching Android app on my own, from the first question about what it should do to the release.',
   stats: [
-    { label: 'SCHOOLS', value: '117, government and private' },
-    { label: 'CLASSES', value: 'About 400 recorded every week' },
+    { label: 'I OWN', value: 'The API and database behind 4 apps' },
+    { label: 'I BUILT', value: 'The teacher coaching Android app' },
     { label: 'BASED', value: 'Mumbai, open to relocating' },
   ],
 };
@@ -116,7 +116,7 @@ export const cases: CaseStudy[] = [
       {
         label: 'Outcome',
         tone: 'strong',
-        text: '31 browser tests, and the deploy only happens if they pass on that same commit. I have tailored 100+ of my own résumés through it.',
+        text: 'The tests drive the real app in a browser, with the model’s answers faked, so they check my code and not the model’s mood that day. The deploy only happens if they pass on that same commit. I use it for my own applications.',
       },
     ],
     fig: {
@@ -162,7 +162,7 @@ export const cases: CaseStudy[] = [
       {
         label: 'Outcome',
         tone: 'strong',
-        text: '19 Python tests and 14 browser tests run on every push, and a push that fails them does not merge. Every order in it is one I made up for testing. No real orders have gone through it, and I am not going to claim otherwise.',
+        text: 'Send the same call result twice and the second one is recorded as a duplicate instead of being applied again. That case is a test, and a push that fails it does not merge. Every order in it is one I made up for testing. No real orders have gone through it, and I am not going to claim otherwise.',
       },
     ],
     fig: {
@@ -207,7 +207,7 @@ export const cases: CaseStudy[] = [
       {
         label: 'Outcome',
         tone: 'strong',
-        text: '74 tests, more test code than application code. They run from the rules themselves all the way through to checks against a real database.',
+        text: 'There is more test code in it than application code, which was deliberate on the part that decides money. The tests run from the rules on their own all the way through to checks against a real database.',
       },
     ],
     fig: {
@@ -344,7 +344,7 @@ export const cases: CaseStudy[] = [
       {
         label: 'Outcome',
         tone: 'strong',
-        text: '10 tests sit on that calculation code. It went on Cloud Run for the judges.',
+        text: 'The calculation code is tested on its own, away from the wording the model writes. It went on Cloud Run for the judges.',
       },
     ],
     fig: {
@@ -429,9 +429,8 @@ export const experience: ExperienceRole[] = [
         I built the portfolio portal alone, web and Android, start to finish.{' '}
         <b>300+ students</b> keep a public website of their best work on it, and an AI
         assessor reads the finished portfolio and reports on how their skills are
-        developing, quoting their own work as evidence. <b>98% of 5,000+ submissions</b> go
-        through on the first attempt. The rest retry on their own, and a job that runs
-        twice saves the result once.
+        developing, quoting their own work as evidence. A submission that fails retries on
+        its own, and a job that runs twice saves the result once rather than twice.
       </>,
       <>
         Two pieces of Sakhee are mine and I wrote both on my own. One is the school calendar
@@ -450,12 +449,13 @@ export const experience: ExperienceRole[] = [
         wrote the part that does the scoring.
       </>,
       <>
-        At about <b>50 of the 117 schools</b> the connection drops several times a day, and
-        class recordings were being lost. The recording now saves on the phone first and
-        uploads once the signal returns. The losses stopped. A second problem was quieter:
-        on Android, unsaved audio was being deleted without anyone noticing, so nobody
-        reported it, because nobody knew. I traced it, and every file now has to prove it
-        exists before anything writes over it. <b>20+ recordings</b> came back.
+        In schools where the connection drops several times a day, class recordings were
+        going missing. The recording now saves on the phone first and uploads once the
+        signal returns. A second problem was quieter and worse: on Android, unsaved audio
+        was being deleted without anyone noticing, so nobody reported it, because nobody
+        knew it had happened. Recordings were not failing to upload — they were gone before
+        the upload was ever attempted. I traced it, and every file now has to prove it
+        exists before anything writes over it.
       </>,
       <>
         I build whole products on my own here as well. The institute&rsquo;s new website is

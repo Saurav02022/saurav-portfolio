@@ -32,8 +32,8 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <Cover />
         <Marquee />
-        <Work />
         <Experience />
+        <Work />
         <Community />
         <About />
         <Toolkit />
