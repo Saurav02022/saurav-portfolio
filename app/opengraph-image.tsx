@@ -8,7 +8,7 @@ import { BRAND, brandFont } from '@/lib/brand';
  */
 
 export const alt =
-  'Saurav Kumar — Full-Stack Software Engineer. Full-stack products and LLM features that survive weak networks, flaky devices, and async vendor APIs.';
+  'Saurav Kumar — Full-Stack + AI Engineer. Full-stack products and AI features that survive weak networks, flaky devices, and async vendor APIs.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -69,7 +69,7 @@ export default function OgImage() {
               marginTop: 28,
             }}
           >
-            Full-stack products and LLM features that survive weak networks,
+            Full-stack products and AI features that survive weak networks,
             flaky devices, and async vendor APIs.
           </div>
         </div>

@@ -28,13 +28,13 @@ const spaceMono = Space_Mono({
 
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
-const TITLE = "Saurav Kumar — Full-Stack + LLM Engineer";
+const TITLE = "Saurav Kumar — Full-Stack + AI Engineer";
 // ≤160 chars so it doesn't truncate in SERPs. Carries the stacks recruiters
 // actually X-ray for (React/Next, Python/FastAPI, GCP) alongside the proof numbers.
 const DESCRIPTION =
-  "Full-stack + LLM engineer — React/Next.js, Python/FastAPI, GCP. 3+ years in production: EdTech in 117 schools and a 10,000+ creator video platform.";
+  "Full-stack + AI engineer — React/Next.js, Python/FastAPI, GCP. 3+ years in production: EdTech in 117 schools and a 10,000+ creator video platform.";
 const OG_DESCRIPTION =
-  "Full-stack + LLM engineer, 3+ years in production. EdTech across 117 schools, a 10,000+ creator video platform, and schema-locked LLM features.";
+  "Full-stack + AI engineer, 3+ years in production. EdTech across 117 schools, a 10,000+ creator video platform, and schema-locked LLM features.";
 
 export const viewport: Viewport = {
   themeColor: "#F3EFE7",

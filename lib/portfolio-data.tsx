@@ -20,7 +20,7 @@ export const NAME = 'Saurav Kumar';
  * actual employer title, and a self-assigned level is the fastest way to make
  * a reviewer re-audit everything else. The page argues the level; it never
  * claims it. */
-export const ROLE = 'Full-Stack + LLM Engineer';
+export const ROLE = 'Full-Stack + AI Engineer';
 export const EMAIL = 'sk729584@gmail.com';
 export const LOCATION = 'Mumbai, IN';
 export const YEAR = '2026';
@@ -57,7 +57,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const cover = {
-  discipline: 'Full-stack + LLM',
+  discipline: 'Full-stack + AI',
   eyebrow: 'Currently shipping EdTech used in 117 schools',
   title: (
     <>
@@ -67,7 +67,7 @@ export const cover = {
   support:
     'I own the whole path, API through deploy, and I design for the failure cases: the connection that drops, the model that answers off-schema, the vendor API that answers twice.',
   stats: [
-    { label: 'FOCUS', value: 'Full-stack + LLM systems' },
+    { label: 'FOCUS', value: 'Full-stack + AI features' },
     { label: 'STATUS', value: 'Open to full-stack / AI roles · will relocate' },
     { label: 'EXP', value: '3+ yrs in production' },
   ],
@@ -354,19 +354,9 @@ export const experience: ExperienceRole[] = [
       <>
         Software&nbsp;engineer on an EdTech platform used across 117 schools — a lot of
         them on connections that drop. I own the API layer, the database schema, and the
-        reliability work. Shikha&rsquo;s founder and head of research have published on two
-        systems I work on: the design research behind the teacher-facing platform our team
-        builds (
-        <a
-          className={INLINE_LINK}
-          href="https://doi.org/10.1007/978-3-032-29791-4_25"
-          target="_blank"
-          rel="noopener"
-          aria-label="AI-Human Synergy, Springer CCIS 2026 (opens in new tab)"
-        >
-          Springer CCIS 2026
-        </a>
-        ), and the history chatbots an earlier team built and I now maintain and extend (
+        reliability work. Since I joined, the features shipped on our history chatbots have
+        been mine; an earlier team built the first version. Colleagues at Shikha have
+        published on that system (
         <a
           className={INLINE_LINK}
           href="https://doi.org/10.33965/celda2025_202509l042"
@@ -375,6 +365,16 @@ export const experience: ExperienceRole[] = [
           aria-label="Conversations for Learning, CELDA 2025 (opens in new tab)"
         >
           CELDA 2025
+        </a>
+        ) and on the design research behind the platform (
+        <a
+          className={INLINE_LINK}
+          href="https://doi.org/10.1007/978-3-032-29791-4_25"
+          target="_blank"
+          rel="noopener"
+          aria-label="AI-Human Synergy, Springer CCIS 2026 (opens in new tab)"
+        >
+          Springer CCIS 2026
         </a>
         ).
       </>
@@ -513,7 +513,7 @@ export const about = {
     { label: 'Based in', value: 'Mumbai, India' },
     {
       label: 'Focus',
-      value: 'Full-stack + LLM systems for unreliable networks and third-party APIs',
+      value: 'Full-stack + AI features for unreliable networks and third-party APIs',
       narrow: true,
     },
     {

@@ -1,6 +1,6 @@
 # Saurav Kumar — Portfolio · Design Spec
 
-Single-page, light, typography-led portfolio for a full-stack + LLM engineer.
+Single-page, light, typography-led portfolio for a full-stack + AI engineer.
 Voice is plain-engineer: concrete claims, no hype. The visual system is quiet
 so the writing carries the page.
 
