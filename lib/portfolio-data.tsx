@@ -58,34 +58,34 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const cover = {
   discipline: 'Full-stack + AI',
-  eyebrow: 'Building school software used in 117 schools',
+  eyebrow: 'Software engineer, 3 years in production',
   title: (
     <>
       I design the database, write the API and the app, and <em>put it live</em> myself.
     </>
   ),
   support:
-    'Right now that is school software in 117 schools. Two products: one coaches a teacher on the class they just taught, the other is where students build a portfolio of their year and get assessed on it.',
+    'Right now that is school software in 117 schools. A teacher records their own class and gets written feedback ten minutes later, with nobody sitting at the back of the room. I own the API behind that app and three others, and I designed the database under all four.',
   stats: [
-    { label: 'NOW', value: 'School software · Mumbai' },
-    { label: 'OPEN TO', value: 'Software engineer roles · will relocate' },
-    { label: 'EXP', value: '3+ yrs in production' },
+    { label: 'SCHOOLS', value: '117, government and private' },
+    { label: 'CLASSES', value: 'About 400 recorded every week' },
+    { label: 'BASED', value: 'Mumbai, open to relocating' },
   ],
 };
 
 export const MARQUEE_ITEMS = [
   '117 schools',
+  '4 apps, 1 database',
   '400 classes a week',
-  'Nothing lost, nothing saved twice',
-  'Works when the signal drops',
-  'Two AI products in real classrooms',
-  '10,000+ creators',
-  'Research published on the work',
-  'One engineer, whole path',
+  '8.5 seconds down to 2.5',
+  '20+ recordings recovered',
+  '5,000+ submissions assessed',
+  '10,000+ creators at Nuveb',
+  '41 contributors on 2 projects',
 ];
 
 export const workIntro =
-  'Six projects I built on my own, in the order I would want them read. The person they are for changes each time. A job seeker, a delivery team, an insurance claim. What does not change is the part underneath: stay correct when the thing you depend on is slow, or answers twice, or does not answer at all. Where a project started as a take-home or a hackathon, the card says so.';
+  'These six are mine. I was the only engineer on each one. Several share a stack, and that is on purpose, so the new thinking went into the problem instead of the setup. The claims engine is the one I would open first: there is no model anywhere near the part that decides the money. Where a project started as a take-home or a hackathon, the card says so.';
 
 /* Six cases, one card. Sorted by how much verifiable engineering each repo
  * holds — tests, architecture, deploy pipeline — not by how shiny the product
@@ -343,7 +343,7 @@ export const cases: CaseStudy[] = [
 ];
 
 export const experienceIntro =
-  'Two jobs, three years. Most of it is the API and the database, and the work nobody notices until something breaks.';
+  'Two jobs, three years between them. The first was a video platform for creators in Bengaluru. The second is the school software I work on now.';
 
 export const experience: ExperienceRole[] = [
   {
@@ -352,10 +352,10 @@ export const experience: ExperienceRole[] = [
     meta: ['Software Engineer', 'Shantilal Shanghvi Foundation', 'EdTech · Mumbai, India'],
     summary: (
       <>
-        I own the API behind four apps, web and Android, and I designed the database under
-        all four. A change to one table is a change all four apps have to live with, so
-        that schema gets argued about before it gets written. Two peer-reviewed papers have
-        been published on this work: one on the history chatbots (
+        The four apps are web and Android, and they run in government and private schools.
+        A change to one table is a change all four have to live with, so that database gets
+        argued about before it gets written. Two peer-reviewed papers have been published
+        on this work: one on the history chatbots (
         <a
           className={INLINE_LINK}
           href="https://doi.org/10.33965/celda2025_202509l042"
@@ -375,34 +375,35 @@ export const experience: ExperienceRole[] = [
         >
           Springer CCIS 2026
         </a>
-        ). Colleagues here wrote both. My part is the engineering they are written about.
+        ). My colleagues wrote them, including our founder and my own product manager. My
+        part is the engineering.
       </>
     ),
     bullets: [
       <>
-        <b>AI Teacher Coach.</b> To assess how a teacher taught, a mentor had to sit
-        through the whole class. Now the teacher records the class in the app and the
-        coaching comes back in <b>five to ten minutes</b>, with nobody in the room. About{' '}
-        <b>400 classes a week</b>, for <b>200+ teachers</b>.
+        About <b>200 teachers</b> record around <b>400 classes a week</b> on the AI Teacher
+        Coach. Before it, assessing how a teacher taught meant a mentor sitting through the
+        whole class: a sixty-minute class cost a mentor sixty minutes, and it happened only
+        when a mentor was free. The feedback now comes back in{' '}
+        <b>five to ten minutes</b>, with nobody in the room.
       </>,
       <>
-        <b>Student Portfolio Portal.</b> Built this one on my own, web and Android.
-        Students, teachers and school admins each log in and see something different, and
-        a teacher at one school never sees another school&rsquo;s students.{' '}
-        <b>300+ students</b>, <b>5,000+ submissions</b>, <b>98%</b> going through first
-        time. The 2% that fail retry on their own, and a job that runs twice saves the
-        result once.
+        I built the portfolio portal alone, web and Android, start to finish.{' '}
+        <b>300+ students</b> keep a public website of their best work on it, and an AI
+        assessor reads the finished portfolio and reports on how their skills are
+        developing, quoting their own work as evidence. <b>98% of 5,000+ submissions</b> go
+        through on the first attempt. The rest retry on their own, and a job that runs
+        twice saves the result once.
       </>,
       <>
-        Those recordings are the product, so losing one is the worst thing that can
-        happen. Schools on bad connections were losing them, so the app now saves to the
-        phone first and sends the file once the signal is back. That stopped the losses at{' '}
-        <b>50+ schools</b>.
+        At about <b>50 of the 117 schools</b> the connection drops several times a day, and
+        class recordings were being lost. The recording now saves on the phone first and
+        uploads once the signal returns. The losses stopped.
       </>,
       <>
-        On Android, unsaved audio was being deleted quietly, so nobody reported it —
-        nobody knew. I traced it and made every file prove it exists before anything writes
-        over it. That recovered <b>20+ class recordings</b>.
+        On Android, unsaved audio was being deleted quietly. Nobody had reported it,
+        because nobody knew it had happened. I traced it, and every file now has to prove
+        it exists before anything writes over it. <b>20+ recordings</b> came back.
       </>,
     ],
     tags: [
@@ -421,22 +422,21 @@ export const experience: ExperienceRole[] = [
     company: 'Nuveb',
     meta: ['Full-Stack Developer', 'Open OTT network for creators', 'Bengaluru, India'],
     summary:
-      'A video platform for creators, which grew from nothing to 10,000+ creators while I was there. I built the creator side: video, scheduling, payments.',
+      'I built the creator side of a video platform: video, scheduling and payments, on Next.js and TypeScript over a Go backend. Much of the work was making pages that already worked load faster.',
     bullets: [
       <>
-        Built the creator portal’s video, scheduling, and payment modules as it grew from{' '}
-        <b>0 to 10,000+ active creators</b>.
+        Pages were taking <b>8.5 seconds</b> to load for <b>50,000+ visitors a month</b>.
+        The browse pages were rebuilding themselves on every request, for content that
+        barely changed. I moved those to pre-built pages, keeping the rebuild only where
+        the page was personal to the user. Load time came down to <b>2.5 seconds</b>.
       </>,
       <>
-        Pages were taking <b>8.5 seconds</b> to load for <b>50,000+ monthly visitors</b>.
-        The browse pages were rebuilding themselves on every single request, for content
-        that barely changed. I moved those to pre-built pages and kept the rebuild only
-        where the page was personal to the user. <b>2.5 seconds</b> after.
+        I profiled the image requests, which were sitting at <b>3.2 seconds</b> across{' '}
+        <b>10,000+ items</b>, and the resizing step was the cost. Moving that work to the
+        server brought them to <b>1.9 seconds</b>.
       </>,
       <>
-        Image requests were sitting at <b>3.2 seconds</b> across <b>10,000+ items</b>.
-        Profiling pointed at the resizing step, so I moved that work to the server.{' '}
-        <b>1.9 seconds</b> after.
+        The platform went from no creators to <b>10,000+</b> while I was there.
       </>,
     ],
     tags: ['Next.js', 'TypeScript', 'Node.js', 'Go microservices', 'Sharp', 'React Native'],
@@ -444,7 +444,7 @@ export const experience: ExperienceRole[] = [
 ];
 
 export const communityIntro =
-  'I came into Social Winter of Code as a contributor and came back to the summer round as a mentor.';
+  'I have been on both sides of the same programme inside a year. In January I was a contributor. From June I have been a mentor, and that turned out to be the harder job.';
 
 /* Every number and link here resolves to something a reader can open. Projects
  * without a verified repo carry no count and no link rather than a guess. */
@@ -452,73 +452,74 @@ export const community: CommunityEntry[] = [
   {
     dates: 'Jun 2026 — present',
     org: 'Social Summer of Code',
-    meta: ['Mentor', 'Open-source programme', 'Two projects'],
+    meta: ['Mentor', 'Two projects', '41 contributors between them'],
     summary: (
       <>
-        Social Summer of Code pairs contributors with maintainers on live repositories
-        for a season. I mentor two of the 2026 projects — triage and scoping rather than
-        writing the code: what gets built, in what order, and what done looks like. The
-        two repos have drawn <b>41 distinct contributors</b> between them.
+        Most of my time goes on the tasks, not the code. A task has to be written well
+        enough that a stranger can pick it up, build the right thing, and finish it without
+        needing me to explain it again.
       </>
     ),
     projects: [
       {
         name: 'EduFlow AI',
-        stat: '23 contributors · 31 forks',
-        blurb: 'A study platform, with roughly 100 SSoC-tagged issues open to the cohort.',
-        did: 'Asked for a written approach and user flow on one of the harder issues before the contributor started building.',
+        stat: '23 contributors · around 100 open tasks',
+        blurb: 'A study platform the group is building out.',
+        did: 'On the harder tasks I ask the contributor to write down their approach and the user flow before they start building.',
         url: 'https://github.com/prabhakarshukla/EduFlow-AI',
       },
       {
         name: 'VidyAI++ (jai3546/AI_ROCKERS)',
-        stat: '23 contributors · 35 forks',
-        blurb: 'An AI tutoring app the cohort is hardening.',
-        did: 'Authored 5 of its ~68 SSoC-tagged issues: a missing import crashing the app, a service worker serving stale pages after deploy, 44 TypeScript errors the build was ignoring, and a build that fails without DATABASE_URL.',
+        stat: '23 contributors · around 68 open tasks',
+        blurb: 'An AI tutoring app the group is cleaning up.',
+        did: 'I wrote 5 of those tasks: a missing import that crashed the app, old pages still being served after a new release, 44 type errors the build was ignoring, and a build that fails when one database setting is missing.',
         url: 'https://github.com/jai3546/AI_ROCKERS',
       },
     ],
-    tags: ['Mentoring', 'Issue scoping'],
+    tags: ['Mentoring', 'Task writing'],
   },
   {
     dates: 'Jan 2026',
     org: 'Social Winter of Code',
-    meta: ['Contributor', 'Open-source programme', 'Two projects'],
+    meta: ['Contributor', 'Two projects', 'Two pull requests merged'],
     summary: (
       <>
-        The same programme&rsquo;s winter round, from the other side of it. I took
-        labelled issues in two projects and shipped them.
+        On AlgoFi I started on a beginner-tagged task and finished on a harder one. Both
+        projects were somebody else&rsquo;s codebase, which is most of what the programme
+        teaches you.
       </>
     ),
     projects: [
       {
         name: 'AlgoFi',
-        stat: '11 contributors · 29 forks',
-        blurb: 'A decentralised NFT marketplace on the Algorand testnet.',
-        did: 'Two merged pull requests. Started on a good-first-issue and finished on a Medium one: the app-wide dark/light theme, made to persist across reloads — 11 files, +419/−226.',
+        stat: '11 contributors · 2 pull requests merged',
+        blurb: 'A marketplace for digital collectibles.',
+        did: 'I built the dark and light theme for the whole app and made the choice survive a reload. 11 files, +419/−226.',
         url: 'https://github.com/denshaw-09/AlgoFi',
       },
       {
         name: 'BrowsePing',
-        stat: '5 contributors · 15 forks',
-        blurb: 'A browser extension for social browsing.',
-        did: 'Real-time typing indicators — 8 files, +365/−123 over 6 commits, still open for review. Also split the web dashboard epic into five phased issues on the landing-page repo.',
+        stat: '5 contributors · still open for review',
+        blurb: 'A browser extension for browsing together.',
+        did: 'I added the live typing indicators, 8 files and +365/−123 over 6 commits, and broke their dashboard plan into five smaller tasks other people could pick up.',
         url: 'https://github.com/browseping/browser-extension',
       },
     ],
-    tags: ['Open source', 'React'],
+    tags: ['Open source', 'Frontend'],
   },
 ];
 
 export const about = {
   statement:
-    'I like the parts nobody demos. What happens when the signal goes, when the same message arrives twice, when a file does not save. That is usually where a product is won or lost.',
-  p1: 'I would rather build the whole thing than the nice part of it. That means being in the conversation about what it should do, not picking up a ticket after somebody else has decided. On six of my own projects I was the only engineer on all of it. On one, nobody gave me a brief at all, so I wrote the problem statement, worked out who it was for, and then built it.',
-  p2: 'The decisions I make are usually the boring ones. Make the AI answer in a fixed shape so it cannot quietly break a page. Write a save so that running it twice saves one thing, not two. Keep the work on the phone until the signal comes back. On a team I care about clear interfaces and tests that actually stop a bad deploy, because that is what lets a small group ship without breaking things. I am starting an MCA at IIIT Ranchi in 2026 to go deeper on the systems side.',
+    'Losing a teacher’s class recording is the worst thing this software can do.',
+  p1: 'I start with what breaks. The failures I trust least are the quiet ones, where nothing shows an error and nobody files a report, because nobody knows anything has gone wrong. A file disappears. Or a job runs a second time and quietly pays twice, and the only sign is a number that does not add up three weeks later. In two of the products below I built it so the same message arriving twice cannot do the work twice, rather than only writing a test and hoping.',
+  p2: 'The decisions I am proud of are mostly the ones where I gave something up. A feature cut because the version that would have held was out of budget. An extra layer kept because a fast test run is worth more than a tidy one. What I want next is a product company, in India or abroad, with a backend that has real users on bad connections. I am starting an MCA at IIIT Ranchi in 2026 to go deeper on the systems side.',
   rail: [
     { label: 'Based in', value: 'Mumbai, India' },
     {
       label: 'Focus',
-      value: 'The whole path, from what to build through to the deploy',
+      value: 'Backend APIs and the databases under them',
+      sub: 'Python and TypeScript · PostgreSQL and Redis',
       narrow: true,
     },
     {
@@ -536,7 +537,7 @@ export const about = {
 };
 
 export const toolkitIntro =
-  'Only tools I’ve shipped with, grouped by what I use them for.';
+  'The tools I reach for most, listed plainly, with no ratings and no percentages.';
 
 export const toolkit: ToolkitRow[] = [
   {
@@ -574,9 +575,9 @@ export const toolkit: ToolkitRow[] = [
 export const LANGUAGES = 'TypeScript · Python · JavaScript · SQL';
 
 export const contact = {
-  title: 'Have something that can’t afford to break?',
+  title: 'Tell me what you are building',
   support:
-    'I’m looking for full-stack or AI engineering roles and I’m happy to relocate. Email reaches me fastest — I read everything that lands there.',
+    'I am looking for a software engineer role and I am happy to relocate. Email is the fastest way to reach me, and I reply to everything that lands there.',
 };
 
 export const COLOPHON = 'Set in Syne, Instrument Sans & Space Mono.';
