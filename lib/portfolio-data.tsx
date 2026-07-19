@@ -377,10 +377,21 @@ export const experience: ExperienceRole[] = [
     meta: ['Software Engineer', 'Shantilal Shanghvi Foundation', 'EdTech · Mumbai, India'],
     summary: (
       <>
-        The four apps are web and Android, and they run in government and private schools.
-        A change to one table is a change all four have to live with, so that database gets
-        argued about before it gets written. Two peer-reviewed papers have been published
-        on this work: one on the history chatbots (
+        Shikha Labs builds{' '}
+        <a
+          className={INLINE_LINK}
+          href="https://shikha.ai"
+          target="_blank"
+          rel="noopener"
+          aria-label="Sakhee by Shikha Labs (opens in new tab)"
+        >
+          Sakhee
+        </a>
+        , an AI tool for schoolteachers — planning a lesson, building an assessment, seeing
+        how a class is doing. I am one of the engineers on it. The four apps I look after
+        are web and Android, and a change to one table is a change all four have to live
+        with, so that database gets argued about before it gets written. Two peer-reviewed
+        papers have been published on this work: one on the history chatbots (
         <a
           className={INLINE_LINK}
           href="https://doi.org/10.33965/celda2025_202509l042"
@@ -423,26 +434,35 @@ export const experience: ExperienceRole[] = [
         twice saves the result once.
       </>,
       <>
+        Two pieces of Sakhee are mine and I wrote both on my own. One is the school calendar
+        — terms, holidays, timetables — which I later moved into its own service, so the
+        rest of the platform asks it instead of every app keeping its own copy of the dates.
+        The other is the Google Drive link: a teacher&rsquo;s files sync both ways with
+        every version kept, and while they are still typing it waits for a pause before
+        saving. An hour of editing leaves one version, not forty. The build and deploy
+        pipelines for our four services are mine too.
+      </>,
+      <>
+        A state authority is having a platform built to check school quality, and three of
+        us built it. I built the front end: signing in, the different dashboard each kind of
+        user sees, forms that save as you fill them so a bad connection does not cost an
+        hour of work, a calendar of what is due, and the school report pages. A colleague
+        wrote the part that does the scoring.
+      </>,
+      <>
         At about <b>50 of the 117 schools</b> the connection drops several times a day, and
         class recordings were being lost. The recording now saves on the phone first and
-        uploads once the signal returns. The losses stopped.
+        uploads once the signal returns. The losses stopped. A second problem was quieter:
+        on Android, unsaved audio was being deleted without anyone noticing, so nobody
+        reported it, because nobody knew. I traced it, and every file now has to prove it
+        exists before anything writes over it. <b>20+ recordings</b> came back.
       </>,
       <>
-        On Android, unsaved audio was being deleted quietly. Nobody had reported it,
-        because nobody knew it had happened. I traced it, and every file now has to prove
-        it exists before anything writes over it. <b>20+ recordings</b> came back.
-      </>,
-      <>
-        I also build whole products on my own here. The institute&rsquo;s new website is
+        I build whole products on my own here as well. The institute&rsquo;s new website is
         mine end to end, still in development: <b>14 pages</b> and an admin area where staff
         edit their own content, with a draft kept separate from what the public sees so a
-        half-finished edit never goes out. It deploys with the new version taking no traffic
-        until it has answered a health check, and the old one still serving if it does not.
-      </>,
-      <>
-        Our repositories carry a knowledge graph I set up, so the AI coding agents we use
-        can answer what depends on what without reading every file first. It runs on the
-        machine, refreshes itself after each commit, and costs nothing to query.
+        half-finished edit never goes out. There is a second one, a content platform for a
+        state education department, where I am the only engineer.
       </>,
     ],
     tags: [
