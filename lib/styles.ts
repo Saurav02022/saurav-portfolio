@@ -8,6 +8,10 @@ import { cn } from '@/lib/utils';
 /** The page's one measure: centred column with the design's fluid gutter. */
 export const WRAP = 'mx-auto w-full max-w-wrap px-gutter';
 
+/** A link sitting inside a run of prose, rather than as its own element. */
+export const INLINE_LINK =
+  'underline decoration-accent decoration-2 underline-offset-[3px] transition-colors duration-200 hover:text-accent';
+
 const BTN = 'inline-flex min-h-13 items-center gap-2.5 text-[15px] font-semibold';
 
 export const BTN_PRIMARY = cn(

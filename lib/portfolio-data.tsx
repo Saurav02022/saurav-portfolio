@@ -8,6 +8,7 @@ import type {
   Section,
   ToolkitRow,
 } from './types';
+import { INLINE_LINK } from './styles';
 
 /* ---------------------------------------------------------------------------
  * Content source of truth — every string on the site lives here.
@@ -353,7 +354,29 @@ export const experience: ExperienceRole[] = [
       <>
         Software&nbsp;engineer on an EdTech platform used across 117 schools — a lot of
         them on connections that drop. I own the API layer, the database schema, and the
-        reliability work.
+        reliability work. Shikha&rsquo;s founder and head of research have published on two
+        systems I work on: the design research behind the teacher-facing platform our team
+        builds (
+        <a
+          className={INLINE_LINK}
+          href="https://doi.org/10.1007/978-3-032-29791-4_25"
+          target="_blank"
+          rel="noopener"
+          aria-label="AI-Human Synergy, Springer CCIS 2026 (opens in new tab)"
+        >
+          Springer CCIS 2026
+        </a>
+        ), and the history chatbots an earlier team built and I now maintain and extend (
+        <a
+          className={INLINE_LINK}
+          href="https://doi.org/10.33965/celda2025_202509l042"
+          target="_blank"
+          rel="noopener"
+          aria-label="Conversations for Learning, CELDA 2025 (opens in new tab)"
+        >
+          CELDA 2025
+        </a>
+        ).
       </>
     ),
     bullets: [
