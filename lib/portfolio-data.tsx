@@ -74,14 +74,14 @@ export const cover = {
 };
 
 export const MARQUEE_ITEMS = [
-  '117 schools',
   '4 apps, 1 database',
-  '400 classes a week',
+  'An Android app, start to finish',
   '8.5 seconds down to 2.5',
-  '20+ recordings recovered',
-  '5,000+ submissions assessed',
-  '10,000+ creators at Nuveb',
-  '41 contributors on 2 projects',
+  'Saves on the phone, syncs later',
+  'One handler, one outcome',
+  'The maths never comes from the model',
+  'Mentoring two open-source projects',
+  'Nothing lost, nothing saved twice',
 ];
 
 export const workIntro =
@@ -636,7 +636,7 @@ export const LANGUAGES = 'TypeScript · Python · JavaScript · SQL';
 export const contact = {
   title: 'Tell me what you are building',
   support:
-    'I am looking for a software engineer role and I am happy to relocate. Email is the fastest way to reach me, and I reply to everything that lands there.',
+    'I am looking for a Software Engineer II role and I am happy to relocate. Email is the fastest way to reach me, and I reply to everything that lands there.',
 };
 
 export const COLOPHON = 'Set in Syne, Instrument Sans & Space Mono.';
