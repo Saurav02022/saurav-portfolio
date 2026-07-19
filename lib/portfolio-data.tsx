@@ -58,34 +58,34 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const cover = {
   discipline: 'Full-stack + AI',
-  eyebrow: 'Currently shipping EdTech used in 117 schools',
+  eyebrow: 'Building school software used in 117 schools',
   title: (
     <>
-      I make software that <em>keeps working</em> when the network doesn&rsquo;t.
+      I design the database, write the API and the app, and <em>put it live</em> myself.
     </>
   ),
   support:
-    'I own the whole path, API through deploy, and I design for the failure cases: the connection that drops, the model that answers off-schema, the vendor API that answers twice.',
+    'Right now that is school software in 117 schools. Two products: one coaches a teacher on the class they just taught, the other is where students build a portfolio of their year and get assessed on it.',
   stats: [
-    { label: 'FOCUS', value: 'Full-stack + AI features' },
-    { label: 'STATUS', value: 'Open to full-stack / AI roles · will relocate' },
+    { label: 'NOW', value: 'School software · Mumbai' },
+    { label: 'OPEN TO', value: 'Software engineer roles · will relocate' },
     { label: 'EXP', value: '3+ yrs in production' },
   ],
 };
 
 export const MARQUEE_ITEMS = [
-  'Reliability under bad conditions',
-  'Idempotent writes',
-  'Offline-first sync',
-  'Schema-locked LLMs',
   '117 schools',
+  '400 classes a week',
+  'Nothing lost, nothing saved twice',
+  'Works when the signal drops',
+  'Two AI products in real classrooms',
   '10,000+ creators',
-  'Nothing lost, nothing written twice',
+  'Research published on the work',
   'One engineer, whole path',
 ];
 
 export const workIntro =
-  'Six builds, sorted by how much they prove. A job seeker, an ops team, a claims processor: the person on the other end changes from card to card, but the work underneath never does — stay correct when the thing upstream is slow, or fires the same call twice. Where a project started as a take-home or a hackathon, the card says so.';
+  'Six projects I built on my own, in the order I would want them read. The person they are for changes each time. A job seeker, a delivery team, an insurance claim. What does not change is the part underneath: stay correct when the thing you depend on is slow, or answers twice, or does not answer at all. Where a project started as a take-home or a hackathon, the card says so.';
 
 /* Six cases, one card. Sorted by how much verifiable engineering each repo
  * holds — tests, architecture, deploy pipeline — not by how shiny the product
@@ -234,7 +234,7 @@ export const cases: CaseStudy[] = [
       },
       {
         label: 'Key decision',
-        text: 'The transcript → Gemini → feedback pipeline is an idempotent upsert keyed on the booking, so a repeated delivery hits the same row instead of paying out again. Clerk JWTs are verified against JWKS inside the FastAPI service, so auth stays stateless across both services, and booking and withdrawal are rate-limited per user with a token bucket.',
+        text: 'The transcript goes to Gemini and comes back as written feedback. That whole step is tied to the booking, so if the same message arrives twice it updates the same record instead of paying the interviewer again. Each service checks the login itself, so neither has to remember who you are, and booking and withdrawal are both capped per person.',
       },
       {
         label: 'Outcome',
@@ -305,12 +305,12 @@ export const cases: CaseStudy[] = [
     year: '2026',
     title: 'Financial Literacy Assistant',
     summary:
-      'Budgeting, saving and investing journeys for financial beginners, built in a three-hour hackathon and deployed to Cloud Run for judging.',
+      'Budgeting, saving and investing, for people starting from zero. Built in a three-hour hackathon and put on Cloud Run for the judges.',
     facts: [
       {
         label: 'Role',
         tone: 'plain',
-        text: 'Sole engineer — all three journeys, auth, persistence.',
+        text: 'Only engineer — all three sections, the login, and saving the data.',
       },
       {
         label: 'Challenge',
@@ -318,7 +318,7 @@ export const cases: CaseStudy[] = [
       },
       {
         label: 'Key decision',
-        text: 'Split every journey in two: the math is plain TypeScript, and Gemini only writes the coaching on top. When the model fails, the app falls back to fixed guidance instead of erroring.',
+        text: 'Split each one in two. The maths is plain TypeScript. Gemini only writes the wording on top of it, so when the model is down the app falls back to fixed advice instead of showing an error.',
       },
       {
         label: 'Outcome',
@@ -343,7 +343,7 @@ export const cases: CaseStudy[] = [
 ];
 
 export const experienceIntro =
-  'Two roles, three years and counting. Most of it is API and schema work, plus the reliability work nobody notices until it breaks.';
+  'Two jobs, three years. Most of it is the API and the database, and the work nobody notices until something breaks.';
 
 export const experience: ExperienceRole[] = [
   {
@@ -352,11 +352,10 @@ export const experience: ExperienceRole[] = [
     meta: ['Software Engineer', 'Shantilal Shanghvi Foundation', 'EdTech · Mumbai, India'],
     summary: (
       <>
-        Software&nbsp;engineer on an EdTech platform used across 117 schools — a lot of
-        them on connections that drop. I own the API layer, the database schema, and the
-        reliability work. Since I joined, the features shipped on our history chatbots have
-        been mine; an earlier team built the first version. Colleagues at Shikha have
-        published on that system (
+        I own the API behind four apps, web and Android, and I designed the database under
+        all four. A change to one table is a change all four apps have to live with, so
+        that schema gets argued about before it gets written. Two peer-reviewed papers have
+        been published on this work: one on the history chatbots (
         <a
           className={INLINE_LINK}
           href="https://doi.org/10.33965/celda2025_202509l042"
@@ -366,7 +365,7 @@ export const experience: ExperienceRole[] = [
         >
           CELDA 2025
         </a>
-        ) and on the design research behind the platform (
+        ), and one on how the platform was designed with teachers (
         <a
           className={INLINE_LINK}
           href="https://doi.org/10.1007/978-3-032-29791-4_25"
@@ -376,29 +375,34 @@ export const experience: ExperienceRole[] = [
         >
           Springer CCIS 2026
         </a>
-        ).
+        ). Colleagues here wrote both. My part is the engineering they are written about.
       </>
     ),
     bullets: [
       <>
-        Cut a teacher’s grading pass from <b>40 minutes to 5–10</b> by moving scoring onto an
-        async Redis queue with FastAPI workers on the Gemini API — now{' '}
-        <b>400+ evaluations a week</b> for <b>200+ teachers</b>.
+        <b>AI Teacher Coach.</b> To assess how a teacher taught, a mentor had to sit
+        through the whole class. Now the teacher records the class in the app and the
+        coaching comes back in <b>five to ten minutes</b>, with nobody in the room. About{' '}
+        <b>400 classes a week</b>, for <b>200+ teachers</b>.
       </>,
       <>
-        <b>4 production apps</b> (web and Android) run on a shared Next.js API layer and a
-        PostgreSQL schema I designed; rolled out in stages, they hold <b>96%+ crash-free</b>{' '}
-        across <b>117 schools</b>.
+        <b>Student Portfolio Portal.</b> Built this one on my own, web and Android.
+        Students, teachers and school admins each log in and see something different, and
+        a teacher at one school never sees another school&rsquo;s students.{' '}
+        <b>300+ students</b>, <b>5,000+ submissions</b>, <b>98%</b> going through first
+        time. The 2% that fail retry on their own, and a job that runs twice saves the
+        result once.
       </>,
       <>
-        Held a <b>98% API success rate</b> over <b>5,000+ submissions</b>; the failing 2%
-        retry idempotently against a fixed schema, so nothing is lost or written twice.
-        Stopped data loss at <b>50+ low-network schools</b> with an offline-first
-        IndexedDB queue.
+        Those recordings are the product, so losing one is the worst thing that can
+        happen. Schools on bad connections were losing them, so the app now saves to the
+        phone first and sends the file once the signal is back. That stopped the losses at{' '}
+        <b>50+ schools</b>.
       </>,
       <>
-        Traced an Android bug that was silently deleting unsaved audio and saved{' '}
-        <b>20+ class recordings</b> by verifying each file exists before every write.
+        On Android, unsaved audio was being deleted quietly, so nobody reported it —
+        nobody knew. I traced it and made every file prove it exists before anything writes
+        over it. That recovered <b>20+ class recordings</b>.
       </>,
     ],
     tags: [
@@ -417,21 +421,22 @@ export const experience: ExperienceRole[] = [
     company: 'Nuveb',
     meta: ['Full-Stack Developer', 'Open OTT network for creators', 'Bengaluru, India'],
     summary:
-      'Built creator-facing product — video, scheduling, payments — in Next.js and TypeScript over a Go microservices backend.',
+      'A video platform for creators, which grew from nothing to 10,000+ creators while I was there. I built the creator side: video, scheduling, payments.',
     bullets: [
       <>
         Built the creator portal’s video, scheduling, and payment modules as it grew from{' '}
         <b>0 to 10,000+ active creators</b>.
       </>,
       <>
-        Cut page load from <b>8.5s to 2.5s</b> (70%) for <b>50,000+ monthly users</b> —
-        catalogue pages over-fetched in SSR, so I moved browse to SSG and kept SSR for
-        personalized routes.
+        Pages were taking <b>8.5 seconds</b> to load for <b>50,000+ monthly visitors</b>.
+        The browse pages were rebuilding themselves on every single request, for content
+        that barely changed. I moved those to pre-built pages and kept the rebuild only
+        where the page was personal to the user. <b>2.5 seconds</b> after.
       </>,
       <>
-        Dropped image API latency from <b>3.2s to 1.9s</b> (41%) across{' '}
-        <b>10,000+ items</b> by profiling the resize step and moving it to Sharp on the
-        server.
+        Image requests were sitting at <b>3.2 seconds</b> across <b>10,000+ items</b>.
+        Profiling pointed at the resizing step, so I moved that work to the server.{' '}
+        <b>1.9 seconds</b> after.
       </>,
     ],
     tags: ['Next.js', 'TypeScript', 'Node.js', 'Go microservices', 'Sharp', 'React Native'],
@@ -506,14 +511,14 @@ export const community: CommunityEntry[] = [
 
 export const about = {
   statement:
-    'I like the unglamorous parts — the retry logic, the schema, the reconnect path. That’s usually where a product is won or lost.',
-  p1: 'Most of my work sits between a frontend and something unreliable — a flaky network, or a model that answers off-schema. I’d rather own that whole path than hand off the hard 20%, so I work end to end, from the API down to the deploy.',
-  p2: 'When I make a call, it’s usually the boring one: pin the LLM to a schema, make the write idempotent, queue it offline and sync later. On a team I care about clear interfaces and tests that actually gate deploys — it’s what lets a small group ship without breaking things. I’m going deeper on distributed systems now, starting an MCA at IIIT Ranchi in 2026.',
+    'I like the parts nobody demos. What happens when the signal goes, when the same message arrives twice, when a file does not save. That is usually where a product is won or lost.',
+  p1: 'I would rather build the whole thing than the nice part of it. That means being in the conversation about what it should do, not picking up a ticket after somebody else has decided. On six of my own projects I was the only engineer on all of it. On one, nobody gave me a brief at all, so I wrote the problem statement, worked out who it was for, and then built it.',
+  p2: 'The decisions I make are usually the boring ones. Make the AI answer in a fixed shape so it cannot quietly break a page. Write a save so that running it twice saves one thing, not two. Keep the work on the phone until the signal comes back. On a team I care about clear interfaces and tests that actually stop a bad deploy, because that is what lets a small group ship without breaking things. I am starting an MCA at IIIT Ranchi in 2026 to go deeper on the systems side.',
   rail: [
     { label: 'Based in', value: 'Mumbai, India' },
     {
       label: 'Focus',
-      value: 'Full-stack + AI features for unreliable networks and third-party APIs',
+      value: 'The whole path, from what to build through to the deploy',
       narrow: true,
     },
     {
@@ -538,31 +543,31 @@ export const toolkit: ToolkitRow[] = [
     num: '01',
     label: 'Building interfaces',
     tools: 'Next.js · React · React Native',
-    note: 'Product UIs for web and Android, built on shared API layers — including offline-first flows that hold up on bad connections.',
+    note: 'Web and Android apps that share one API behind them, including the ones that have to keep working when the connection does not.',
   },
   {
     num: '02',
     label: 'Building services',
     tools: 'FastAPI · Node.js · Python',
-    note: 'REST APIs and async workers, including LLM calls that only ever return schema-validated JSON — the model answers in the shape the code expects, or the call fails loudly.',
+    note: 'APIs, and the background workers that do the slow jobs. When these call an AI model, the answer has to come back in a fixed shape, or the call fails loudly instead of quietly passing something broken along.',
   },
   {
     num: '03',
     label: 'Working with data',
     tools: 'PostgreSQL · Redis · Firestore · IndexedDB',
-    note: 'Schemas I design, Redis queues for async jobs, and local-first stores that replay and sync when a device reconnects.',
+    note: 'Databases I design myself, queues for the slow jobs, and storage on the device that catches up with the server once it can reach it.',
   },
   {
     num: '04',
     label: 'Shipping & maintaining',
     tools: 'Docker · GCP Cloud Run · Vercel · GitHub Actions',
-    note: 'Containerized deploys, staged rollouts, and a test suite that must pass before a rollout.',
+    note: 'The app ships as a container, goes out to a few schools before the rest, and the tests have to pass before any of it moves.',
   },
   {
     num: '05',
     label: 'Workflow',
     tools: 'Playwright · pytest · Git · code review',
-    note: 'End-to-end tests that stub the app’s own API routes at the network edge, plus small diffs and real code review.',
+    note: 'Tests that drive the real app in a browser, with its own API answers faked, so a failure means my code broke and not somebody else’s server. Small changes, and code review that actually reads the change.',
   },
 ];
 
